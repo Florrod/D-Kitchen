@@ -3,7 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home";
+import { Login } from "./views/login";
 import { Registerform } from "./views/registerform";
+import { RemindPassword } from "./views/remindpassword";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
@@ -23,7 +25,8 @@ export const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={Registerform} />
+						<Route exact path="/" component={Login} />
+						<Route exact path="/remind-password" component={RemindPassword} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />
