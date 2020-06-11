@@ -2,12 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/registerForm.scss";
+import "../../styles/home.scss";
 
 export const RegisterForm = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div>
+		<form>
 			<div className="container">
 				<div className="row justify-content-center">
 					<div className="col-12 col-md-8 col-lg-8 col-xl-6">
@@ -31,20 +32,34 @@ export const RegisterForm = () => {
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<input type="text" className="form-control" placeholder="Company Name" />
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<input type="text" className="form-control" placeholder="Postal Address" />
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
 								<input type="password" className="form-control" placeholder="Contraseña" />
 							</div>
 							<div className="col">
 								<input type="password" className="form-control" placeholder="Confirma contraseña" />
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<input type="text" className="form-control" placeholder="Nombre de la marca" />
+							</div>
+							<div className="col">
+								<input type="text" className="form-control" placeholder="Teléfono" />
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<div className="custom-file">
+									<input
+										type="file"
+										className="custom-file-input"
+										id="validatedCustomFile"
+										required
+									/>
+									<label className="custom-file-label" htmlFor="validatedCustomFile">
+										Sube tu logo...
+									</label>
+									<div className="invalid-feedback">Example invalid custom file feedback</div>
+								</div>
 							</div>
 						</div>
 						<div className="row justify-content-start mt-4">
@@ -60,6 +75,6 @@ export const RegisterForm = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	);
 };
