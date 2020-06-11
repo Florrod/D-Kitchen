@@ -1,0 +1,54 @@
+.titleForm {
+    font-family: 'abril fatface';
+    font-size: calc(2em + 2vw);
+    font-weight: 500;
+    color: #2b3800;
+    line-height: 72px;
+
+}
+
+.labelRegister {
+    font-family: 'Cabin', 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color:#3e3e3e;
+    font-size: calc(0,5em + 0,5vw);
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 3px;
+}
+
+input {
+    background-color:rgb(255, 255, 255);
+    border-style: solid;
+    border-width: 0.989583px;
+    border-radius: 4px;
+    border-color: rgb(225, 225, 225);
+    box-sizing:border-box;
+    color:rgb(153, 153, 153);
+    cursor:text;
+    display:inline-block;
+    font-family:'Cabin', Helvetica, Arial, Lucida, sans-serif;
+    font-size:12px;
+    font-stretch:100%;
+    font-style:normal;
+    font-weight:400;
+    height: 500px;
+    letter-spacing:3px;
+    line-height:24px;
+    margin: 0px;
+    overflow: hidden;
+    padding: 16px;
+    text-indent:0px;
+    text-rendering:auto;
+    text-shadow:none;
+    text-size-adjust:100%;
+    word-spacing:0px;
+    }
+
+.form-control {
+    font-family: 'Cabin', 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color:#3e3e3e;
+    font-size: calc(0,2em + 0,2vw);
+    font-weight: 400;
+    line-height: 24px;
+    padding: 16px;
+}
