@@ -19,31 +19,47 @@ export const RegisterForm = () => {
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<input type="password" className="form-control" placeholder="CIF o NIF" />
+								<input
+									type="text"
+									className="form-control form-fixer form-fixer"
+									placeholder="CIF o NIF"
+								/>
 							</div>
 							<div className="col">
-								<input type="password" className="form-control" placeholder="Nombre de la empresa" />
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<input type="email" className="form-control" placeholder="Email" />
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<input type="password" className="form-control" placeholder="Contraseña" />
-							</div>
-							<div className="col">
-								<input type="password" className="form-control" placeholder="Confirma contraseña" />
+								<input
+									type="text"
+									className="form-control form-fixer"
+									placeholder="Nombre de la empresa"
+								/>
 							</div>
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<input type="text" className="form-control" placeholder="Nombre de la marca" />
+								<input type="email" className="form-control form-fixer" placeholder="Email" />
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<input type="password" className="form-control form-fixer" placeholder="Contraseña" />
 							</div>
 							<div className="col">
-								<input type="text" className="form-control" placeholder="Teléfono" />
+								<input
+									type="password"
+									className="form-control form-fixer"
+									placeholder="Confirma contraseña"
+								/>
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<input
+									type="text"
+									className="form-control form-fixer"
+									placeholder="Nombre de la marca"
+								/>
+							</div>
+							<div className="col">
+								<input type="text" className="form-control form-fixer" placeholder="Teléfono" />
 							</div>
 						</div>
 						<div className="row align-items-center mt-4">
@@ -64,7 +80,7 @@ export const RegisterForm = () => {
 						</div>
 						<div className="row justify-content-start mt-4">
 							<div className="col">
-								<button className="btn-lg buttonSubmit">Submit</button>
+								<input type="submit" value="Guardar" className="btn-lg buttonSubmit" />
 							</div>
 							<Link to="/">
 								<span className="btn btn-primary btn-lg" href="#" role="button">
