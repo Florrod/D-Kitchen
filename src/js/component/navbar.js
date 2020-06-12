@@ -3,15 +3,36 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
-		</nav>
+		<div className="container-fluid">
+			<nav id="navbar-example2" className="navbar navbar-light bg-light">
+				<a className="navbar-brand" href="#">
+					%Nombredelamarca%
+				</a>
+				<ul className="nav nav-pills m-2">
+					<li>
+						<i className="icon fas fa-user-circle mr-2" />
+					</li>
+					<li className="button nav-item dropdown">
+						<a
+							className="nav-link dropdown-toggle"
+							data-toggle="dropdown"
+							href="#"
+							role="button"
+							aria-haspopup="true"
+							aria-expanded="false">
+							Menú
+						</a>
+						<div className="dropdown-menu">
+							<a className="dropdown-item" href="#one">
+								Mi panel
+							</a>
+							<a className="dropdown-item" href="#two">
+								Cerrar sesión
+							</a>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	);
 };
