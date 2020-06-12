@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { UploadProfile } from "./uploadProfile";
 import "../../styles/registerForm.scss";
 import "../../styles/home.scss";
 
@@ -17,6 +18,7 @@ export const RegisterForm = () => {
 								<h1 className="titleForm">Formulario de Registro</h1>
 							</div>
 						</div>
+						<UploadProfile />
 						<div className="row align-items-center mt-4">
 							<div className="col">
 								<input
@@ -60,22 +62,6 @@ export const RegisterForm = () => {
 							</div>
 							<div className="col">
 								<input type="text" className="form-control form-fixer" placeholder="Teléfono" />
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<div className="custom-file">
-									<input
-										type="file"
-										className="custom-file-input"
-										id="validatedCustomFile"
-										required
-									/>
-									<label className="custom-file-label" htmlFor="validatedCustomFile">
-										Sube tu logo...
-									</label>
-									<div className="invalid-feedback">Example invalid custom file feedback</div>
-								</div>
 							</div>
 						</div>
 						<div className="row justify-content-start mt-4">
