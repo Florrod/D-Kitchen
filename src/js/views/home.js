@@ -10,7 +10,7 @@ export const Home = () => (
 			<img src={rigoImage} />
 		</p>
 		<Link to="/registerForm">
-			<button className="btn btn-primary">Go to Register clients</button>
+			<button className="btn btn-primary">Ir al formulario de Registro</button>
 		</Link>
 	</div>
 );

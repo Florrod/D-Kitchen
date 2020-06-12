@@ -66,12 +66,14 @@ export const RegisterForm = () => {
 							</div>
 						</div>
 						<div className="row justify-content-center mt-4">
-							<div className="col">
-								<input type="submit" value="Guardar" className="button" />
-							</div>
+							<Link to="/companyAdded">
+								<div className="col">
+									<input type="submit" value="Guardar" className="button" />
+								</div>
+							</Link>
 							<Link to="/">
 								<div className="col">
-									<span className="button mr-3" href="#" role="button">
+									<span className="button" href="#" role="button">
 										Back home
 									</span>
 								</div>
