@@ -22,6 +22,7 @@ export const RegisterForm = () => {
 						<div className="row align-items-center mt-4">
 							<div className="col">
 								<input
+									id="CIF"
 									type="text"
 									className="form-control form-fixer form-fixer"
 									placeholder="CIF o NIF"
@@ -64,14 +65,16 @@ export const RegisterForm = () => {
 								<input type="text" className="form-control form-fixer" placeholder="Teléfono" />
 							</div>
 						</div>
-						<div className="row justify-content-start mt-4">
+						<div className="row justify-content-center mt-4">
 							<div className="col">
-								<input type="submit" value="Guardar" className="btn-lg buttonSubmit" />
+								<input type="submit" value="Guardar" className="button" />
 							</div>
 							<Link to="/">
-								<span className="btn btn-primary btn-lg" href="#" role="button">
-									Back home
-								</span>
+								<div className="col">
+									<span className="button mr-3" href="#" role="button">
+										Back home
+									</span>
+								</div>
 							</Link>
 						</div>
 					</div>
