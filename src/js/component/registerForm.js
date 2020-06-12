@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UploadProfile } from "./uploadProfile";
+import { Navbar } from "./navbar";
 import "../../styles/registerForm.scss";
 import "../../styles/home.scss";
 

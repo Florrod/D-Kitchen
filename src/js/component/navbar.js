@@ -12,16 +12,16 @@ export const Navbar = () => {
 					<li>
 						<i className="icon fas fa-user-circle mr-2" />
 					</li>
-					<li className="button nav-item dropdown">
-						<a
-							className="nav-link dropdown-toggle"
+					<li className="nav-item dropdown mt-2">
+						<span
+							className="dropdown-toggle"
 							data-toggle="dropdown"
 							href="#"
 							role="button"
 							aria-haspopup="true"
 							aria-expanded="false">
 							Menú
-						</a>
+						</span>
 						<div className="dropdown-menu">
 							<a className="dropdown-item" href="#one">
 								Mi panel
