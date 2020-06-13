@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const CompanyCard = props => {
 	const [state, setState] = useState({
@@ -10,45 +11,53 @@ export const CompanyCard = props => {
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
-				<div className="col-12 col-sm-6 col-md-3 px-0">
-					<img
-						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ1N5MkSAlr25eLoAccLlwihv6cHTxA280aqPI5c2RemXpq78AQ&usqp=CAU"
-						alt="Mike Anamendolla"
-						className="rounded-circle mx-auto d-block img-fluid"
-					/>
-				</div>
-				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-					<div className=" float-right">
-						<button className="btn">
-							<i className="fas fa-pencil-alt mr-3" />
-						</button>
-						<button className="btn">
-							<i className="fas fa-chart-bar mr-3" />
-						</button>
-						<button className="btn" onClick={() => props.onDelete()}>
-							<i className="fas fa-trash-alt" />
-						</button>
-					</div>
+				<div className="col-12 col-sm-6 col-md-9 text-sm-left">
 					<label className="name lead">Mike Anamendolla</label>
-					<br />
-					<i className="fas fa-map-marker-alt text-muted mr-3" />
-					<span className="text-muted">5842 Hillcrest Rd</span>
-					<br />
-					<span
-						className="fa fa-phone fa-fw text-muted mr-3"
-						data-toggle="tooltip"
-						title=""
-						data-original-title="(870) 288-4149"
-					/>
-					<span className="text-muted small">(870) 288-4149</span>
-					<br />
-					<span
-						className="fa fa-envelope fa-fw text-muted mr-3"
-						data-toggle="tooltip"
-						data-original-title=""
-						title=""
-					/>
-					<span className="text-muted small text-truncate">mike.ana@example.com</span>
+				</div>
+				<p>
+					<button
+						className="btn btn-primary"
+						type="button"
+						data-toggle="collapse"
+						data-target="#collapseExample"
+						aria-expanded="false"
+						aria-controls="collapseExample">
+						Ver marcas de esta empresa
+					</button>
+				</p>
+				<div className="collapse" id="collapseExample">
+					<div className="card card-body">
+						Descripción marca 1
+						<div>
+							<div className=" float-right">
+								<button className="btn">
+									<i className="fas fa-pencil-alt mr-3" />
+								</button>
+								<button className="btn">
+									<i className="fas fa-chart-bar mr-3" />
+								</button>
+								<button className="btn" onClick={() => props.onDelete()}>
+									<i className="fas fa-trash-alt" />
+								</button>
+							</div>
+						</div>
+					</div>
+					<div className="card card-body">
+						Descripción marca 2
+						<div>
+							<div className=" float-right">
+								<button className="btn">
+									<i className="fas fa-pencil-alt mr-3" />
+								</button>
+								<button className="btn">
+									<i className="fas fa-chart-bar mr-3" />
+								</button>
+								<button className="btn" onClick={() => props.onDelete()}>
+									<i className="fas fa-trash-alt" />
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</li>
