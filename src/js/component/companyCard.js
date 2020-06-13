@@ -22,6 +22,9 @@ export const CompanyCard = props => {
 						<button className="btn">
 							<i className="fas fa-pencil-alt mr-3" />
 						</button>
+						<button className="btn">
+							<i className="fas fa-chart-bar mr-3" />
+						</button>
 						<button className="btn" onClick={() => props.onDelete()}>
 							<i className="fas fa-trash-alt" />
 						</button>

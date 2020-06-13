@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "../../styles/home.scss";
 
 import { CompanyCard } from "../component/companyCard.js";
 import { RegisterForm } from "../component/registerForm.js";
@@ -13,7 +14,7 @@ export const CompanyList = () => {
 		<div className="container">
 			<div>
 				<p className="text-right my-3">
-					<Link className="btn btn-success" to="/registerForm">
+					<Link className="button" to="/registerForm">
 						Añadir nueva empresa
 					</Link>
 				</p>

@@ -23,7 +23,7 @@ export const CompanyAdded = () => {
 								</span>
 							</div>
 						</Link>
-						<Link to="/">
+						<Link to="/companyList">
 							<div className="col">
 								<span className="button" href="#" role="button">
 									Ir a mi perfil
