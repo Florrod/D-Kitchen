@@ -39,7 +39,7 @@ export const Login = () => (
 						placeholder="Escribe tu contraseña"
 					/>
 				</div>
-				<Link to="/registerForm">
+				<Link to="/companyList">
 					<button type="submit" className="button btn btn-succes mb-5">
 						<strong>Log in</strong>
 					</button>
