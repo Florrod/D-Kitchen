@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UploadProfile } from "./uploadProfile";
+import { Navbar } from "./navbar";
 import "../../styles/registerForm.scss";
 import "../../styles/home.scss";
 
@@ -63,6 +64,30 @@ export const RegisterForm = () => {
 							</div>
 							<div className="col">
 								<input type="text" className="form-control form-fixer" placeholder="Teléfono" />
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<input type="text" className="form-control form-fixer" placeholder="API Key Just-Eat" />
+							</div>
+							<div className="col">
+								<input type="text" className="form-control form-fixer" placeholder="API Key Glovo" />
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<input
+									type="text"
+									className="form-control form-fixer"
+									placeholder="API Key Uber Eats"
+								/>
+							</div>
+							<div className="col">
+								<input
+									type="text"
+									className="form-control form-fixer"
+									placeholder="API Key Deliveroo "
+								/>
 							</div>
 						</div>
 						<div className="row justify-content-center mt-4">
