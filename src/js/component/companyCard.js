@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../../styles/companyCard.scss";
 
 export const CompanyCard = props => {
 	const [state, setState] = useState({
@@ -9,58 +10,90 @@ export const CompanyCard = props => {
 	});
 
 	return (
-		<li className="list-group-item">
-			<div className="row w-100">
-				<div className="col-12 col-sm-6 col-md-9 text-sm-left">
-					<label className="name lead">Mike Anamendolla</label>
+		<div className="container">
+			<div className="card panel panel-info">
+				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar">
+					<i className="fa fa-fw fa-chevron-down" />
+					<i className="fa fa-fw fa-chevron-right" />
+					Empresa número 1
 				</div>
-				<p>
-					<button
-						className="btn btn-primary"
-						type="button"
-						data-toggle="collapse"
-						data-target="#collapseExample"
-						aria-expanded="false"
-						aria-controls="collapseExample">
-						Ver marcas de esta empresa
-					</button>
-				</p>
-				<div className="collapse" id="collapseExample">
-					<div className="card card-body">
-						Descripción marca 1
-						<div>
-							<div className=" float-right">
-								<button className="btn">
-									<i className="fas fa-pencil-alt mr-3" />
-								</button>
-								<button className="btn">
-									<i className="fas fa-chart-bar mr-3" />
-								</button>
-								<button className="btn" onClick={() => props.onDelete()}>
-									<i className="fas fa-trash-alt" />
-								</button>
+				<div className="panel-body">
+					<li className="collapse ml-4 list-group-item" id="bar">
+						<div className="row w-100">
+							<div className="col">
+								<label className="name lead">Mike Anamendolla</label>
+								<br />
+								<i className="fas fa-map-marker-alt text-muted mr-3" />
+								<span className="text-muted">5842 Hillcrest Rd</span>
+								<br />
+								<span
+									className="fa fa-phone fa-fw text-muted mr-3"
+									data-toggle="tooltip"
+									title=""
+									data-original-title="(870) 288-4149"
+								/>
+								<span className="text-muted small">(870) 288-4149</span>
+								<br />
+								<span
+									className="fa fa-envelope fa-fw text-muted mr-3"
+									data-toggle="tooltip"
+									data-original-title=""
+									title=""
+								/>
+								<span className="text-muted small text-truncate">mike.ana@example.com</span>
 							</div>
 						</div>
+					</li>
+					<div className="collapse  ml-4" id="bar">
+						Marca 1
 					</div>
-					<div className="card card-body">
-						Descripción marca 2
-						<div>
-							<div className=" float-right">
-								<button className="btn">
-									<i className="fas fa-pencil-alt mr-3" />
-								</button>
-								<button className="btn">
-									<i className="fas fa-chart-bar mr-3" />
-								</button>
-								<button className="btn" onClick={() => props.onDelete()}>
-									<i className="fas fa-trash-alt" />
-								</button>
-							</div>
-						</div>
+					<div className="collapse  ml-4" id="bar">
+						Marca 2
 					</div>
 				</div>
 			</div>
-		</li>
+			<div className="card panel panel-info">
+				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar2">
+					<i className="fa fa-fw fa-chevron-down" />
+					<i className="fa fa-fw fa-chevron-right" />
+					Empresa número 2
+				</div>
+				<div className="panel-body">
+					<li className="collapse ml-4 list-group-item" id="bar2">
+						<div className="row w-100">
+							<div className="col">
+								<label className="name lead">Mike Anamendolla</label>
+								<br />
+								<i className="fas fa-map-marker-alt text-muted mr-3" />
+								<span className="text-muted">5842 Hillcrest Rd</span>
+								<br />
+								<span
+									className="fa fa-phone fa-fw text-muted mr-3"
+									data-toggle="tooltip"
+									title=""
+									data-original-title="(870) 288-4149"
+								/>
+								<span className="text-muted small">(870) 288-4149</span>
+								<br />
+								<span
+									className="fa fa-envelope fa-fw text-muted mr-3"
+									data-toggle="tooltip"
+									data-original-title=""
+									title=""
+								/>
+								<span className="text-muted small text-truncate">mike.ana@example.com</span>
+							</div>
+						</div>
+					</li>
+					<div className="collapse ml-4" id="bar2">
+						Marca 1
+					</div>
+					<div className="collapse  ml-4" id="bar2">
+						Marca 2
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 };
 
