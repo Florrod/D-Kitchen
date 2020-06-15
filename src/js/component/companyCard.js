@@ -18,7 +18,7 @@ export const CompanyCard = props => {
 					Empresa número 1
 				</div>
 				<div className="panel-body">
-					<li className="collapse ml-4 list-group-item" id="bar">
+					<li className="collapse list-group-item" id="bar">
 						<div className="row w-100">
 							<div className="col">
 								<label className="name lead">Mike Anamendolla</label>
@@ -44,12 +44,42 @@ export const CompanyCard = props => {
 							</div>
 						</div>
 					</li>
-					<div className="collapse  ml-4" id="bar">
-						Marca 1
-					</div>
-					<div className="collapse  ml-4" id="bar">
-						Marca 2
-					</div>
+					<li className="col collapse list-group-item" id="bar">
+						<div className="row w-100">
+							<div className="col" id="bar">
+								Marca 1
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li className="col collapse list-group-item" id="bar">
+						<div className="row w-100">
+							<div className="col" id="bar">
+								Marca 2
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
 			</div>
 			<div className="card panel panel-info">
@@ -59,7 +89,7 @@ export const CompanyCard = props => {
 					Empresa número 2
 				</div>
 				<div className="panel-body">
-					<li className="collapse ml-4 list-group-item" id="bar2">
+					<li className="collapse list-group-item" id="bar2">
 						<div className="row w-100">
 							<div className="col">
 								<label className="name lead">Mike Anamendolla</label>
@@ -85,12 +115,42 @@ export const CompanyCard = props => {
 							</div>
 						</div>
 					</li>
-					<div className="collapse ml-4" id="bar2">
-						Marca 1
-					</div>
-					<div className="collapse  ml-4" id="bar2">
-						Marca 2
-					</div>
+					<li className="col collapse list-group-item" id="bar2">
+						<div className="row w-100">
+							<div className="col" id="bar2">
+								Marca 1
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li className="col collapse list-group-item" id="bar2">
+						<div className="row w-100">
+							<div className="col" id="bar2">
+								Marca 2
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
 			</div>
 		</div>
