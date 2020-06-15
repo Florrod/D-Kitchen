@@ -39,6 +39,8 @@ export const Login = () => (
 						placeholder="Escribe tu contraseña"
 					/>
 				</div>
+
+
 				<Link to="/registerForm">
 					<button type="submit" className="button mb-5 ml-0">
 						<strong>Log in</strong>

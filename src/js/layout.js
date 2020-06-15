@@ -8,6 +8,7 @@ import { Single } from "./views/single";
 import { CompanyAdded } from "./views/companyAdded";
 import { Login } from "./views/login";
 import { RemindPassword } from "./views/remindpassword";
+import { CompanyList } from "./views/companyList";
 import injectContext from "./store/appContext";
 
 import { Footer } from "./component/footer";
@@ -31,11 +32,11 @@ export const Layout = () => {
 						<Route exact path="/remind-password" component={RemindPassword} />
 						<Route path="/registerForm" component={RegisterForm} />
 						<Route path="/companyAdded" component={CompanyAdded} />
+						<Route path="/companyList" component={CompanyList} />
 						<Route path="/demo" component={Demo} />
 						<Route path="/single/:theid" component={Single} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
-					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>
