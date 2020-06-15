@@ -20,29 +20,32 @@ export const CompanyCard = props => {
 				<div className="panel-body">
 					<li className="collapse list-group-item" id="bar">
 						<div className="row w-100">
-							<div className="col">
-								<label className="name lead">Mike Anamendolla</label>
-								<br />
-								<i className="fas fa-map-marker-alt text-muted mr-3" />
-								<span className="text-muted">5842 Hillcrest Rd</span>
-								<br />
-								<span
-									className="fa fa-phone fa-fw text-muted mr-3"
-									data-toggle="tooltip"
-									title=""
-									data-original-title="(870) 288-4149"
-								/>
-								<span className="text-muted small">(870) 288-4149</span>
-								<br />
-								<span
-									className="fa fa-envelope fa-fw text-muted mr-3"
-									data-toggle="tooltip"
-									data-original-title=""
-									title=""
-								/>
-								<span className="text-muted small text-truncate">mike.ana@example.com</span>
-							</div>
+							<label className="col-9 name lead">Mike Anamendolla</label>
+							<span className="col-3 btn addBrand">
+								<Link to="/registerForm">
+									<i className="mr-3 fas fa-user-plus" />
+									Añadir nueva marca
+								</Link>
+							</span>
 						</div>
+						<i className="fas fa-map-marker-alt text-muted mr-3" />
+						<span className="text-muted">5842 Hillcrest Rd</span>
+						<br />
+						<span
+							className="fa fa-phone fa-fw text-muted mr-3"
+							data-toggle="tooltip"
+							title=""
+							data-original-title="(870) 288-4149"
+						/>
+						<span className="text-muted small">(870) 288-4149</span>
+						<br />
+						<span
+							className="fa fa-envelope fa-fw text-muted mr-3"
+							data-toggle="tooltip"
+							data-original-title=""
+							title=""
+						/>
+						<span className="text-muted small text-truncate">mike.ana@example.com</span>
 					</li>
 					<li className="col collapse list-group-item" id="bar">
 						<div className="row w-100">
