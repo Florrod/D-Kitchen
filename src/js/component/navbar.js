@@ -8,30 +8,27 @@ export const Navbar = () => {
 				<a className="navbar-brand" href="#">
 					%Nombredelamarca%
 				</a>
-				<ul className="nav nav-pills m-2">
-					<li>
-						<i className="icon fas fa-user-circle mr-2" />
-					</li>
-					<li className="button nav-item dropdown">
-						<a
-							className="nav-link dropdown-toggle"
-							data-toggle="dropdown"
-							href="#"
-							role="button"
-							aria-haspopup="true"
-							aria-expanded="false">
-							Menú
-						</a>
-						<div className="dropdown-menu">
-							<a className="dropdown-item" href="#one">
-								Mi panel
-							</a>
-							<a className="dropdown-item" href="#two">
-								Cerrar sesión
-							</a>
-						</div>
-					</li>
-				</ul>
+				<div className="row">
+					<div className="profile pr-0 col">
+						<i className="icon fas fa-user-circle" />
+					</div>
+					<div
+						type="button"
+						className="dropdown-toggle mt-2 col"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false">
+						Menu
+					</div>
+					<div className="dropdown-menu dropdown-menu-right">
+						<button className="dropdown-item" type="button">
+							Mi panel
+						</button>
+						<button className="dropdown-item" type="button">
+							Cerrar sesión
+						</button>
+					</div>
+				</div>
 			</nav>
 		</div>
 	);
