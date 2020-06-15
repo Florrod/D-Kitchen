@@ -14,8 +14,8 @@ h1 {
 }
 
 .form-img{
-    width: 125px;
-    height: 125px;
+    width: 135px;
+    height: 160px;
 }
 
 .form-control {
@@ -93,6 +93,15 @@ input.form-fixer {
     font-size: 18px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
     color: #2b3800;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: underline;
+}
+
+.addBrand {
+    font-size: 14px;
+    font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color: black;
     font-weight: 400;
     line-height: 24px;
     text-decoration: underline;

@@ -18,38 +18,71 @@ export const CompanyCard = props => {
 					Empresa número 1
 				</div>
 				<div className="panel-body">
-					<li className="collapse ml-4 list-group-item" id="bar">
+					<li className="collapse list-group-item" id="bar">
 						<div className="row w-100">
-							<div className="col">
-								<label className="name lead">Mike Anamendolla</label>
-								<br />
-								<i className="fas fa-map-marker-alt text-muted mr-3" />
-								<span className="text-muted">5842 Hillcrest Rd</span>
-								<br />
-								<span
-									className="fa fa-phone fa-fw text-muted mr-3"
-									data-toggle="tooltip"
-									title=""
-									data-original-title="(870) 288-4149"
-								/>
-								<span className="text-muted small">(870) 288-4149</span>
-								<br />
-								<span
-									className="fa fa-envelope fa-fw text-muted mr-3"
-									data-toggle="tooltip"
-									data-original-title=""
-									title=""
-								/>
-								<span className="text-muted small text-truncate">mike.ana@example.com</span>
+							<label className="col-9 name lead">Mike Anamendolla</label>
+							<span className="col-3 btn addBrand">
+								<Link to="/registerForm">
+									<i className="mr-3 fas fa-user-plus" />
+									Añadir nueva marca
+								</Link>
+							</span>
+						</div>
+						<i className="fas fa-map-marker-alt text-muted mr-3" />
+						<span className="text-muted">5842 Hillcrest Rd</span>
+						<br />
+						<span
+							className="fa fa-phone fa-fw text-muted mr-3"
+							data-toggle="tooltip"
+							title=""
+							data-original-title="(870) 288-4149"
+						/>
+						<span className="text-muted small">(870) 288-4149</span>
+						<br />
+						<span
+							className="fa fa-envelope fa-fw text-muted mr-3"
+							data-toggle="tooltip"
+							data-original-title=""
+							title=""
+						/>
+						<span className="text-muted small text-truncate">mike.ana@example.com</span>
+					</li>
+					<li className="col collapse list-group-item" id="bar">
+						<div className="row w-100">
+							<div className="col" id="bar">
+								Marca 1
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
 							</div>
 						</div>
 					</li>
-					<div className="collapse  ml-4" id="bar">
-						Marca 1
-					</div>
-					<div className="collapse  ml-4" id="bar">
-						Marca 2
-					</div>
+					<li className="col collapse list-group-item" id="bar">
+						<div className="row w-100">
+							<div className="col" id="bar">
+								Marca 2
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
 			</div>
 			<div className="card panel panel-info">
@@ -59,7 +92,7 @@ export const CompanyCard = props => {
 					Empresa número 2
 				</div>
 				<div className="panel-body">
-					<li className="collapse ml-4 list-group-item" id="bar2">
+					<li className="collapse list-group-item" id="bar2">
 						<div className="row w-100">
 							<div className="col">
 								<label className="name lead">Mike Anamendolla</label>
@@ -85,12 +118,42 @@ export const CompanyCard = props => {
 							</div>
 						</div>
 					</li>
-					<div className="collapse ml-4" id="bar2">
-						Marca 1
-					</div>
-					<div className="collapse  ml-4" id="bar2">
-						Marca 2
-					</div>
+					<li className="col collapse list-group-item" id="bar2">
+						<div className="row w-100">
+							<div className="col" id="bar2">
+								Marca 1
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li className="col collapse list-group-item" id="bar2">
+						<div className="row w-100">
+							<div className="col" id="bar2">
+								Marca 2
+								<div className="float-right">
+									<button className="btn">
+										<i className="fas fa-pencil-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-trash-alt" />
+									</button>
+									<button className="btn">
+										<i className="fas fa-chart-bar" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
 			</div>
 		</div>

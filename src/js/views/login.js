@@ -1,5 +1,7 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
+import logoBlancoDKitchenSinFondo from "../../img/Logo-DK-con-texto-sinFondo.png";
+
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 
@@ -7,10 +9,7 @@ export const Login = () => (
 	<div className="text-center mt-3 ">
 		<h1> Inicia sesión</h1>
 		<p>
-			<img
-				className="form-img w-5"
-				src="https://dkitchenincubator.com/wp-content/uploads/2020/02/Logo-DK-con-texto.png"
-			/>
+			<img className="form-img w-5" src={logoBlancoDKitchenSinFondo} />
 		</p>
 		<div className="d-flex justify-content-center align-items-center container">
 			<form>
@@ -39,7 +38,6 @@ export const Login = () => (
 						placeholder="Escribe tu contraseña"
 					/>
 				</div>
-
 
 				<Link to="/registerForm">
 					<button type="submit" className="button mb-5 ml-0">
