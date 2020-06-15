@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 
 export const Login = () => (
-	<div className="text-center mt-5 ">
+	<div className="text-center mt-3 ">
 		<h1> Inicia sesión</h1>
 		<p>
 			<img
@@ -22,28 +22,30 @@ export const Login = () => (
 					</dt>
 					<input
 						type="email"
-						className="form-control mb-2"
+						className="form-control form-fixer mb-1"
 						id="exampleInputEmail1"
 						aria-describedby="emailHelp"
 						placeholder="Escribe tu usuario"
 					/>
 					<dt>
-						<label className="item-login" htmlFor="exampleInputPassword1">
+						<label className="item-login mt-3" htmlFor="exampleInputPassword1">
 							Contraseña
 						</label>
 					</dt>
 					<input
 						type="password"
-						className="form-control mb-2"
+						className="form-control form-fixer mb-2"
 						id="exampleInputPassword1"
 						placeholder="Escribe tu contraseña"
 					/>
 				</div>
-				<button type="submit" className="btn btn-succes mb-5">
-					<strong>Log in</strong>
-				</button>
+				<Link to="/registerForm">
+					<button type="submit" className="button mb-5 ml-0">
+						<strong>Log in</strong>
+					</button>
+				</Link>
 				<div>
-					<Link className="mt-3 w-100 text-center" to="/remind-password">
+					<Link className="tipoLink mt-3 w-100 text-center" to="/remind-password">
 						¿Has olvidado tu contraseña?
 					</Link>
 				</div>
