@@ -1,18 +1,42 @@
-.panel-heading.collapsed .fa-chevron-down,
-.panel-heading .fa-chevron-right {
+.panel-heading.collapsed .fa-angle-double-up,
+.panel-heading .fa-angle-double-down {
   display: none;
 }
 
-.panel-heading.collapsed .fa-chevron-right,
-.panel-heading .fa-chevron-down {
+.panel-heading.collapsed .fa-angle-double-down,
+.panel-heading .fa-angle-double-up {
   display: inline-block;
 }
 
-i.fa {
+.showCompany  {
   cursor: pointer;
   margin-right: 5px;
+  float: right;
 }
 
 .collapsed ~ .panel-body {
   padding: 20;
+}
+
+.list-group-item {
+    padding-left: 25px;
+}
+
+
+.company {
+    font-size: 14px;
+    font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color: #2b3800;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.company:hover {
+    font-size: 14px;
+    font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color: #2b3800;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: underline;
 }
