@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../../styles/companyCard.scss";
+import "../../styles/home.scss";
 
 export const CompanyCard = props => {
 	const [state, setState] = useState({
@@ -13,39 +14,57 @@ export const CompanyCard = props => {
 		<div className="container">
 			<div className="card panel panel-info">
 				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar">
-					<i className="fa fa-fw fa-chevron-down" />
-					<i className="fa fa-fw fa-chevron-right" />
+					<i className="fas fa-angle-double-down showCompany" />
+					<i className="fas fa-angle-double-up showCompany" />
 					Empresa número 1
 				</div>
 				<div className="panel-body">
 					<li className="collapse list-group-item" id="bar">
-						<div className="row w-100">
+						<div className="row w-100 mt-2">
 							<label className="col-9 name lead">Mike Anamendolla</label>
-							<span className="col-3 btn addBrand">
-								<Link to="/registerForm">
+						</div>
+						<div className="row w-100 mb-2">
+							<div className="col-9">
+								<i className="fas fa-map-marker-alt text-muted mr-3" />
+								<span className="text-muted">5842 Hillcrest Rd</span>
+							</div>
+							<Link className="company" to="/registerForm">
+								<div className="col mb-0">
 									<i className="mr-3 fas fa-user-plus" />
 									Añadir nueva marca
-								</Link>
-							</span>
+								</div>
+							</Link>
 						</div>
-						<i className="fas fa-map-marker-alt text-muted mr-3" />
-						<span className="text-muted">5842 Hillcrest Rd</span>
-						<br />
-						<span
-							className="fa fa-phone fa-fw text-muted mr-3"
-							data-toggle="tooltip"
-							title=""
-							data-original-title="(870) 288-4149"
-						/>
-						<span className="text-muted small">(870) 288-4149</span>
-						<br />
-						<span
-							className="fa fa-envelope fa-fw text-muted mr-3"
-							data-toggle="tooltip"
-							data-original-title=""
-							title=""
-						/>
-						<span className="text-muted small text-truncate">mike.ana@example.com</span>
+						<div className="row w-100 mb-2">
+							<div className="col-9">
+								<span
+									className="fa fa-phone fa-fw text-muted mr-3"
+									data-toggle="tooltip"
+									title=""
+									data-original-title="(870) 288-4149"
+								/>
+								<span className="text-muted small">(870) 288-4149</span>
+							</div>
+							<div className="col company">
+								<i className="mr-3 fas fa-pencil-alt" />
+								Editar empresa
+							</div>
+						</div>
+						<div className="row w-100 mb-3">
+							<div className="col-9">
+								<span
+									className="fa fa-envelope fa-fw text-muted mr-3"
+									data-toggle="tooltip"
+									data-original-title=""
+									title=""
+								/>
+								<span className="text-muted small text-truncate">mike.ana@example.com</span>
+							</div>
+							<div className="col company">
+								<i className="mr-3 fas fa-trash-alt" />
+								Eliminar empresa
+							</div>
+						</div>
 					</li>
 					<li className="col collapse list-group-item" id="bar">
 						<div className="row w-100">
@@ -87,19 +106,29 @@ export const CompanyCard = props => {
 			</div>
 			<div className="card panel panel-info">
 				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar2">
-					<i className="fa fa-fw fa-chevron-down" />
-					<i className="fa fa-fw fa-chevron-right" />
+					<i className="fas fa-angle-double-down showCompany" />
+					<i className="fas fa-angle-double-up showCompany" />
 					Empresa número 2
 				</div>
 				<div className="panel-body">
 					<li className="collapse list-group-item" id="bar2">
-						<div className="row w-100">
-							<div className="col">
-								<label className="name lead">Mike Anamendolla</label>
-								<br />
+						<div className="row w-100 mt-2">
+							<label className="col-9 name lead">Mike Anamendolla</label>
+						</div>
+						<div className="row w-100 mb-2">
+							<div className="col-9">
 								<i className="fas fa-map-marker-alt text-muted mr-3" />
 								<span className="text-muted">5842 Hillcrest Rd</span>
-								<br />
+							</div>
+							<Link className="company" to="/registerForm">
+								<div className="col mb-0">
+									<i className="mr-3 fas fa-user-plus" />
+									Añadir nueva marca
+								</div>
+							</Link>
+						</div>
+						<div className="row w-100 mb-2">
+							<div className="col-9">
 								<span
 									className="fa fa-phone fa-fw text-muted mr-3"
 									data-toggle="tooltip"
@@ -107,7 +136,14 @@ export const CompanyCard = props => {
 									data-original-title="(870) 288-4149"
 								/>
 								<span className="text-muted small">(870) 288-4149</span>
-								<br />
+							</div>
+							<div className="col company">
+								<i className="mr-3 fas fa-pencil-alt" />
+								Editar empresa
+							</div>
+						</div>
+						<div className="row w-100 mb-3">
+							<div className="col-9">
 								<span
 									className="fa fa-envelope fa-fw text-muted mr-3"
 									data-toggle="tooltip"
@@ -115,6 +151,10 @@ export const CompanyCard = props => {
 									title=""
 								/>
 								<span className="text-muted small text-truncate">mike.ana@example.com</span>
+							</div>
+							<div className="col company">
+								<i className="mr-3 fas fa-trash-alt" />
+								Eliminar empresa
 							</div>
 						</div>
 					</li>
