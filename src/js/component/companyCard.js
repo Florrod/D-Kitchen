@@ -11,12 +11,12 @@ export const CompanyCard = props => {
 	});
 
 	return (
-		<div className="container">
+		<div className="container mt-0">
 			<div className="card panel panel-info">
 				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar">
 					<i className="fas fa-angle-double-down showCompany" />
 					<i className="fas fa-angle-double-up showCompany" />
-					Empresa número 1
+					<h5 className="mb-0">Empresa número 1</h5>
 				</div>
 				<div className="panel-body">
 					<li className="collapse list-group-item" id="bar">
@@ -69,7 +69,7 @@ export const CompanyCard = props => {
 					<li className="col collapse list-group-item" id="bar">
 						<div className="row w-100">
 							<div className="col" id="bar">
-								Marca 1
+								Lennis Grill
 								<div className="float-right">
 									<button className="btn">
 										<i className="fas fa-pencil-alt" />
@@ -87,7 +87,7 @@ export const CompanyCard = props => {
 					<li className="col collapse list-group-item" id="bar">
 						<div className="row w-100">
 							<div className="col" id="bar">
-								Marca 2
+								The Haven
 								<div className="float-right">
 									<button className="btn">
 										<i className="fas fa-pencil-alt" />
@@ -108,17 +108,17 @@ export const CompanyCard = props => {
 				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar2">
 					<i className="fas fa-angle-double-down showCompany" />
 					<i className="fas fa-angle-double-up showCompany" />
-					Empresa número 2
+					<h5 className="mb-0">Empresa número 2</h5>
 				</div>
 				<div className="panel-body">
 					<li className="collapse list-group-item" id="bar2">
 						<div className="row w-100 mt-2">
-							<label className="col-9 name lead">Mike Anamendolla</label>
+							<label className="col-9 name lead">John Mc Carthy</label>
 						</div>
 						<div className="row w-100 mb-2">
 							<div className="col-9">
 								<i className="fas fa-map-marker-alt text-muted mr-3" />
-								<span className="text-muted">5842 Hillcrest Rd</span>
+								<span className="text-muted">3000 New York</span>
 							</div>
 							<Link className="company" to="/registerForm">
 								<div className="col mb-0">
@@ -135,7 +135,7 @@ export const CompanyCard = props => {
 									title=""
 									data-original-title="(870) 288-4149"
 								/>
-								<span className="text-muted small">(870) 288-4149</span>
+								<span className="text-muted small">(654) 190-7419</span>
 							</div>
 							<div className="col company">
 								<i className="mr-3 fas fa-pencil-alt" />
@@ -150,7 +150,7 @@ export const CompanyCard = props => {
 									data-original-title=""
 									title=""
 								/>
-								<span className="text-muted small text-truncate">mike.ana@example.com</span>
+								<span className="text-muted small text-truncate">john.mcCarthy@example.com</span>
 							</div>
 							<div className="col company">
 								<i className="mr-3 fas fa-trash-alt" />
@@ -161,7 +161,7 @@ export const CompanyCard = props => {
 					<li className="col collapse list-group-item" id="bar2">
 						<div className="row w-100">
 							<div className="col" id="bar2">
-								Marca 1
+								Pizzeria trattoria
 								<div className="float-right">
 									<button className="btn">
 										<i className="fas fa-pencil-alt" />
@@ -179,7 +179,7 @@ export const CompanyCard = props => {
 					<li className="col collapse list-group-item" id="bar2">
 						<div className="row w-100">
 							<div className="col" id="bar2">
-								Marca 2
+								Burguer Mc Carthy
 								<div className="float-right">
 									<button className="btn">
 										<i className="fas fa-pencil-alt" />
