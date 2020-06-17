@@ -21,15 +21,20 @@ export const Navbar = () => {
 						Menu
 					</div>
 					<div className="dropdown-menu dropdown-menu-right">
-						<button className="dropdown-item" type="button">
-							Mi panel
-						</button>
-						<button className="dropdown-item" type="button">
-							Cerrar sesión
-						</button>
+						<Link to="/companyList">
+							<button className="dropdown-item" type="button">
+								Mi panel
+							</button>
+						</Link>
+						<Link to="/">
+							<button className="dropdown-item" type="button">
+								Cerrar sesión
+							</button>
+						</Link>
 					</div>
 				</div>
 			</nav>
 		</div>
 	);
 };
+
