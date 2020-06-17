@@ -10,6 +10,7 @@ export const SearchBar = props => {
 		//initialize state here
 	});
 	return (
+        <div className="main">
 		<div className="input-group">
 			<input type="text" className="form-control" placeholder="Busca la empresa..." />
 			<div className="input-group-append">
@@ -18,5 +19,6 @@ export const SearchBar = props => {
 				</button>
 			</div>
 		</div>
+        </div>
 	);
 };
