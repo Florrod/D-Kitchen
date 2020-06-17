@@ -10,15 +10,15 @@ export const SearchBar = props => {
 		//initialize state here
 	});
 	return (
-        <div className="main">
-		<div className="input-group">
-			<input type="text" className="form-control" placeholder="Busca la empresa..." />
-			<div className="input-group-append">
-				<button className="btn btn-secondary" type="button">
-					<i className="fa fa-search" />
-				</button>
+		<div className="main">
+			<div className="input-group">
+				<input type="text" className="form-control" placeholder="Busca la empresa..." />
+				<div className="input-group-append">
+					<button className="btn btn-secondary" type="button">
+						<i className="fa fa-search" />
+					</button>
+				</div>
 			</div>
 		</div>
-        </div>
 	);
 };
