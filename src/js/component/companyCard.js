@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { ChartLine } from "../component/chartLine.js";
 import { Link } from "react-router-dom";
 import "../../styles/companyCard.scss";
 import "../../styles/home.scss";
@@ -77,9 +78,11 @@ export const CompanyCard = props => {
 									<button className="btn">
 										<i className="fas fa-trash-alt" />
 									</button>
-									<button className="btn">
-										<i className="fas fa-chart-bar" />
-									</button>
+									<Link to="/chartLine">
+										<button className="btn">
+											<i className="fas fa-chart-bar" />
+										</button>
+									</Link>
 								</div>
 							</div>
 						</div>

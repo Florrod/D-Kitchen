@@ -15,6 +15,7 @@ import { Footer } from "./component/footer";
 import { Navbar } from "./component/navbar";
 import { RegisterForm } from "./component/registerForm";
 import { UploadProfile } from "./component/uploadProfile";
+import { ChartLine } from "./component/chartLine.js";
 
 //create your first component
 export const Layout = () => {
@@ -33,6 +34,7 @@ export const Layout = () => {
 						<Route path="/registerForm" component={RegisterForm} />
 						<Route path="/companyAdded" component={CompanyAdded} />
 						<Route path="/companyList" component={CompanyList} />
+						<Route path="/chartLine" component={ChartLine} />
 						<Route path="/demo" component={Demo} />
 						<Route path="/single/:theid" component={Single} />
 						<Route render={() => <h1>Not found!</h1>} />
