@@ -15,6 +15,11 @@ export const CompanyList = () => {
 				<h1 className="text-center mt-0">Directorio de empresas</h1>
 				<SearchBar />
 				<ul className="list-group pull-down" id="contact-list">
+					<div className="row ml-2 justify-content-right">
+						<Link className="button" to="/registerForm">
+							Añadir nueva empresa
+						</Link>
+					</div>
 					<CompanyCard />
 				</ul>
 			</div>
