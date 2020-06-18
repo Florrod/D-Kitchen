@@ -78,6 +78,8 @@ export const ChartLine = props => {
 													max: 100,
 													maxTicksLimit: 10,
 													beginAtZero: true,
+													fontStyle: "bold",
+													fontSize: 12,
 													callback: function(value, index, values) {
 														return value + " €";
 													}
@@ -91,6 +93,10 @@ export const ChartLine = props => {
 											{
 												gridLines: {
 													display: true
+												},
+												ticks: {
+													fontStyle: "bold",
+													fontSize: 12
 												}
 											}
 										]
@@ -100,7 +106,8 @@ export const ChartLine = props => {
 										labels: {
 											fontColor: "#2b3800",
 											fontFamily: "abril fatface",
-											fontSize: 14
+											fontSize: 14,
+											onclick: false
 										},
 										position: "bottom"
 									},
