@@ -16,28 +16,28 @@ export const ChartLine = props => {
 			type: "line",
 			datasets: [
 				{
-					label: "Ingresos medios en Uber-Eats",
+					label: "Uber-Eats",
 					data: [20, 33, 67, 52, 94],
 					borderColor: "rgba(20,35,40,0.8)",
 					fill: false,
 					borderWidth: 3
 				},
 				{
-					label: "Ingresos medios en Deliveroo",
+					label: "Deliveroo",
 					data: [32, 45, 12, 76, 69],
 					borderColor: "rgba(0,204,188,0.8)",
 					fill: false,
 					borderWidth: 3
 				},
 				{
-					label: "Ingresos medios en Just-Eat",
+					label: "Just-Eat",
 					data: [71, 13, 42, 87, 56],
 					borderColor: "rgba(255,17,37,0.8)",
 					fill: false,
 					borderWidth: 3
 				},
 				{
-					label: "Ingresos medios en Glovoo",
+					label: "Glovoo",
 					data: [45, 31, 73, 24, 71],
 					borderColor: "rgba(255,194,68,0.8)",
 					fill: false,
@@ -51,40 +51,69 @@ export const ChartLine = props => {
 		chart();
 	}, []);
 	return (
-		<div className="container">
-			<div>
-				<h1 className="text-center mt-0">Ingresos</h1>
-			</div>
-			<div>
-				<Line
-					data={chartData}
-					options={{
-						responsive: true,
-						title: { text: "Ingresos medios", display: true },
-						scales: {
-							yAxes: [
-								{
-									ticks: {
-										min: 0,
-										max: 100,
-										maxTicksLimit: 10,
-										beginAtZero: true
-									},
-									gridLines: {
-										display: false
-									}
-								}
-							],
-							xAxes: [
-								{
-									gridLines: {
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-md-6 offset-md-3">
+					<div className="card">
+						<div className="card-body">
+							<h1 className="text-center mb-2">Evolución</h1>
+						</div>
+						<div className="card-body">
+							<Line
+								data={chartData}
+								options={{
+									responsive: true,
+									title: {
+										text: "Ingresos medios por plataforma (en €)",
+										fontColor: "#2b3800",
+										fontSize: 20,
+										fontFamily: "abril fatface",
 										display: true
+									},
+									scales: {
+										yAxes: [
+											{
+												ticks: {
+													min: 0,
+													max: 100,
+													maxTicksLimit: 10,
+													beginAtZero: true,
+													callback: function(value, index, values) {
+														return value + " €";
+													}
+												},
+												gridLines: {
+													display: false
+												}
+											}
+										],
+										xAxes: [
+											{
+												gridLines: {
+													display: true
+												}
+											}
+										]
+									},
+									legend: {
+										display: true,
+										labels: {
+											fontColor: "#2b3800",
+											fontFamily: "abril fatface",
+											fontSize: 14
+										},
+										position: "bottom"
+									},
+									tooltips: {
+										bodyAlign: "center",
+										titleAlign: "center",
+										titleFontSize: 16
 									}
-								}
-							]
-						}
-					}}
-				/>
+								}}
+							/>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
