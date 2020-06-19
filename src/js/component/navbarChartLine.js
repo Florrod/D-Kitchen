@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ChartLine } from "./chartLine";
 import "../../styles/home.scss";
+import { SalesTable } from "./salesTable";
 
 export const NavbarChartLine = props => {
 	const [state, setState] = useState({
@@ -32,15 +33,24 @@ export const NavbarChartLine = props => {
 					<div>
 						<ChartLine />
 					</div>
+					<div>
+						<SalesTable />
+					</div>
 				</div>
 				<div id="menu1" className="tab-pane fade">
 					<div>
 						<ChartLine />
 					</div>
+					<div>
+						<SalesTable />
+					</div>
 				</div>
 				<div id="menu2" className="tab-pane fade">
 					<div>
 						<ChartLine />
+					</div>
+					<div>
+						<SalesTable />
 					</div>
 				</div>
 			</div>
