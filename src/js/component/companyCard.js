@@ -78,7 +78,7 @@ export const CompanyCard = props => {
 									<button className="btn">
 										<i className="fas fa-trash-alt" />
 									</button>
-									<Link to="/chartLine">
+									<Link to="/navbarChartLine">
 										<button className="btn">
 											<i className="fas fa-chart-bar" />
 										</button>
