@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UploadProfile } from "./uploadProfile";
-import { Navbar } from "./navbar";
 import "../../styles/registerForm.scss";
 import "../../styles/home.scss";
 
@@ -11,17 +10,18 @@ export const RegisterForm = () => {
 
 	return (
 		<form>
-			<div className="container">
+			<div className="container-fluid">
 				<div className="row justify-content-center">
 					<div className="col-12 col-md-8 col-lg-8 col-xl-6">
 						<div className="row">
-							<div className="col text-center title">
+							<div className="col text-center title col-sm-12">
 								<h1 className="titleForm">Formulario de Registro</h1>
 							</div>
 						</div>
 						<UploadProfile />
 						<div className="row align-items-center mt-4">
 							<div className="col">
+								<label htmlFor="CIF">CIF o NIF</label>
 								<input
 									id="CIF"
 									type="text"
@@ -30,7 +30,9 @@ export const RegisterForm = () => {
 								/>
 							</div>
 							<div className="col">
+								<label htmlFor="nombre-empresa">Nombre de la empresa</label>
 								<input
+									id="nombre-empresa"
 									type="text"
 									className="form-control form-fixer"
 									placeholder="Nombre de la empresa"
@@ -39,15 +41,38 @@ export const RegisterForm = () => {
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<input type="email" className="form-control form-fixer" placeholder="Email" />
+								<label htmlFor="email">Email</label>
+								<input
+									id="email"
+									type="email"
+									className="form-control form-fixer"
+									placeholder="Email"
+								/>
+							</div>
+							<div className="col">
+								<label htmlFor="telefono">Teléfono</label>
+								<input
+									id="telefono"
+									type="text"
+									className="form-control form-fixer"
+									placeholder="Teléfono"
+								/>
 							</div>
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<input type="password" className="form-control form-fixer" placeholder="Contraseña" />
+								<label htmlFor="contraseña">Contraseña</label>
+								<input
+									id="contraseña"
+									type="password"
+									className="form-control form-fixer"
+									placeholder="Contraseña"
+								/>
 							</div>
 							<div className="col">
+								<label htmlFor="confirmar-contraseña">Confirma tu contraseña</label>
 								<input
+									id="confirmar-contraseña"
 									type="password"
 									className="form-control form-fixer"
 									placeholder="Confirma contraseña"
@@ -56,34 +81,53 @@ export const RegisterForm = () => {
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
+								<label htmlFor="nombre-marca">Nombre de la marca</label>
 								<input
+									id="nombre-marca"
 									type="text"
 									className="form-control form-fixer"
 									placeholder="Nombre de la marca"
 								/>
 							</div>
-							<div className="col">
-								<input type="text" className="form-control form-fixer" placeholder="Teléfono" />
-							</div>
 						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<input type="text" className="form-control form-fixer" placeholder="API Key Just-Eat" />
-							</div>
-							<div className="col">
-								<input type="text" className="form-control form-fixer" placeholder="API Key Glovo" />
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
+								<label htmlFor="api-key-just-eat">API Key Just-Eat</label>
 								<input
+									id="api-key-just-eat"
+									type="text"
+									className="form-control form-fixer"
+									placeholder="API Key Just-Eat"
+								/>
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<label htmlFor="api-key-glovo">API Key Glovo</label>
+								<input
+									id="api-key-glovo"
+									type="text"
+									className="form-control form-fixer"
+									placeholder="API Key Glovo"
+								/>
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<label htmlFor="api-key-uber-eats">API Key Uber Eats</label>
+								<input
+									id="api-key-uber-eats"
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Uber Eats"
 								/>
 							</div>
+						</div>
+						<div className="row align-items-center mt-4">
 							<div className="col">
+								<label htmlFor="api-key-deliveroo">API Key Deliveroo</label>
 								<input
+									id="api-key-deliveroo"
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Deliveroo "
