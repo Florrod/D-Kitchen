@@ -7,6 +7,14 @@
     padding: 16px;
 }
 
+label{
+    font-family: 'Cabin', 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color:#3e3e3e;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
 #CIF {
     text-transform: uppercase;
 }
@@ -32,7 +40,7 @@ input.form-fixer {
 
 .button {
     color: #ffffff!important;
-    border-color: #8f8f8f;
+    border-color: #d8cccc;
     border-width: 10px;
     border-radius: 4px;
     letter-spacing: 3px;
