@@ -5,7 +5,6 @@ import "../../styles/home.scss";
 
 export const Login = () => (
 	<div className="text-center mt-3 ">
-		<h1> Inicia sesión</h1>
 		<p>
 			<img
 				className="form-img w-5"
@@ -21,11 +20,12 @@ export const Login = () => (
 						</label>
 					</dt>
 					<input
+						name="email"
 						type="email"
 						className="form-control form-fixer mb-1"
 						id="exampleInputEmail1"
 						aria-describedby="emailHelp"
-						placeholder="Escribe tu usuario"
+						placeholder="Escribe tu correo"
 					/>
 					<dt>
 						<label className="item-login mt-3" htmlFor="exampleInputPassword1">
@@ -33,6 +33,7 @@ export const Login = () => (
 						</label>
 					</dt>
 					<input
+						name="password"
 						type="password"
 						className="form-control form-fixer mb-2"
 						id="exampleInputPassword1"
@@ -40,8 +41,8 @@ export const Login = () => (
 					/>
 				</div>
 				<Link to="/registerForm">
-					<button type="submit" className="button mb-5 ml-0">
-						<strong>Log in</strong>
+					<button type="submit" className="btn mb-5 ml-0">
+						<strong>Inicia sesión</strong>
 					</button>
 				</Link>
 				<div>
