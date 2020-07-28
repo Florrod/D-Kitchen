@@ -4,7 +4,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-a069ddc2-44bf-4fe2-8ac1-83fc46d3efd4.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-e1d85228-9ac4-4c1e-8c30-3d32c4d53875.ws-eu01.gitpod.io";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
@@ -16,26 +16,61 @@ export const Login = () => {
 		sendDetailsToServer(email, password);
 	};
 
+	const handleIsLogged = e => {
+		e.preventDefault();
+		isLogged();
+	};
+
 	const sendDetailsToServer = (email, password) => {
 		console.log(email, password);
 		return fetch(`${ENDPOINT}/login`, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": "*"
 			},
 			body: JSON.stringify({
 				email: email,
 				password: password
 			})
 		})
-			.then(response => {
-				if (!response.ok) throw new Error("Response is not NOT ok");
-				return response.json();
-			})
+			.then(response => response.json())
 			.then(responseJson => {
-				store.token = responseJson.access_token;
-				console.log(store.token);
+				if (typeof responseJson.access_token != "undefined") {
+					store.token = responseJson.access_token;
+					sessionStorage.setItem("token", responseJson.access_token);
+					console.log("Manda token : " + store.token);
+
+					document.location.href = "/single";
+					console.log("Guarda en el session : " + sessionStorage.token);
+					console.log("Manda token after /single : " + store.token);
+				} else {
+					console.log("Error------> : " + responseJson.access_token);
+				}
 			});
+		// 	if (!response.ok) throw new Error("Response is not NOT ok");
+		// 	return response.json();
+		// })
+		// .then(responseJson => {
+		// 	store.token = responseJson.access_token;
+		// 	console.log(store.token);
+		// });
+	};
+
+	const isLogged = () => {
+		console.log("Hola, soy sessionStorage en IsLogged : ", sessionStorage.token);
+		if (sessionStorage.token != null) {
+			fetch(`${ENDPOINT}/protected`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: "Bearer" + sessionStorage.token
+				}
+			});
+			console.log("Estas logeado--------> : " + sessionStorage.token);
+		} else {
+			console.log("No estas logeado");
+		}
 	};
 
 	return (
@@ -82,6 +117,9 @@ export const Login = () => {
 					<Link to="/registerForm">
 						<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
 							<strong>Inicia sesión</strong>
+						</button>
+						<button onClick={handleIsLogged} type="submit" className="buttom mb-5 ml-0">
+							<strong>IsLogged</strong>
 						</button>
 					</Link>
 					<div>
