@@ -5,6 +5,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			logout: () => {
+				const store = getStore();
+				setStore({ token: null });
+			},
+			setToken: token => {
+				setStore({ token: token });
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
@@ -13,7 +20,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			checkToken: token => {},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

@@ -1,15 +1,22 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImage from "../../img/rigo-baby.jpg";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-e1d85228-9ac4-4c1e-8c30-3d32c4d53875.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-d27963dd-a44a-4d1e-a2f8-b3f82d85baad.ws-eu01.gitpod.io";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loggedIn, setLoggedIn] = useState(false);
+	const [is_admin, setIs_admin] = useState(false);
+	const [redirectToLogin, setRedirectToLogin] = useState(false);
 	const { store, actions } = useContext(Context);
+	let access_token = localStorage.getItem("access_token");
+	// if (access_token === "") {
+	// 	setRedirectToLogin(true);
+	// }
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -37,15 +44,18 @@ export const Login = () => {
 			.then(response => response.json())
 			.then(responseJson => {
 				if (typeof responseJson.access_token != "undefined") {
-					store.token = responseJson.access_token;
-					sessionStorage.setItem("token", responseJson.access_token);
-					console.log("Manda token : " + store.token);
-
-					document.location.href = "/single";
-					console.log("Guarda en el session : " + sessionStorage.token);
-					console.log("Manda token after /single : " + store.token);
+					let token = responseJson.access_token;
+					localStorage.setItem("access_token", token);
+					actions.setToken(token); //que espera recibir? un parametro tipo string
+					setIs_admin(responseJson.is_admin);
+					setLoggedIn(true);
+					console.log("Manda token : " + token);
+					console.log("Guarda en el local : " + localStorage.access_token);
+					console.log("Manda token after /single : " + token);
 				} else {
-					console.log("Error------> : " + responseJson.access_token);
+					if (responseJson.email && responseJson.password == null) {
+						console.log("'La empresa o contraseña no existen");
+					}
 				}
 			});
 		// 	if (!response.ok) throw new Error("Response is not NOT ok");
@@ -57,22 +67,26 @@ export const Login = () => {
 		// });
 	};
 
-	const isLogged = () => {
-		console.log("Hola, soy sessionStorage en IsLogged : ", sessionStorage.token);
-		if (sessionStorage.token != null) {
-			fetch(`${ENDPOINT}/protected`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: "Bearer" + sessionStorage.token
-				}
-			});
-			console.log("Estas logeado--------> : " + sessionStorage.token);
-		} else {
-			console.log("No estas logeado");
-		}
-	};
-
+	// const isLogged = () => {
+	// 	console.log("Hola, soy sessionStorage en IsLogged : ", sessionStorage.token);
+	// 	if (sessionStorage.token != null) {
+	// 		fetch(`${ENDPOINT}/protected`, {
+	// 			method: "GET",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 				Authorization: "Bearer" + sessionStorage.token
+	// 			}
+	// 		});
+	// 		console.log("Estas logeado--------> : " + sessionStorage.token);
+	// 	} else {
+	// 		console.log("No estas logeado");
+	// 	}
+	// };
+	if (loggedIn === true && is_admin === true) {
+		return <Redirect to="/home" />;
+	} else if (loggedIn === true && is_admin === false) {
+		return <Redirect to="/single" />;
+	}
 	return (
 		<div className="text-center mt-3">
 			<p>
@@ -118,9 +132,9 @@ export const Login = () => {
 						<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
 							<strong>Inicia sesión</strong>
 						</button>
-						<button onClick={handleIsLogged} type="submit" className="buttom mb-5 ml-0">
+						{/* <button onClick={handleIsLogged} type="submit" className="buttom mb-5 ml-0">
 							<strong>IsLogged</strong>
-						</button>
+						</button> */}
 					</Link>
 					<div>
 						<Link className="tipoLink mt-3 w-100 text-center" to="/remind-password">

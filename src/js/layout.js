@@ -28,6 +28,7 @@ export const Layout = () => {
 						<Route exact path="/" component={Login} />
 						<Route exact path="/remind-password" component={RemindPassword} />
 						<Route exact path="/single" component={Single} />
+						<Route exact path="/home" component={Home} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />
