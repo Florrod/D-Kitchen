@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { ChartLine } from "./chartLine";
 import "../../styles/home.scss";
 import { SalesTable } from "./salesTable";
+import { ProductTable } from "./productTable";
+import { ClientTable } from "./clientTable";
 
 export const NavbarChartLine = props => {
 	const [state, setState] = useState({
@@ -36,6 +38,12 @@ export const NavbarChartLine = props => {
 					<div>
 						<SalesTable />
 					</div>
+					<div>
+						<ProductTable />
+					</div>
+					<div>
+						<ClientTable />
+					</div>
 				</div>
 				<div id="menu1" className="tab-pane fade">
 					<div>
@@ -44,6 +52,12 @@ export const NavbarChartLine = props => {
 					<div>
 						<SalesTable />
 					</div>
+					<div>
+						<ProductTable />
+					</div>
+					<div>
+						<ClientTable />
+					</div>
 				</div>
 				<div id="menu2" className="tab-pane fade">
 					<div>
@@ -51,6 +65,12 @@ export const NavbarChartLine = props => {
 					</div>
 					<div>
 						<SalesTable />
+					</div>
+					<div>
+						<ProductTable />
+					</div>
+					<div>
+						<ClientTable />
 					</div>
 				</div>
 			</div>

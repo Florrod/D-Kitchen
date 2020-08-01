@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-export const SalesTable = props => {
+export const ClientTable = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
@@ -15,22 +15,28 @@ export const SalesTable = props => {
 				<thead className="thead-success">
 					<tr>
 						<th scope="col">Plataformas</th>
-						<th scope="col">Ventas medias</th>
-						<th scope="col">Ingreso neto</th>
-						<th scope="col">Volumen medio</th>
+						<th scope="col">Clientes recurrentes</th>
+						<th scope="col">Clientes nuevos</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
+						<th scope="row" />
+						<th id="ticket" scope="row">
+							Ticket medio
+						</th>
+						<th id="ticket" scope="row">
+							Ticket medio
+						</th>
+					</tr>
+					<tr>
 						<th scope="row">JustEat</th>
-						<td>Larry</td>
 						<td>The Bird</td>
 						<td>@twitter</td>
 					</tr>
 					<tr>
 						<th scope="row">Glovo</th>
 						<td>Jacob</td>
-						<td>Thornton</td>
 						<td>@fat</td>
 					</tr>
 				</tbody>
