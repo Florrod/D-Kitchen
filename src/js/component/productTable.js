@@ -26,7 +26,7 @@ export const ProductTable = props => {
 			});
 		},
 		[platforms]
-	); //Cada dez que se modifique products se producirá este efecto secundario
+	); //Cada vez que se modifique products se producirá este efecto secundario
 
 	const getPlatforms = platform_id => {
 		let access_token = localStorage.getItem("access_token");
@@ -62,42 +62,24 @@ export const ProductTable = props => {
 
 	return (
 		<div className="table-responsive-sm">
-			<table className="table table-sm table-hover mt-5 text-center">
-				<thead className="thead-success">
-					<tr>
-						<th scope="col">Ranking</th>
-						<th scope="col">Just Eat</th>
-						<th scope="col">Glovo</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1º</th>
-						<td>Product</td>
-						<td>Product</td>
-					</tr>
-					<tr>
-						<th scope="row">2º</th>
-						<td>Product</td>
-						<td>Product</td>
-					</tr>
-					<tr>
-						<th scope="row">3º</th>
-						<td>Product</td>
-						<td>Product</td>
-					</tr>
-					<tr>
-						<th scope="row">4º</th>
-						<td>Product</td>
-						<td>Product</td>
-					</tr>
-					<tr>
-						<th scope="row">5º</th>
-						<td>Product</td>
-						<td>Product</td>
-					</tr>
-				</tbody>
-			</table>
+			<div className="row">
+				<div className="col-4">
+					<div className="row">
+						<p>Ranking</p>
+						{platforms.map((index, plat) => (
+							<div className="col-12" key={index} products={products[plat.id]} />
+						))}
+					</div>
+					<div className="row">
+						{products.map((index, prod) => (
+							<div className="col-12" key={index}>
+								{" "}
+								{prod.name}
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
