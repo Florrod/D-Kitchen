@@ -38,7 +38,7 @@ export const ChartLine = props => {
 					borderWidth: 3
 				},
 				{
-					label: "Glovoo",
+					label: "Glovo",
 					data: [45, 31, 73, 24, 71],
 					borderColor: "rgba(255,194,68,0.8)",
 					fill: false,
