@@ -1,43 +1,91 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImage from "../../img/rigo-baby.jpg";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-de8b7bc1-3a99-41d6-ab8c-0534a6d08ed9.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-d3f07519-d893-4493-bc4a-c846bc31aa31.ws-eu01.gitpod.io";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loggedIn, setLoggedIn] = useState(false);
+	const [is_admin, setIs_admin] = useState(false);
+	const [redirectToLogin, setRedirectToLogin] = useState(false);
 	const { store, actions } = useContext(Context);
+	// let access_token = localStorage.getItem("access_token");
+	// if (access_token === "") {
+	// 	setRedirectToLogin(true);
+	// }
 
 	const handleSubmit = e => {
 		e.preventDefault();
 		sendDetailsToServer(email, password);
 	};
 
+	const handleIsLogged = e => {
+		e.preventDefault();
+		isLogged();
+	};
 	const sendDetailsToServer = (email, password) => {
 		console.log(email, password);
 		return fetch(`${ENDPOINT}/login`, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": "*"
 			},
 			body: JSON.stringify({
 				email: email,
 				password: password
 			})
 		})
-			.then(response => {
-				if (!response.ok) throw new Error("Response is not NOT ok");
-				return response.json();
-			})
+			.then(response => response.json())
 			.then(responseJson => {
-				store.token = responseJson.access_token;
-				console.log(store.token);
+				if (typeof responseJson.access_token != "undefined") {
+					let token = responseJson.access_token;
+					localStorage.setItem("access_token", token);
+					actions.setToken(token); //que espera recibir? un parametro tipo string
+					setIs_admin(responseJson.is_admin);
+					setLoggedIn(true);
+					console.log("Manda token : " + token);
+					console.log("Guarda en el local : " + localStorage.access_token);
+					console.log("Manda token after /single : " + token);
+				} else {
+					if (responseJson.email && responseJson.password == null) {
+						console.log("'La empresa o contraseña no existen");
+					}
+				}
 			});
+		// 	if (!response.ok) throw new Error("Response is not NOT ok");
+		// 	return response.json();
+		// })
+		// .then(responseJson => {
+		// 	store.token = responseJson.access_token;
+		// 	console.log(store.token);
+		// });
 	};
 
+	// const isLogged = () => {
+	// 	console.log("Hola, soy sessionStorage en IsLogged : ", sessionStorage.token);
+	// 	if (sessionStorage.token != null) {
+	// 		fetch(`${ENDPOINT}/protected`, {
+	// 			method: "GET",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 				Authorization: "Bearer" + sessionStorage.token
+	// 			}
+	// 		});
+	// 		console.log("Estas logeado--------> : " + sessionStorage.token);
+	// 	} else {
+	// 		console.log("No estas logeado");
+	// 	}
+	// };
+	if (loggedIn === true && is_admin === true) {
+		return <Redirect to="/companyList" />;
+	} else if (loggedIn === true && is_admin === false) {
+		return <Redirect to="/single" />;
+	}
 	return (
 		<div className="text-center mt-3">
 			<p>
@@ -83,6 +131,9 @@ export const Login = () => {
 						<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
 							<strong>Inicia sesión</strong>
 						</button>
+						{/* <button onClick={handleIsLogged} type="submit" className="buttom mb-5 ml-0">
+							<strong>IsLogged</strong>
+						</button> */}
 					</Link>
 					<div>
 						<Link className="tipoLink mt-3 w-100 text-center" to="/remind-password">
