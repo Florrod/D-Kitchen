@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-d3f07519-d893-4493-bc4a-c846bc31aa31.ws-eu01.gitpod.io/";
+const ENDPOINT = "https://3000-fe4d7be6-896d-4f55-a9e8-7e8921aaf803.ws-eu01.gitpod.io/";
 
 export const ProductTable = props => {
 	const [platforms, setPlatforms] = useState([]);
 
-	const getTopProducts = platform_id => {
+	const getTopProducts = () => {
 		let access_token = localStorage.getItem("access_token");
-		return fetch(`${ENDPOINT}/top-products/${platform_id}`, {
+		return fetch(`${ENDPOINT}/top-products`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -26,27 +26,23 @@ export const ProductTable = props => {
 	};
 
 	useEffect(() => {
-		getTopProducts(1);
+		getTopProducts();
 	}, []);
 
-	if (platforms == null) return "";
-
-	if (platforms[0] == null) return "";
+	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (
 		<div className="table-responsive-sm">
 			<div className="row">
 				<div className="col-4">
-					<div className="row">
-						<p>Ranking</p>
-						{platforms
-							? platforms.map((plat, index) => (
-									<div className="col-12" key={plat.id}>
-										{plat.name}
-									</div>
-							  ))
-							: ""}
-					</div>
+					<p>Ranking</p>
+					{platforms
+						? platforms.map((plat, index) => (
+								<div className="col-12" key={plat.id}>
+									<span className="border border-dark">{plat.name}</span>
+								</div>
+						  ))
+						: ""}
 					<div className="row">
 						{platforms
 							? platforms.map((plat, index) => (
@@ -60,7 +56,6 @@ export const ProductTable = props => {
 									</div>
 							  ))
 							: ""}
-						;
 					</div>
 				</div>
 			</div>
