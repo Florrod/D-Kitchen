@@ -84,7 +84,7 @@ export const Login = () => {
 	if (loggedIn === true && is_admin === true) {
 		return <Redirect to="/companyList" />;
 	} else if (loggedIn === true && is_admin === false) {
-		return <Redirect to="/single" />;
+		return <Redirect to="/companyList" />;
 	}
 	return (
 		<div className="text-center mt-3">

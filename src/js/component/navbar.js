@@ -14,14 +14,17 @@ export const Navbar = () => {
 	// };
 
 	const sendLogOutToServer = token => {
+		let access_token = localStorage.getItem("access_token");
 		return fetch(`${ENDPOINT}/logout`, {
 			method: "DELETE",
 			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				token: null
-			})
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${access_token}`,
+				"Access-Control-Allow-Origin": "*"
+			}
+		}).then(res => {
+			actions.logout();
+			localStorage.setItem("access_token", null);
 		});
 	};
 

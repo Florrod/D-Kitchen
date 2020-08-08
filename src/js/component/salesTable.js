@@ -51,7 +51,7 @@ export const SalesTable = props => {
 								? platforms.map((plat, index) => (
 										<div className="row" key={plat.id}>
 											<div className="col-6">{plat.name}</div>
-											<div className="col-6">{plat.total_price}</div>
+											<div className="col-6">{roundSales(plat.total_price)}</div>
 										</div>
 								  ))
 								: ""}
