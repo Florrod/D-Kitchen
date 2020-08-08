@@ -36,33 +36,29 @@ export const ClientTable = props => {
 	return (
 		<div className="table-responsive-sm">
 			<table className="table table-sm table-hover mt-5 text-center">
-				<thead className="thead-success">
-					<tr>
-						<th scope="col">Plataformas</th>
-						<th scope="col">Clientes recurrentes</th>
-						<th scope="col">Clientes nuevos</th>
-					</tr>
-				</thead>
 				<tbody>
-					<tr>
-						<th scope="row" />
-						<th id="ticket" scope="row">
-							Ticket medio
-						</th>
-						<th id="ticket" scope="row">
-							Ticket medio
-						</th>
-					</tr>
-					<tr>
-						<th scope="row">JustEat</th>
-						<td>The Bird</td>
-						<td>@twitter</td>
-					</tr>
-					<tr>
-						<th scope="row">Glovo</th>
-						<td>Jacob</td>
-						<td>@fat</td>
-					</tr>
+					<div className="row">
+						<div className="col-6">
+							<div className="row">
+								<div className="col-6">Plataformas</div>
+								<div className="col-6">Clientes recurrentes</div>
+							</div>
+							{platforms
+								? platforms.map((plat, index) => (
+										<div className="row" key={plat.id}>
+											<div className="col-6">{plat.name}</div>
+											{plat.orders_count.map((contact, index) => (
+												<div key={index} className="col-6">
+													{" "}
+													{contact.phone}
+													{contact.customer_id_platform}
+												</div>
+											))}
+										</div>
+								  ))
+								: ""}
+						</div>
+					</div>
 				</tbody>
 			</table>
 		</div>
