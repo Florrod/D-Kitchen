@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-fe4d7be6-896d-4f55-a9e8-7e8921aaf803.ws-eu01.gitpod.io/";
+const ENDPOINT = "https://3000-d94aa2f3-9eb4-4fd2-babe-28b285433763.ws-eu01.gitpod.io";
 export const SalesTable = props => {
 	const [platforms, setPlatforms] = useState({
 		//initialize state here
@@ -30,24 +30,28 @@ export const SalesTable = props => {
 		getTotalSales();
 	}, []);
 
+	const roundSales = x => {
+		return Math.round(x);
+	};
+
+	console.log(roundSales(23, 45));
 	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (
 		<div className="table-responsive-sm">
 			<table className="table table-sm table-hover mt-5 text-center">
-				<thead className="thead-success">
-					<tr>
-						<th scope="col">Ventas totales</th>
-					</tr>
-				</thead>
 				<tbody>
 					<div className="row">
 						<div className="col-6">
-							Plataformas
+							<div className="row">
+								<div className="col-6">Plataformas</div>
+								<div className="col-6">Ventas Totales</div>
+							</div>
 							{platforms
 								? platforms.map((plat, index) => (
 										<div className="row" key={plat.id}>
-											{plat.name}
+											<div className="col-6">{plat.name}</div>
+											<div className="col-6">{plat.total_price}</div>
 										</div>
 								  ))
 								: ""}
