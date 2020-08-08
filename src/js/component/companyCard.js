@@ -1,24 +1,61 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
+import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { ChartLine } from "../component/chartLine.js";
 import { Link } from "react-router-dom";
 import "../../styles/companyCard.scss";
 import "../../styles/home.scss";
 
+const ENDPOINT = "https://3000-d94aa2f3-9eb4-4fd2-babe-28b285433763.ws-eu01.gitpod.io";
+
 export const CompanyCard = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
+	const { store, actions } = useContext(Context);
+
+	const [enterprises, setEnterprises] = useState([]);
+
+	const getEnterprisesWithBrands = () => {
+		let access_token = localStorage.getItem("access_token");
+		return fetch(`${ENDPOINT}/enterprise/brands`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${access_token}`,
+				"Access-Control-Allow-Origin": "*"
+			}
+		})
+			.then(res => res.json())
+			.then(enterprises => {
+				console.log(enterprises);
+				setEnterprises(enterprises);
+			});
+	};
+
+	useEffect(() => {
+		getEnterprisesWithBrands();
+	}, []);
+
+	// if (enterprise == null || enterprise[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (
 		<div className="container mt-0">
 			<div className="card panel panel-info">
-				<div className="card-header panel-heading collapsed" data-toggle="collapse" data-target="#bar">
-					<i className="fas fa-angle-double-down showCompany" />
-					<i className="fas fa-angle-double-up showCompany" />
-					<h5 className="mb-0">Empresa número 1</h5>
-				</div>
+				{enterprises
+					? enterprises.map((enterprise, index) => (
+							<div
+								key={index}
+								className="card-header panel-heading collapsed"
+								data-toggle="collapse"
+								data-target="#bar">
+								<i className="fas fa-angle-double-down showCompany" />
+								<i className="fas fa-angle-double-up showCompany" />
+								<h5 key={enterprise.id} className="mb-0">
+									{enterprise.name}
+								</h5>
+								))}
+							</div>
+					  ))
+					: ""}
 				<div className="panel-body">
 					<li className="collapse list-group-item" id="bar">
 						<div className="row w-100 mt-2">
