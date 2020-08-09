@@ -8,6 +8,7 @@ import { CompanyAdded } from "./views/companyAdded";
 import { Login } from "./views/login";
 import { RemindPassword } from "./views/remindpassword";
 import { CompanyList } from "./views/companyList";
+import { EditEnterprise } from "./views/editEnterprise.js";
 import injectContext from "./store/appContext";
 
 // import { Footer } from "./component/footer";
@@ -36,6 +37,9 @@ export const Layout = () => {
 						<Route path="/registerForm" component={RegisterForm} />
 						<Route path="/companyAdded" component={CompanyAdded} />
 						<Route path="/companyList" component={CompanyList} />
+						<Route path="/edit/:enterpriseID">
+							<EditEnterprise />
+						</Route>
 						<Route path="/chartLine" component={ChartLine} />
 						<Route path="/navbarChartLine" component={NavbarChartLine} />
 						<Route path="/salesTable" component={SalesTable} />

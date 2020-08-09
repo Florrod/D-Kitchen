@@ -1,7 +1,11 @@
+const url_base = "https://3000-d94aa2f3-9eb4-4fd2-babe-28b285433763.ws-eu01.gitpod.io";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: ""
+			token: "",
+			allEnterprises: [],
+			allBrands: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -20,7 +24,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-
+			getAllEnterprises: () => {
+				const currentStore = getStore();
+				let url = url_base + "/enterprise";
+				console.log(url);
+				let access_token = localStorage.getItem("access_token");
+				fetch(url, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					}
+						.then(res => res.json())
+						.then(data => {
+							setStore({
+								allEnterprises: data
+							});
+							let store = getStore();
+							let enterprises = store.allEnterprises;
+							console.log(contact);
+						})
+						.catch(e => console.error(e))
+				});
+			},
+			editEnterprise(id, editCifNumber, editAddress, editEmail, editIsActive, editName, editPhone, editPassword) {
+				fetch(`${url_base}/enterprise/${id}`, {
+					method: "PUT",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						name: editName,
+						phone: editPhone,
+						email: editEmail,
+						address: editAddress,
+						CIF_number: editCifNumber,
+						is_active: editIsActive,
+						password: editPassword
+					})
+				}).then(() => {
+					const currentStore = getStore();
+					fetch(`${url_base}/enterprise/${id}`)
+						.then(res => res.json())
+						.then(data => {
+							setStore({
+								allEnterprises: data
+							});
+							let store = getStore();
+							let enterprises = store.allContacts;
+							console.log(contact);
+						})
+						.catch(e => console.error(e));
+				});
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
