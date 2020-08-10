@@ -1,4 +1,4 @@
-const url_base = "https://3000-a32a2cb8-df3f-46cd-86d1-360b668071f5.ws-eu01.gitpod.io/";
+const url_base = "https://3000-ecdeefec-608e-4f30-8abc-da2c3cdac113.ws-eu01.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -70,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								allEnterprises: data
 							});
 							let store = getStore();
-							let enterprises = store.allContacts;
+							let enterprises = store.allEnterprises;
 							console.log(contact);
 						})
 						.catch(e => console.error(e));
