@@ -3,9 +3,9 @@ import { Context } from "../store/appContext";
 import { Link, useRouteMatch, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export const EditEnterprise = () => {
+export const EditEnterprise = props => {
 	const { store, actions } = useContext(Context);
-	const match = useRouteMatch();
+	// const match = useRouteMatch();
 	const [editName, setName] = useState("");
 	const [editCifNumber, setCifNumber] = useState("");
 	const [editAddress, setAddress] = useState("");
@@ -16,10 +16,11 @@ export const EditEnterprise = () => {
 
 	useEffect(
 		() => {
-			console.log("running useEffect");
+			actions.getAllEnterprises();
+			console.log("running useEffect", store.allEnterprises);
 			for (let enterprise of store.allEnterprises) {
 				console.log("checking > ", enterprise);
-				if (enterprise.id == match.params.enterpriseID) {
+				if (enterprise.id == props.match.params.enterpriseid) {
 					console.log("found it!");
 					setName(enterprise.name);
 					setCifNumber(enterprise.CIF_number);
@@ -85,7 +86,7 @@ export const EditEnterprise = () => {
 							className="btn btn-primary form-control"
 							onClick={() => {
 								actions.editEnterprise(
-									match.params.enterpriseID,
+									props.match.params.enterpriseid,
 									editName,
 									editCifNumber,
 									editPassword,
@@ -107,4 +108,6 @@ export const EditEnterprise = () => {
 	);
 };
 
-EditEnterprise.propTypes = {};
+EditEnterprise.propTypes = {
+	match: PropTypes.object
+};

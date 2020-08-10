@@ -6,15 +6,15 @@ import { ChartLine } from "../component/chartLine.js";
 import { Link } from "react-router-dom";
 import "../../styles/companyCard.scss";
 import "../../styles/home.scss";
-​
-const ENDPOINT = "https://3000-d94aa2f3-9eb4-4fd2-babe-28b285433763.ws-eu01.gitpod.io";
-​
+
+const ENDPOINT = "https://3000-a32a2cb8-df3f-46cd-86d1-360b668071f5.ws-eu01.gitpod.io";
+
 export const CompanyCard = props => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({});
-​
+
 	const [enterprises, setEnterprises] = useState([]);
-​
+
 	const getEnterprisesWithBrands = () => {
 		let access_token = localStorage.getItem("access_token");
 		return fetch(`${ENDPOINT}/enterprise/brands`, {
@@ -31,11 +31,11 @@ export const CompanyCard = props => {
 				setEnterprises(enterprises);
 			});
 	};
-​
+
 	useEffect(() => {
 		getEnterprisesWithBrands();
 	}, []);
-​
+
 	return (
 		<div className="container mt-0">
 			<div className="card panel panel-info">
@@ -70,14 +70,14 @@ export const CompanyCard = props => {
 										/>
 										<span className="text-muted small"> {enterprise.phone}</span>
 									</div>
-									{/* <div className="col company">
-										<Redirect to={`edit/${props.history.id}`}>
+									<div className="col company">
+										<Link to={`edit/${enterprise.id}`}>
 											<button className="btn">
 												<i className="mr-3 fas fa-pencil-alt" />
 											</button>
 											Editar empresa
-										</Redirect>
-									</div> */}
+										</Link>
+									</div>
 								</div>
 								<div className="row w-100 mb-3">
 									<div className="col-9">
@@ -125,7 +125,7 @@ export const CompanyCard = props => {
 		</div>
 	);
 };
-​
+
 /**
  * Define the data-types for
  * your component's properties
@@ -134,7 +134,7 @@ CompanyCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func
 };
-​
+
 /**
  * Define the default values for
  * your component's properties

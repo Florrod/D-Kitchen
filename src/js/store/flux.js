@@ -1,4 +1,4 @@
-const url_base = "https://3000-d94aa2f3-9eb4-4fd2-babe-28b285433763.ws-eu01.gitpod.io";
+const url_base = "https://3000-a32a2cb8-df3f-46cd-86d1-360b668071f5.ws-eu01.gitpod.io/";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -36,17 +36,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						Authorization: `Bearer ${access_token}`,
 						"Access-Control-Allow-Origin": "*"
 					}
-						.then(res => res.json())
-						.then(data => {
-							setStore({
-								allEnterprises: data
-							});
-							let store = getStore();
-							let enterprises = store.allEnterprises;
-							console.log(contact);
-						})
-						.catch(e => console.error(e))
-				});
+				})
+					.then(res => res.json())
+					.then(data => {
+						setStore({
+							allEnterprises: data
+						});
+						let store = getStore();
+						let enterprises = store.allEnterprises;
+						console.log(enterprises);
+					})
+					.catch(e => console.error(e));
 			},
 			editEnterprise(id, editCifNumber, editAddress, editEmail, editIsActive, editName, editPhone, editPassword) {
 				fetch(`${url_base}/enterprise/${id}`, {

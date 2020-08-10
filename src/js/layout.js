@@ -37,9 +37,7 @@ export const Layout = () => {
 						<Route path="/registerForm" component={RegisterForm} />
 						<Route path="/companyAdded" component={CompanyAdded} />
 						<Route path="/companyList" component={CompanyList} />
-						<Route path="/edit/:enterpriseID">
-							<EditEnterprise />
-						</Route>
+						<Route path="/edit/:enterpriseid" component={EditEnterprise} />
 						<Route path="/chartLine" component={ChartLine} />
 						<Route path="/navbarChartLine" component={NavbarChartLine} />
 						<Route path="/salesTable" component={SalesTable} />
