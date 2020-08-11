@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "../../styles/companyCard.scss";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-ecdeefec-608e-4f30-8abc-da2c3cdac113.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-a7eefead-d567-4718-92d2-a4f9607b9651.ws-eu01.gitpod.io";
 
 export const CompanyCard = props => {
 	const { store, actions } = useContext(Context);
@@ -90,8 +90,14 @@ export const CompanyCard = props => {
 										<span className="text-muted small text-truncate"> {enterprise.email}</span>
 									</div>
 									<div className="col company">
-										<i className="mr-3 fas fa-trash-alt" />
-										Eliminar empresa
+										<button
+											className="btn"
+											onClick={() => {
+												actions.deleteEnterprise(enterprise.id);
+											}}>
+											<i className="mr-3 fas fa-trash-alt" />
+											Eliminar empresa
+										</button>
 									</div>
 								</div>
 							</li>

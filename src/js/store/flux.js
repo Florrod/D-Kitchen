@@ -1,4 +1,4 @@
-const url_base = "https://3000-ecdeefec-608e-4f30-8abc-da2c3cdac113.ws-eu01.gitpod.io";
+const url_base = "https://3000-a7eefead-d567-4718-92d2-a4f9607b9651.ws-eu01.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -39,19 +39,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => res.json())
 					.then(data => {
-						setStore({
-							allEnterprises: data
-						});
-						let store = getStore();
-						let enterprises = store.allEnterprises;
-						console.log(enterprises);
+						if (data.msg != null) {
+							alert(data.msg);
+						} else {
+							setStore({
+								allEnterprises: data
+							});
+						}
 					})
 					.catch(e => console.error(e));
 			},
 			editEnterprise(id, editCifNumber, editAddress, editEmail, editIsActive, editName, editPhone, editPassword) {
-				fetch(`${url_base}/enterprise/${id}`, {
-					method: "PUT",
-					headers: { "Content-Type": "application/json" },
+				let access_token = localStorage.getItem("access_token");
+				fetch(`${url_base}/enterprise/${id}/edit`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					},
 					body: JSON.stringify({
 						name: editName,
 						phone: editPhone,
@@ -61,21 +67,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 						is_active: editIsActive,
 						password: editPassword
 					})
+				})
+					.then(res => res.json())
+					.then(data => {
+						setStore({
+							allEnterprises: data
+						});
+						let store = getStore();
+						let enterprises = store.allEnterprises;
+						console.log(enterprises);
+					})
+					.catch(e => console.error(e));
+			},
+
+			deleteEnterprise: id => {
+				let access_token = localStorage.getItem("access_token");
+				fetch(`${url_base}/enterprise/${id}`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					}
 				}).then(() => {
-					const currentStore = getStore();
 					fetch(`${url_base}/enterprise/${id}`)
-						.then(res => res.json())
-						.then(data => {
-							setStore({
-								allEnterprises: data
-							});
-							let store = getStore();
-							let enterprises = store.allEnterprises;
-							console.log(contact);
+						.then(response => response.json())
+						.then(deleteData => {
+							setStore({ allEnterprises: deleteData });
 						})
 						.catch(e => console.error(e));
 				});
 			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
