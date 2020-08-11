@@ -15,23 +15,26 @@ export const EditEnterprise = props => {
 	const [editPassword, setPassword] = useState("");
 	const [editIsActive, setIsActive] = useState(false);
 
-	useEffect(() => {
-		// actions.getAllEnterprises();
-		console.log("running useEffect", store.allEnterprises);
-		for (let enterprise of store.allEnterprises) {
-			console.log("checking > ", enterprise);
-			if (enterprise.id == props.match.params.enterpriseid) {
-				console.log("found it!");
-				setName(enterprise.name);
-				setCifNumber(enterprise.CIF_number);
-				setAddress(enterprise.address);
-				setEmail(enterprise.email);
-				setPhone(enterprise.phone);
-				setPassword(enterprise.password);
-				setIsActive(enterprise.is_active);
+	useEffect(
+		() => {
+			// actions.getAllEnterprises();
+			console.log("running useEffect", store.allEnterprises);
+			for (let enterprise of store.allEnterprises) {
+				console.log("checking > ", enterprise);
+				if (enterprise.id == props.match.params.enterpriseid) {
+					console.log("found it!");
+					setName(enterprise.name);
+					setCifNumber(enterprise.CIF_number);
+					setAddress(enterprise.address);
+					setEmail(enterprise.email);
+					setPhone(enterprise.phone);
+					setPassword(enterprise.password);
+					setIsActive(enterprise.is_active);
+				}
 			}
-		}
-	});
+		},
+		[store.allEnterprises]
+	);
 
 	return (
 		<div className="container">
@@ -78,25 +81,23 @@ export const EditEnterprise = props => {
 							onChange={e => setAddress(e.target.value)}
 						/>
 					</div>
-					<Link to={"/companyList"}>
-						<button
-							type="button"
-							className="btn buttom form-control m-2"
-							onClick={() => {
-								actions.editEnterprise(
-									props.match.params.enterpriseid,
-									editName,
-									editCifNumber,
-									editPassword,
-									editPhone,
-									editEmail,
-									editAddress,
-									editIsActive
-								);
-							}}>
-							Guardar
-						</button>
-					</Link>
+					<button
+						type="button"
+						className="btn buttom form-control m-2"
+						onClick={() => {
+							actions.editEnterprise(
+								props.match.params.enterpriseid,
+								editCifNumber,
+								editAddress,
+								editEmail,
+								editIsActive,
+								editName,
+								editPhone,
+								editPassword
+							);
+						}}>
+						Guardar
+					</button>
 					<Link className="mt-5 w-100 text-center" to="/companyList">
 						Volver
 					</Link>

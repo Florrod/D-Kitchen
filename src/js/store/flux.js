@@ -51,14 +51,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			editEnterprise(id, editCifNumber, editAddress, editEmail, editIsActive, editName, editPhone, editPassword) {
 				let access_token = localStorage.getItem("access_token");
-				fetch(`${url_base}/enterprise/${id}/edit`, {
-					method: "POST",
+				fetch(`${url_base}/enterprise/${id}`, {
+					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
 						Authorization: `Bearer ${access_token}`,
 						"Access-Control-Allow-Origin": "*"
 					},
 					body: JSON.stringify({
+						id: id,
 						name: editName,
 						phone: editPhone,
 						email: editEmail,
@@ -70,12 +71,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => res.json())
 					.then(data => {
-						setStore({
+						/*setStore({
 							allEnterprises: data
 						});
 						let store = getStore();
 						let enterprises = store.allEnterprises;
-						console.log(enterprises);
+						console.log(enterprises);*/
 					})
 					.catch(e => console.error(e));
 			},
