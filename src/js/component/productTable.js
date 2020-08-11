@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-a32a2cb8-df3f-46cd-86d1-360b668071f5.ws-eu01.gitpod.io/";
+const ENDPOINT = "https://3000-a7eefead-d567-4718-92d2-a4f9607b9651.ws-eu01.gitpod.io";
 
 export const ProductTable = props => {
 	const [platforms, setPlatforms] = useState([]);
@@ -36,19 +36,19 @@ export const ProductTable = props => {
 			<table className="table table-sm table-hover mt-5 text-center">
 				<tbody>
 					<div className="row">
-						<div className="col-6">
+						<div className="col-md-auto ml-5">
 							<div className="row">
-								<div className="col-4">Ranking</div>
+								<div className="col-sm-4 h5">Ranking</div>
 								{platforms
 									? platforms.map((plat, index) => (
-											<div className="col-4 ml-2" key={plat.id}>
+											<div className="col-sm-4 h5" key={plat.id}>
 												{plat.name}
 											</div>
 									  ))
 									: ""}
 							</div>
 							<div className="row">
-								<div className="col-4">
+								<div className="col-sm-4">
 									<p>1º</p>
 									<p>2º</p>
 									<p>3º</p>
@@ -57,11 +57,11 @@ export const ProductTable = props => {
 								</div>
 								{platforms
 									? platforms.map((plat, index) => (
-											<div className="col-4" key={plat.id}>
+											<div className="col-sm-4" key={plat.id}>
 												{plat.top_products.map((product, index) => (
 													<div key={product.name}>
 														{" "}
-														<div className="row ml-5">{product.name}</div>
+														<div className="row ml-2">{product.name}</div>
 													</div>
 												))}
 											</div>

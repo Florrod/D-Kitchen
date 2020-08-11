@@ -4,7 +4,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import { Link, Redirect } from "react-router-dom";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-a32a2cb8-df3f-46cd-86d1-360b668071f5.ws-eu01.gitpod.io/";
+const ENDPOINT = "https://3000-a7eefead-d567-4718-92d2-a4f9607b9651.ws-eu01.gitpod.io";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
