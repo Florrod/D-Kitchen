@@ -1,4 +1,4 @@
-const url_base = "https://3000-a7eefead-d567-4718-92d2-a4f9607b9651.ws-eu01.gitpod.io";
+const url_base = "https://3000-a2433010-e316-4209-8d0e-d0eb6549d9be.ws-eu01.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -49,6 +49,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(e => console.error(e));
 			},
+
+			getEnterprisesWithBrands: () => {
+				let access_token = localStorage.getItem("access_token");
+				return fetch(`${url_base}/enterprise/brands`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					}
+				})
+					.then(res => res.json())
+					.then(enterprises => {
+						setStore({
+							allData: enterprises
+						});
+					});
+			},
+
 			editEnterprise(id, editCifNumber, editAddress, editEmail, editIsActive, editName, editPhone, editPassword) {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/enterprise/${id}`, {
@@ -91,12 +110,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Access-Control-Allow-Origin": "*"
 					}
 				}).then(() => {
-					fetch(`${url_base}/enterprise/${id}`)
+					fetch(`${url_base}/enterprise`, {
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${access_token}`,
+							"Access-Control-Allow-Origin": "*"
+						}
+					})
 						.then(response => response.json())
 						.then(deleteData => {
-							setStore({ allEnterprises: deleteData });
+							console.log("lalalalalalalal", deleteData);
+							setStore({ allData: deleteData });
 						})
-						.catch(e => console.error(e));
+						.catch(e => console.error("deleteeee", e));
 				});
 			},
 
