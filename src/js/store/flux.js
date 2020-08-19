@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: "",
 			allEnterprises: [],
-			allBrands: []
+			allBrands: [],
+			allData: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -68,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			editEnterprise(id, editCifNumber, editAddress, editEmail, editIsActive, editName, editPhone, editPassword) {
+			editEnterprise(id, editName, editCifNumber, editPassword, editPhone, editEmail, editAddress, editIsActive) {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/enterprise/${id}`, {
 					method: "PUT",
@@ -80,22 +81,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 						id: id,
 						name: editName,
+						CIF_number: editCifNumber,
+						password: editPassword,
 						phone: editPhone,
 						email: editEmail,
 						address: editAddress,
-						CIF_number: editCifNumber,
-						is_active: editIsActive,
-						password: editPassword
+						is_active: editIsActive
 					})
 				})
 					.then(res => res.json())
 					.then(data => {
-						/*setStore({
-							allEnterprises: data
-						});
-						let store = getStore();
-						let enterprises = store.allEnterprises;
-						console.log(enterprises);*/
+						console.log("aaaaa ->", data);
+						// setStore({
+						// 	allEnterprises: data
+						// });
+						// let store = getStore();
+						// let enterprises = store.allEnterprises;
+						// console.log(enterprises);
 					})
 					.catch(e => console.error(e));
 			},

@@ -7,6 +7,7 @@ import "../../styles/home.scss";
 export const EditEnterprise = props => {
 	const { store, actions } = useContext(Context);
 	// const match = useRouteMatch();
+	const [id, setId] = useState("");
 	const [editName, setName] = useState("");
 	const [editCifNumber, setCifNumber] = useState("");
 	const [editAddress, setAddress] = useState("");
@@ -15,26 +16,25 @@ export const EditEnterprise = props => {
 	const [editPassword, setPassword] = useState("");
 	const [editIsActive, setIsActive] = useState(false);
 
-	useEffect(
-		() => {
-			// actions.getAllEnterprises();
-			console.log("running useEffect", store.allEnterprises);
-			for (let enterprise of store.allEnterprises) {
-				console.log("checking > ", enterprise);
-				if (enterprise.id == props.match.params.enterpriseid) {
-					console.log("found it!");
-					setName(enterprise.name);
-					setCifNumber(enterprise.CIF_number);
-					setAddress(enterprise.address);
-					setEmail(enterprise.email);
-					setPhone(enterprise.phone);
-					setPassword(enterprise.password);
-					setIsActive(enterprise.is_active);
-				}
+	useEffect(() => {
+		actions.getAllEnterprises();
+		console.log("running useEffect", store.allEnterprises);
+		for (let enterprise of store.allEnterprises) {
+			console.log("checking > ", enterprise);
+			if (enterprise.id == props.match.params.enterpriseid) {
+				console.log("found it!");
+				setId(enterprise.id);
+				setName(enterprise.name);
+				setCifNumber(enterprise.CIF_number);
+				setAddress(enterprise.address);
+				setEmail(enterprise.email);
+				setPhone(enterprise.phone);
+				setPassword(enterprise.password);
+				setIsActive(enterprise.is_active);
 			}
-		},
-		[store.allEnterprises]
-	);
+			break;
+		}
+	}, []);
 
 	return (
 		<div className="container">
@@ -86,14 +86,14 @@ export const EditEnterprise = props => {
 						className="btn buttom form-control m-2"
 						onClick={() => {
 							actions.editEnterprise(
-								props.match.params.enterpriseid,
-								editCifNumber,
-								editAddress,
-								editEmail,
-								editIsActive,
+								id,
 								editName,
+								editCifNumber,
+								editPassword,
 								editPhone,
-								editPassword
+								editEmail,
+								editAddress,
+								editIsActive
 							);
 						}}>
 						Guardar
