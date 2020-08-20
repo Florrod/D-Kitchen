@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, useRouteMatch, useParams } from "react-router-dom";
+import { Link, Redirect, useRouteMatch, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../styles/home.scss";
 
@@ -15,11 +15,12 @@ export const EditEnterprise = props => {
 	const [editPhone, setPhone] = useState("");
 	const [editPassword, setPassword] = useState("");
 	const [editIsActive, setIsActive] = useState(false);
+	// const [enterpriseEdited, setEnterpriseEdited] = useState(false);
 
 	useEffect(() => {
 		actions.getAllEnterprises();
-		console.log("running useEffect", store.allEnterprises);
-		for (let enterprise of store.allEnterprises) {
+		console.log("running useEffect", store.allData);
+		for (let enterprise of store.allData) {
 			console.log("checking > ", enterprise);
 			if (enterprise.id == props.match.params.enterpriseid) {
 				console.log("found it!");
@@ -31,10 +32,17 @@ export const EditEnterprise = props => {
 				setPhone(enterprise.phone);
 				setPassword(enterprise.password);
 				setIsActive(enterprise.is_active);
+				// setEnterpriseEdited(true);
 			}
 			break;
 		}
 	}, []);
+
+	// if (enterpriseEdited === true) {
+	// 	return <Redirect to="/companyList" />;
+	// } else if (enterpriseEdited === false) {
+	// 	return <Redirect to="/companyList" />;
+	// }
 
 	return (
 		<div className="container">
@@ -72,6 +80,16 @@ export const EditEnterprise = props => {
 						/>
 					</div>
 					<div className="form-group">
+						<label>Contraseña</label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Introduce tu nueva contraseña"
+							defaultValue={editPassword}
+							onChange={e => setPassword(e.target.value)}
+						/>
+					</div>
+					<div className="form-group">
 						<label>Dirección</label>
 						<input
 							type="text"
@@ -81,23 +99,25 @@ export const EditEnterprise = props => {
 							onChange={e => setAddress(e.target.value)}
 						/>
 					</div>
-					<button
-						type="button"
-						className="btn buttom form-control m-2"
-						onClick={() => {
-							actions.editEnterprise(
-								id,
-								editName,
-								editCifNumber,
-								editPassword,
-								editPhone,
-								editEmail,
-								editAddress,
-								editIsActive
-							);
-						}}>
-						Guardar
-					</button>
+					<Link to={"/companyList"}>
+						<button
+							type="button"
+							className="btn buttom form-control m-2"
+							onClick={() => {
+								actions.editEnterprise(
+									id,
+									editName,
+									editCifNumber,
+									editPassword,
+									editPhone,
+									editEmail,
+									editAddress,
+									editIsActive
+								);
+							}}>
+							Guardar
+						</button>
+					</Link>
 					<Link className="mt-5 w-100 text-center" to="/companyList">
 						Volver
 					</Link>

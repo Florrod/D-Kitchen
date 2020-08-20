@@ -90,13 +90,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				})
 					.then(res => res.json())
-					.then(data => {
-						console.log("aaaaa ->", data);
-						// setStore({
-						// 	allEnterprises: data
-						// });
-						// let store = getStore();
-						// let enterprises = store.allEnterprises;
+					.then(enterprise => {
+						console.log("aaaaa ->", enterprise);
+						let store = getStore();
+						let enterprises = store.allData;
+						setStore({
+							allData: enterprises.filter(e => e.id != enterprise.id).concat(enterprise) // Cuando cambia un valor del id se añade la empresa de nueva
+						});
+
 						// console.log(enterprises);
 					})
 					.catch(e => console.error(e));
