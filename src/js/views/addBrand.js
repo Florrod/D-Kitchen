@@ -15,70 +15,10 @@ export const RegisterForm = () => {
 					<div className="col-12 col-md-8 col-lg-8 col-xl-6">
 						<div className="row">
 							<div className="col text-center title col-sm-12">
-								<h1 className="titleForm">Formulario de Registro</h1>
+								<h1 className="titleForm">Crear nueva marca</h1>
 							</div>
 						</div>
 						<UploadProfile />
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<label htmlFor="CIF">CIF o NIF</label>
-								<input
-									id="CIF"
-									type="text"
-									className="form-control form-fixer form-fixer"
-									placeholder="CIF o NIF"
-								/>
-							</div>
-							<div className="col">
-								<label htmlFor="nombre-empresa">Nombre de la empresa</label>
-								<input
-									id="nombre-empresa"
-									type="text"
-									className="form-control form-fixer"
-									placeholder="Nombre de la empresa"
-								/>
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<label htmlFor="email">Email</label>
-								<input
-									id="email"
-									type="email"
-									className="form-control form-fixer"
-									placeholder="Email"
-								/>
-							</div>
-							<div className="col">
-								<label htmlFor="telefono">Teléfono</label>
-								<input
-									id="telefono"
-									type="text"
-									className="form-control form-fixer"
-									placeholder="Teléfono"
-								/>
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<label htmlFor="contraseña">Contraseña</label>
-								<input
-									id="contraseña"
-									type="password"
-									className="form-control form-fixer"
-									placeholder="Contraseña"
-								/>
-							</div>
-							<div className="col">
-								<label htmlFor="confirmar-contraseña">Confirma tu contraseña</label>
-								<input
-									id="confirmar-contraseña"
-									type="password"
-									className="form-control form-fixer"
-									placeholder="Confirma contraseña"
-								/>
-							</div>
-						</div>
 						<div className="row align-items-center mt-4">
 							<div className="col">
 								<label htmlFor="nombre-marca">Nombre de la marca</label>
@@ -112,6 +52,7 @@ export const RegisterForm = () => {
 								/>
 							</div>
 						</div>
+						</div>
 						<div className="row justify-content-center mt-4">
 							<Link to="/companyAdded">
 								<div className="col">
@@ -127,7 +68,6 @@ export const RegisterForm = () => {
 							</Link>
 						</div>
 					</div>
-				</div>
 			</div>
 		</form>
 	);

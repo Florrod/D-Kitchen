@@ -18,7 +18,7 @@ export const EditEnterprise = props => {
 	// const [enterpriseEdited, setEnterpriseEdited] = useState(false);
 
 	useEffect(() => {
-		actions.getAllEnterprises();
+		actions.getEnterprisesWithBrands();
 		console.log("running useEffect", store.allData);
 		for (let enterprise of store.allData) {
 			console.log("checking > ", enterprise);

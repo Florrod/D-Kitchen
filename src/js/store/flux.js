@@ -51,6 +51,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(e => console.error(e));
 			},
 
+			getAllBrands: () => {
+				const currentStore = getStore();
+				let url = url_base + "/enterprise/brand";
+				console.log(url);
+				let access_token = localStorage.getItem("access_token");
+				fetch(url, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					}
+				})
+					.then(res => res.json())
+					.then(data => {
+						if (data.msg != null) {
+							alert(data.msg);
+						} else {
+							setStore({
+								allBrands: data
+							});
+						}
+					})
+					.catch(e => console.error(e));
+			},
+
 			getEnterprisesWithBrands: () => {
 				let access_token = localStorage.getItem("access_token");
 				return fetch(`${url_base}/enterprise/brands`, {
@@ -114,6 +140,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}).then(() => {
 					fetch(`${url_base}/enterprise`, {
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${access_token}`,
+							"Access-Control-Allow-Origin": "*"
+						}
+					})
+						.then(response => response.json())
+						.then(deleteData => {
+							console.log("lalalalalalalal", deleteData);
+							setStore({ allData: deleteData });
+						})
+						.catch(e => console.error("deleteeee", e));
+				});
+			},
+
+			deleteBrand: id => {
+				let access_token = localStorage.getItem("access_token");
+				fetch(`${url_base}/enterprise/brand/${id}`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					}
+				}).then(() => {
+					fetch(`${url_base}/enterprise/brands`, {
 						headers: {
 							"Content-Type": "application/json",
 							Authorization: `Bearer ${access_token}`,

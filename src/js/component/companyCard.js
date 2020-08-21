@@ -92,7 +92,11 @@ export const CompanyCard = props => {
 													<button className="btn">
 														<i className="fas fa-pencil-alt" />
 													</button>
-													<button className="btn">
+													<button
+														className="btn"
+														onClick={() => {
+															actions.deleteBrand(brand.id);
+														}}>
 														<i className="fas fa-trash-alt" />
 													</button>
 													<Link to="/navbarChartLine">
