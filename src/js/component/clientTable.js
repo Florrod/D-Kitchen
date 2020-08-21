@@ -40,15 +40,15 @@ export const ClientTable = props => {
 					<div className="row">
 						<div className="col-6">
 							<div className="row">
-								<div className="col-6">Plataformas</div>
-								<div className="col-6">Clientes recurrentes</div>
+								<div className="col-6 h5">Plataformas</div>
+								<div className="col-6 h5">Clientes recurrentes</div>
 							</div>
 							{platforms
 								? platforms.map((plat, index) => (
 										<div className="row" key={plat.id}>
 											<div className="col-6">{plat.name}</div>
 											{plat.orders_count.map((contact, index) => (
-												<div key={index} className="col-6">
+												<div key={index} className="col-6 text-center">
 													{" "}
 													{contact.phone}
 													{contact.customer_id_platform}

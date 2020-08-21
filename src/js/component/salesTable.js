@@ -45,13 +45,13 @@ export const SalesTable = props => {
 					<div className="row">
 						<div className="col-6">
 							<div className="row">
-								<div className="col-6">Plataformas</div>
-								<div className="col-6">Ventas Totales</div>
+								<div className="col-6 h5">Plataformas</div>
+								<div className="col-6 h5">Ventas Totales</div>
 							</div>
 							{platforms
 								? platforms.map((plat, index) => (
 										<div className="row" key={plat.id}>
-											<div className="col-6">{plat.name}</div>
+											<div className="col-6 h6">{plat.name}</div>
 											<div className="col-6">{roundSales(plat.total_price)}</div>
 										</div>
 								  ))

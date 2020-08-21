@@ -33,32 +33,45 @@ export const ProductTable = props => {
 
 	return (
 		<div className="table-responsive-sm">
-			<div className="row">
-				<div className="col-4">
-					<p>Ranking</p>
-					{platforms
-						? platforms.map((plat, index) => (
-								<div className="col-12" key={plat.id}>
-									<span className="border border-dark">{plat.name}</span>
-								</div>
-						  ))
-						: ""}
+			<table className="table table-sm table-hover mt-5 text-center">
+				<tbody>
 					<div className="row">
-						{platforms
-							? platforms.map((plat, index) => (
-									<div key={plat.id} className="platform">
-										{plat.top_products.map((product, index) => (
-											<div className="col-12" key={product.name}>
-												{" "}
-												{product.name}
+						<div className="col-md-auto ml-5">
+							<div className="row">
+								<div className="col-sm-4 h5">Ranking</div>
+								{platforms
+									? platforms.map((plat, index) => (
+											<div className="col-sm-4 h5" key={plat.id}>
+												{plat.name}
 											</div>
-										))}
-									</div>
-							  ))
-							: ""}
+									  ))
+									: ""}
+							</div>
+							<div className="row">
+								<div className="col-sm-4">
+									<p>1º</p>
+									<p>2º</p>
+									<p>3º</p>
+									<p>4º</p>
+									<p>5º</p>
+								</div>
+								{platforms
+									? platforms.map((plat, index) => (
+											<div className="col-sm-4" key={plat.id}>
+												{plat.top_products.map((product, index) => (
+													<div key={product.name}>
+														{" "}
+														<div className="row ml-2">{product.name}</div>
+													</div>
+												))}
+											</div>
+									  ))
+									: ""}
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
+				</tbody>
+			</table>
 		</div>
 	);
 };
