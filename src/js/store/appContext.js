@@ -23,7 +23,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			state.actions.getAllEnterprises();
+			// state.actions.getAllEnterprises();
 			state.actions.getEnterprisesWithBrands();
 			window.store = state.store;
 			/**

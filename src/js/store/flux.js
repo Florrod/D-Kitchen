@@ -4,8 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			allEnterprises: [],
-			allBrands: [],
+			// allEnterprises: [],
+			// allBrands: [],
 			allData: []
 		},
 		actions: {
@@ -25,57 +25,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			getAllEnterprises: () => {
-				const currentStore = getStore();
-				let url = url_base + "/enterprise";
-				console.log(url);
-				let access_token = localStorage.getItem("access_token");
-				fetch(url, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${access_token}`,
-						"Access-Control-Allow-Origin": "*"
-					}
-				})
-					.then(res => res.json())
-					.then(data => {
-						if (data.msg != null) {
-							alert(data.msg);
-						} else {
-							setStore({
-								allEnterprises: data
-							});
-						}
-					})
-					.catch(e => console.error(e));
-			},
+			// getAllEnterprises: () => {
+			// 	const currentStore = getStore();
+			// 	let url = url_base + "/enterprise";
+			// 	console.log(url);
+			// 	let access_token = localStorage.getItem("access_token");
+			// 	fetch(url, {
+			// 		method: "GET",
+			// 		headers: {
+			// 			"Content-Type": "application/json",
+			// 			Authorization: `Bearer ${access_token}`,
+			// 			"Access-Control-Allow-Origin": "*"
+			// 		}
+			// 	})
+			// 		.then(res => res.json())
+			// 		.then(data => {
+			// 			if (data.msg != null) {
+			// 				alert(data.msg);
+			// 			} else {
+			// 				setStore({
+			// 					allEnterprises: data
+			// 				});
+			// 			}
+			// 		})
+			// 		.catch(e => console.error(e));
+			// },
 
-			getAllBrands: () => {
-				const currentStore = getStore();
-				let url = url_base + "/enterprise/brand";
-				console.log(url);
-				let access_token = localStorage.getItem("access_token");
-				fetch(url, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${access_token}`,
-						"Access-Control-Allow-Origin": "*"
-					}
-				})
-					.then(res => res.json())
-					.then(data => {
-						if (data.msg != null) {
-							alert(data.msg);
-						} else {
-							setStore({
-								allBrands: data
-							});
-						}
-					})
-					.catch(e => console.error(e));
-			},
+			// getAllBrands: () => {
+			// 	const currentStore = getStore();
+			// 	let url = url_base + "/enterprise/brand";
+			// 	console.log(url);
+			// 	let access_token = localStorage.getItem("access_token");
+			// 	fetch(url, {
+			// 		method: "GET",
+			// 		headers: {
+			// 			"Content-Type": "application/json",
+			// 			Authorization: `Bearer ${access_token}`,
+			// 			"Access-Control-Allow-Origin": "*"
+			// 		}
+			// 	})
+			// 		.then(res => res.json())
+			// 		.then(data => {
+			// 			if (data.msg != null) {
+			// 				alert(data.msg);
+			// 			} else {
+			// 				setStore({
+			// 					allBrands: data
+			// 				});
+			// 			}
+			// 		})
+			// 		.catch(e => console.error(e));
+			// },
 
 			getEnterprisesWithBrands: () => {
 				let access_token = localStorage.getItem("access_token");
