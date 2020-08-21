@@ -129,6 +129,56 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(e => console.error(e));
 			},
 
+			addEnterprise(
+				brandLogo,
+				CifNumber,
+				enterpriseName,
+				email,
+				phone,
+				address,
+				password,
+				brandName,
+				justEatApiKey,
+				glovoApiKey,
+				isAdmin
+			) {
+				let access_token = localStorage.getItem("access_token");
+				fetch(`${url_base}/add-enterprise`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					},
+					body: JSON.stringify({
+						logo: brandLogo,
+						CIF_number: CifNumber,
+						name: enterpriseName,
+						password: password,
+						phone: phone,
+						email: email,
+						address: address,
+						name: brandName,
+						API_key: { JE: justEatApiKey, GL: glovoApiKey },
+						is_admin: isAdmin
+					})
+				}).then(() => {
+					fetch(`${url_base}/enterprise`, {
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${access_token}`,
+							"Access-Control-Allow-Origin": "*"
+						}
+					})
+						.then(response => response.json())
+						.then(updateData => {
+							console.log("lalalalalalalal", updateData);
+							setStore({ allData: updateData });
+						})
+						.catch(e => console.error("deleteeee", e));
+				});
+			},
+
 			deleteEnterprise: id => {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/enterprise/${id}`, {

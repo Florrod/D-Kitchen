@@ -7,6 +7,18 @@ import "../../styles/home.scss";
 
 export const RegisterForm = () => {
 	const { store, actions } = useContext(Context);
+	const [id, setId] = useState("");
+	const [brandLogo, setBrandLogo] = useState("");
+	const [CifNumber, setCifNumber] = useState("");
+	const [enterpriseName, setEnterpriseName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [address, setAddress] = useState("");
+	const [password, setPassword] = useState("");
+	const [brandName, setBrandName] = useState("");
+	const [justEatApiKey, setJustEatApiKey] = useState("");
+	const [glovoApiKey, setGlovoApiKey] = useState("");
+	const [isAdmin, setIsAdmin] = useState(false);
 
 	return (
 		<form>
@@ -27,6 +39,7 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer form-fixer"
 									placeholder="CIF o NIF"
+									onChange={e => setCifNumber(e.target.value)}
 								/>
 							</div>
 							<div className="col">
@@ -36,6 +49,7 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="Nombre de la empresa"
+									onChange={e => setEnterpriseName(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -47,6 +61,7 @@ export const RegisterForm = () => {
 									type="email"
 									className="form-control form-fixer"
 									placeholder="Email"
+									onChange={e => setEmail(e.target.value)}
 								/>
 							</div>
 							<div className="col">
@@ -56,6 +71,19 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="Teléfono"
+									onChange={e => setPhone(e.target.value)}
+								/>
+							</div>
+						</div>
+						<div className="row align-items-center mt-4">
+							<div className="col">
+								<label htmlFor="address">Dirección</label>
+								<input
+									id="address"
+									type="text"
+									className="form-control form-fixer"
+									placeholder="Dirección"
+									onChange={e => setAddress(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -67,6 +95,7 @@ export const RegisterForm = () => {
 									type="password"
 									className="form-control form-fixer"
 									placeholder="Contraseña"
+									onChange={e => setPassword(e.target.value)}
 								/>
 							</div>
 							<div className="col">
@@ -87,6 +116,7 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="Nombre de la marca"
+									onChange={e => setBrandName(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -98,6 +128,7 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Just-Eat"
+									onChange={e => setJustEatApiKey(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -109,13 +140,32 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Glovo"
+									onChange={e => setGlovoApiKey(e.target.value)}
 								/>
 							</div>
 						</div>
 						<div className="row justify-content-center mt-4">
 							<Link to="/companyAdded">
 								<div className="col">
-									<input type="submit" value="Guardar" className="button" />
+									<button
+										className="btn"
+										onClick={() => {
+											actions.addEnterprise(
+												brandLogo,
+												CifNumber,
+												enterpriseName,
+												email,
+												phone,
+												address,
+												password,
+												brandName,
+												justEatApiKey,
+												glovoApiKey,
+												isAdmin
+											);
+										}}>
+										<input type="submit" value="Guardar" className="button" />
+									</button>
 								</div>
 							</Link>
 							<Link to="/">
