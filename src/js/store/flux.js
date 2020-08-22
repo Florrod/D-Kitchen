@@ -153,12 +153,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify({
 						logo: brandLogo,
 						CIF_number: CifNumber,
-						name: enterpriseName,
+						enterprise_name: enterpriseName,
 						password: password,
 						phone: phone,
 						email: email,
 						address: address,
-						name: brandName,
+						brand_name: brandName,
 						API_key: { JE: justEatApiKey, GL: glovoApiKey },
 						is_admin: isAdmin
 					})
