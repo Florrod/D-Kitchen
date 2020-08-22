@@ -236,6 +236,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 
+			editBrand(id, editLogo, editName, justEatApiKey, glovoApiKey) {
+				let access_token = localStorage.getItem("access_token");
+				fetch(`${url_base}/edit-brand/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					},
+					body: JSON.stringify({
+						id: id,
+						logo: editLogo,
+						name: editName,
+						API_key: { JE: justEatApiKey, GL: glovoApiKey }
+					})
+				})
+					.then(res => res.json())
+					.then(brand => {
+						console.log("aaaaa ->", brand);
+						let store = getStore();
+						let brands = store.allData;
+						setStore({
+							allData: brands.filter(e => e.id != brand.id).concat(brand) // Cuando cambia un valor del id se añade la empresa de nueva
+						});
+
+						// console.log(enterprises);
+					})
+					.catch(e => console.error(e));
+			},
+
 			deleteBrand: id => {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/enterprise/brand/${id}`, {

@@ -19,7 +19,7 @@ export const EditEnterprise = props => {
 
 	useEffect(() => {
 		actions.getEnterprisesWithBrands();
-		console.log("running useEffect", store.allData);
+		console.log("running useEffect enterprises", store.allData);
 		for (let enterprise of store.allData) {
 			console.log("checking > ", enterprise);
 			if (enterprise.id == props.match.params.enterpriseid) {

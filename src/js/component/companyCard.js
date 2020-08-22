@@ -89,9 +89,11 @@ export const CompanyCard = props => {
 												{" "}
 												{brand.name}
 												<div className="float-right">
-													<button className="btn">
-														<i className="fas fa-pencil-alt" />
-													</button>
+													<Link to={`/edit/brand/${brand.id}`}>
+														<button className="btn">
+															<i className="fas fa-pencil-alt" />
+														</button>
+													</Link>
 													<button
 														className="btn"
 														onClick={() => {

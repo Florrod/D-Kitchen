@@ -19,6 +19,7 @@ import { UploadProfile } from "./component/uploadProfile";
 import { ChartLine } from "./component/chartLine.js";
 import { NavbarChartLine } from "./component/navbarChartLine";
 import { SalesTable } from "./component/salesTable";
+import { EditBrand } from "./views/editBrand";
 
 //create your first component
 export const Layout = () => {
@@ -39,6 +40,7 @@ export const Layout = () => {
 						<Route path="/companyAdded" component={CompanyAdded} />
 						<Route path="/companyList" component={CompanyList} />
 						<Route path="/edit/:enterpriseid" component={EditEnterprise} />
+						<Route path="/edit/brand/:brandid" component={EditBrand} />
 						<Route path="/add-brand" component={AddBrand} />
 						<Route path="/chartLine" component={ChartLine} />
 						<Route path="/navbarChartLine" component={NavbarChartLine} />
