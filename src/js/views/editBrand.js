@@ -6,32 +6,36 @@ import PropTypes from "prop-types";
 import "../../styles/registerForm.scss";
 import "../../styles/home.scss";
 
-export const EditBrand = () => {
+export const EditBrand = ({ match }) => {
 	const { store, actions } = useContext(Context);
 	const [id, setId] = useState("");
-	const [brandLogo, setBrandLogo] = useState("");
-	const [brandName, setBrandName] = useState("");
-	const [justEatApiKey, setJustEatApiKey] = useState("");
-	const [glovoApiKey, setGlovoApiKey] = useState("");
+	// const [brandLogo, setBrandLogo] = useState("");
+	const [editName, setBrandName] = useState("");
+	const [apiKeys, setApiKeys] = useState([]);
+	const [brand, setBrand] = useState({});
 
 	useEffect(() => {
-		actions.getEnterprisesWithBrands();
-		console.log("running useEffect edit brand", store.allData);
-		for (let mainObject of store.allData) {
-			console.log("checking main object > ", mainObject);
-			for (let firstCapa of mainObject) {
-				console.log("ver firstCapa", firstCapa);
+		for (let e of store.allData) {
+			// el let of itera en cada elemento de un arreglo. Es un sustituo del for each pero no hace un bucle infinito de búsqueda
+			// store.allData.forEach(e =>
+			console.log("Buscando brand en la empresa ->", e.id);
+			const _brand = e.brand_id.find(b => b.id == match.params.brandid);
+			if (_brand) {
+				console.log("found brand", _brand);
+				setId(_brand.id);
+				// setBrandLogo(_brand.logo);
+				setBrandName(_brand.name);
+				// setJustEatApiKey(_brand.API_key);
+				// setGlovoApiKey(_brand.API_key);
+				console.log("found it!", _brand.integrations[0].platform_name);
+				setBrand(_brand);
+				let integrations = {};
+				for (let apiKey of _brand.integrations) {
+					integrations[`${apiKey.platform_id == 1 ? "JE" : "GL"}`] = apiKey.API_key;
+				}
+				setApiKeys(integrations);
+				break;
 			}
-			if (firstCapa.id == props.match.params.brandid) {
-				console.log("found it!");
-				setId(firstCapa.id);
-				setBrandLogo(firstCapa.logo);
-				setName(firstCapa.name);
-				setJustEatApiKey(firstCapa.API_key);
-				// setGlovoApiKey(brand.glovoApiKey);
-				// setEnterpriseEdited(true);
-			}
-			break;
 		}
 	}, []);
 
@@ -42,7 +46,7 @@ export const EditBrand = () => {
 					<div className="col-12 col-md-8 col-lg-8 col-xl-6">
 						<div className="row">
 							<div className="col text-center title col-sm-12">
-								<h1 className="titleForm">Crea tu nueva marca</h1>
+								<h1 className="titleForm">Edita tu marca</h1>
 							</div>
 						</div>
 						<UploadProfile />
@@ -54,23 +58,38 @@ export const EditBrand = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="Nombre de la empresa"
+									defaultValue={editName}
 									onChange={e => setBrandName(e.target.value)}
 								/>
 							</div>
 						</div>
-						<div className="row align-items-center mt-4">
-							<div className="col">
-								<label htmlFor="api-key-just-eat">API Key Just-Eat</label>
-								<input
-									id="api-key-just-eat"
-									type="text"
-									className="form-control form-fixer"
-									placeholder="API Key Just-Eat"
-									onChange={e => setJustEatApiKey(e.target.value)}
-								/>
-							</div>
-						</div>
-						<div className="row align-items-center mt-4">
+						{brand.integrations &&
+							brand.integrations.map(apiKey => {
+								return (
+									<div className="row align-items-center mt-4" key={apiKey.platform_id}>
+										<div className="col">
+											<label htmlFor={apiKey.platform_id}>{`API Key ${
+												apiKey.platform_name
+											}`}</label>
+											<input
+												id={apiKey.platform_id}
+												type="text"
+												className="form-control form-fixer"
+												placeholder={`API Key ${apiKey.platform_name}`}
+												value={apiKeys[`${apiKey.platform_id == 1 ? "JE" : "GL"}`]}
+												onChange={e =>
+													setApiKeys({
+														...apiKeys,
+														[`${apiKey.platform_id == 1 ? "JE" : "GL"}`]: e.target.value
+													})
+												}
+											/>
+										</div>
+									</div>
+								);
+							})}
+
+						{/* <div className="row align-items-center mt-4">
 							<div className="col">
 								<label htmlFor="api-key-glovo">API Key Glovo</label>
 								<input
@@ -78,17 +97,18 @@ export const EditBrand = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Glovo"
+									defaultValue={glovoApiKey}
 									onChange={e => setGlovoApiKey(e.target.value)}
 								/>
 							</div>
-						</div>
+						</div> */}
 						<div className="row justify-content-center mt-4">
 							<Link to="/companyAdded">
 								<div className="col">
 									<button
 										className="btn"
 										onClick={() => {
-											actions.addBrand(brandLogo, brandName, justEatApiKey, glovoApiKey);
+											actions.editBrand(id, editName, apiKeys);
 										}}>
 										<input type="submit" value="Guardar" className="button" />
 									</button>

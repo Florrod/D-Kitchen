@@ -16,7 +16,7 @@ export const CompanyCard = props => {
 	return (
 		<div className="container mt-0">
 			<div className="card panel panel-info">
-				{store.allData &&
+				{Array.isArray(store.allData) && //con el array.isarray le preguntamos si es un arreglo vacío y si no es así no entra en el map
 					store.allData.map((enterprise, index) => (
 						<React.Fragment key={enterprise.id}>
 							<div

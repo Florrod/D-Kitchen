@@ -48,6 +48,7 @@ export const Login = () => {
 					actions.setToken(token); //que espera recibir? un parametro tipo string
 					setIs_admin(responseJson.is_admin);
 					setLoggedIn(true);
+					actions.getEnterprisesWithBrands();
 					console.log("Manda token : " + token);
 					console.log("Guarda en el local : " + localStorage.access_token);
 					console.log("Manda token after /single : " + token);

@@ -36,16 +36,16 @@ export const Layout = () => {
 						<Route exact path="/" component={HomeOut} />
 						<Route exact path="/" component={Login} />
 						<Route exact path="/remind-password" component={RemindPassword} />
-						<Route path="/registerForm" component={RegisterForm} />
-						<Route path="/companyAdded" component={CompanyAdded} />
-						<Route path="/companyList" component={CompanyList} />
-						<Route path="/edit/:enterpriseid" component={EditEnterprise} />
-						<Route path="/edit/brand/:brandid" component={EditBrand} />
-						<Route path="/add-brand" component={AddBrand} />
-						<Route path="/chartLine" component={ChartLine} />
-						<Route path="/navbarChartLine" component={NavbarChartLine} />
-						<Route path="/salesTable" component={SalesTable} />
-						<Route path="/single/:theid" component={Single} />
+						<Route exact path="/registerForm" component={RegisterForm} />
+						<Route exact path="/companyAdded" component={CompanyAdded} />
+						<Route exact path="/companyList" component={CompanyList} />
+						<Route exact path="/edit/brand/:brandid" component={EditBrand} />
+						<Route exact path="/edit/:enterpriseid" component={EditEnterprise} />
+						<Route exact path="/add-brand" component={AddBrand} />
+						<Route exact path="/chartLine" component={ChartLine} />
+						<Route exact path="/navbarChartLine" component={NavbarChartLine} />
+						<Route exact path="/salesTable" component={SalesTable} />
+						<Route exact path="/single/:theid" component={Single} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 				</ScrollToTop>

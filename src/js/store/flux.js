@@ -13,6 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				const store = getStore();
 				setStore({ token: null });
+				localStorage.removeItem("access_token");
+				console.log("iiiiiii", localStorage);
 			},
 			setToken: token => {
 				setStore({ token: token });
@@ -89,6 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => res.json())
 					.then(enterprises => {
+						console.log("abbbbbb ->", enterprises);
 						setStore({
 							allData: enterprises
 						});
@@ -236,7 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 
-			editBrand(id, editLogo, editName, justEatApiKey, glovoApiKey) {
+			editBrand(id, editName, apiKeys) {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/edit-brand/${id}`, {
 					method: "PUT",
@@ -247,9 +250,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify({
 						id: id,
-						logo: editLogo,
+						// logo: editLogo,
 						name: editName,
-						API_key: { JE: justEatApiKey, GL: glovoApiKey }
+						API_key: apiKeys
 					})
 				})
 					.then(res => res.json())

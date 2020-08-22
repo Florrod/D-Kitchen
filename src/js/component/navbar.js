@@ -22,10 +22,11 @@ export const Navbar = () => {
 				Authorization: `Bearer ${access_token}`,
 				"Access-Control-Allow-Origin": "*"
 			}
-		}).then(res => {
-			actions.logout();
-			localStorage.setItem("access_token", null);
-		});
+		})
+			.then(res => {
+				actions.logout();
+			})
+			.catch(error => actions.logout());
 	};
 
 	return (
