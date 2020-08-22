@@ -34,7 +34,7 @@ export const CompanyCard = props => {
 											<i className="fas fa-map-marker-alt text-muted mr-3" />
 											<span className="text-muted"> {enterprise.address}</span>
 										</div>
-										<Link className="company" to="/registerForm">
+										<Link className="company" to="/add-brand">
 											<div className="col mb-0">
 												<i className="mr-3 fas fa-user-plus" />
 												Añadir nueva marca

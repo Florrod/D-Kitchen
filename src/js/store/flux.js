@@ -205,6 +205,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 
+			addBrand(brandLogo, brandName, justEatApiKey, glovoApiKey) {
+				let access_token = localStorage.getItem("access_token");
+				fetch(`${url_base}/add-brand`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${access_token}`,
+						"Access-Control-Allow-Origin": "*"
+					},
+					body: JSON.stringify({
+						logo: brandLogo,
+						name: brandName,
+						API_key: { JE: justEatApiKey, GL: glovoApiKey }
+					})
+				}).then(() => {
+					fetch(`${url_base}/enterprise/brands`, {
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${access_token}`,
+							"Access-Control-Allow-Origin": "*"
+						}
+					})
+						.then(response => response.json())
+						.then(updateBrand => {
+							console.log("lalalalalalalal", updateBrand);
+							setStore({ allData: updateBrand });
+						})
+						.catch(e => console.error("updateBrand", e));
+				});
+			},
+
 			deleteBrand: id => {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/enterprise/brand/${id}`, {

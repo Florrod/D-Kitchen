@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { UploadProfile } from "./uploadProfile";
+import { UploadProfile } from "../component/uploadProfile";
 import "../../styles/registerForm.scss";
 import "../../styles/home.scss";
 
-export const RegisterForm = () => {
+export const AddBrand = () => {
 	const { store, actions } = useContext(Context);
+	const [id, setId] = useState("");
+	const [brandLogo, setBrandLogo] = useState("");
+	const [brandName, setBrandName] = useState("");
+	const [justEatApiKey, setJustEatApiKey] = useState("");
+	const [glovoApiKey, setGlovoApiKey] = useState("");
 
 	return (
 		<form>
@@ -15,18 +20,19 @@ export const RegisterForm = () => {
 					<div className="col-12 col-md-8 col-lg-8 col-xl-6">
 						<div className="row">
 							<div className="col text-center title col-sm-12">
-								<h1 className="titleForm">Crear nueva marca</h1>
+								<h1 className="titleForm">Crea tu nueva marca</h1>
 							</div>
 						</div>
 						<UploadProfile />
 						<div className="row align-items-center mt-4">
 							<div className="col">
-								<label htmlFor="nombre-marca">Nombre de la marca</label>
+								<label htmlFor="nombre-empresa">Nombre de la marca</label>
 								<input
-									id="nombre-marca"
+									id="nombre-empresa"
 									type="text"
 									className="form-control form-fixer"
-									placeholder="Nombre de la marca"
+									placeholder="Nombre de la empresa"
+									onChange={e => setBrandName(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -38,6 +44,7 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Just-Eat"
+									onChange={e => setJustEatApiKey(e.target.value)}
 								/>
 							</div>
 						</div>
@@ -49,14 +56,20 @@ export const RegisterForm = () => {
 									type="text"
 									className="form-control form-fixer"
 									placeholder="API Key Glovo"
+									onChange={e => setGlovoApiKey(e.target.value)}
 								/>
 							</div>
-						</div>
 						</div>
 						<div className="row justify-content-center mt-4">
 							<Link to="/companyAdded">
 								<div className="col">
-									<input type="submit" value="Guardar" className="button" />
+									<button
+										className="btn"
+										onClick={() => {
+											actions.addBrand(brandLogo, brandName, justEatApiKey, glovoApiKey);
+										}}>
+										<input type="submit" value="Guardar" className="button" />
+									</button>
 								</div>
 							</Link>
 							<Link to="/">
@@ -68,6 +81,7 @@ export const RegisterForm = () => {
 							</Link>
 						</div>
 					</div>
+				</div>
 			</div>
 		</form>
 	);
