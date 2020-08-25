@@ -22,13 +22,13 @@ export const CompanyCard = props => {
 							<div
 								className="card-header panel-heading collapsed"
 								data-toggle="collapse"
-								data-target="#bar">
+								data-target={`#bar${enterprise.id}`}>
 								<i className="fas fa-angle-double-down showCompany" />
 								<i className="fas fa-angle-double-up showCompany" />
 								<h5 className="mb-0"> {enterprise.name}</h5>
 							</div>
-							<div className="panel-body">
-								<li className="collapse list-group-item" id="bar">
+							<div className="panel-body collapse" id={`bar${enterprise.id}`}>
+								<li className="list-group-item">
 									<div className="row w-100 mb-2">
 										<div className="col-9">
 											<i className="fas fa-map-marker-alt text-muted mr-3" />
@@ -82,10 +82,10 @@ export const CompanyCard = props => {
 										</div>
 									</div>
 								</li>
-								<li className="col collapse list-group-item" id="bar">
+								<li className="col list-group-item">
 									{enterprise.brand_id.map((brand, index) => (
 										<div key={brand.name} className="row w-100">
-											<div className="col" id="bar">
+											<div className="col">
 												{" "}
 												{brand.name}
 												<div className="float-right">
