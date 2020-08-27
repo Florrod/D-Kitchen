@@ -7,13 +7,11 @@ import "../../styles/salesTable.scss";
 const ENDPOINT = "https://3000-a2433010-e316-4209-8d0e-d0eb6549d9be.ws-eu01.gitpod.io";
 
 export const SalesTable = props => {
-	const [platforms, setPlatforms] = useState({
-		//initialize state here
-	});
+	const [platforms, setPlatforms] = useState({});
 
-	const getTotalSales = () => {
+	const getTotalSales = period => {
 		let access_token = localStorage.getItem("access_token");
-		return fetch(`${ENDPOINT}/total-sales`, {
+		return fetch(`${ENDPOINT}/total-sales?period=${period}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -27,9 +25,12 @@ export const SalesTable = props => {
 			});
 	};
 
-	useEffect(() => {
-		getTotalSales();
-	}, []);
+	useEffect(
+		() => {
+			getTotalSales(props.period);
+		},
+		[props.period] // le decimos que al cambiar los props debe ejecutar de nuevo la función
+	);
 
 	const roundSales = x => {
 		return Math.round(x);
@@ -62,4 +63,10 @@ export const SalesTable = props => {
 			</table>
 		</div>
 	);
+};
+SalesTable.propTypes = {
+	period: PropTypes.string
+};
+SalesTable.defaultProps = {
+	period: "total"
 };

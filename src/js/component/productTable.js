@@ -9,9 +9,9 @@ const ENDPOINT = "https://3000-a2433010-e316-4209-8d0e-d0eb6549d9be.ws-eu01.gitp
 export const ProductTable = props => {
 	const [platforms, setPlatforms] = useState([]);
 
-	const getTopProducts = () => {
+	const getTopProducts = period => {
 		let access_token = localStorage.getItem("access_token");
-		return fetch(`${ENDPOINT}/top-products`, {
+		return fetch(`${ENDPOINT}/top-products?period=${period}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -25,9 +25,12 @@ export const ProductTable = props => {
 			});
 	};
 
-	useEffect(() => {
-		getTopProducts();
-	}, []);
+	useEffect(
+		() => {
+			getTopProducts(props.period);
+		},
+		[props.period]
+	);
 
 	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
@@ -74,4 +77,10 @@ export const ProductTable = props => {
 			</table>
 		</div>
 	);
+};
+ProductTable.propTypes = {
+	period: PropTypes.string
+};
+ProductTable.defaultProps = {
+	period: "total"
 };

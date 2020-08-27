@@ -8,43 +8,42 @@ import { ClientTable } from "./clientTable";
 
 export const NavbarChartLine = props => {
 	const [state, setState] = useState({
-		//initialize state here
+		period: "total"
 	});
 	return (
 		<div>
 			<ul className="nav nav-tabs">
 				<li className="nav-item nav-link mr-3">
-					<a className="tipoLink" data-toggle="tab" href="#home">
+					<button type="button" className="tipoLink" onClick={e => setState({ period: "last_week" })}>
 						Última semana
-					</a>
+					</button>
 				</li>
 				<li className="nav-item nav-link mr-3">
-					<a className="tipoLink" data-toggle="tab" href="#menu1">
+					<button type="button" className="tipoLink" onClick={e => setState({ period: "last_month" })}>
 						Última mes
-					</a>
+					</button>
 				</li>
 				<li className="nav-item nav-link mr-3">
-					<a className="tipoLink" data-toggle="tab" href="#menu2">
+					<button type="button" className="tipoLink" onClick={e => setState({ period: "total" })}>
 						Acumulado
-					</a>
+					</button>
 				</li>
 			</ul>
-
 			<div className="tab-content w-100">
-				<div id="home" className="tab-pane fade in active">
-					<div>
-						<ChartLine />
-					</div>
-					<div>
-						<SalesTable />
-					</div>
-					<div>
-						<ProductTable />
-					</div>
-					<div>
-						<ClientTable />
-					</div>
+				{/* <div id="home" className="tab-pane fade in active"> */}
+				<div>
+					<ChartLine />
 				</div>
+				<div>
+					<SalesTable period={state.period} />
+				</div>
+				<div>
+					<ProductTable period={state.period} />
+				</div>
+				<div>
+					<ClientTable />
+				</div>
+				{/* </div>
 				<div id="menu1" className="tab-pane fade">
 					<div>
 						<ChartLine />
@@ -72,7 +71,7 @@ export const NavbarChartLine = props => {
 					<div>
 						<ClientTable />
 					</div>
-				</div>
+				</div>*/}
 			</div>
 		</div>
 	);
