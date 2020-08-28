@@ -11,45 +11,67 @@ export const ChartLine = props => {
 		//initialize state here
 	});
 	const [chartData, setChartData] = useState({});
-	const chart = () => {
-		setChartData({
-			labels: ["lunes", "martes", "miercoles", "jueves", "viernes"],
-			type: "line",
-			datasets: [
-				{
-					label: "Uber-Eats",
-					data: [20, 33, 67, 52, 94],
-					borderColor: "rgba(20,35,40,0.8)",
-					fill: false,
-					borderWidth: 3
-				},
-				{
-					label: "Deliveroo",
-					data: [32, 45, 12, 76, 69],
-					borderColor: "rgba(0,204,188,0.8)",
-					fill: false,
-					borderWidth: 3
-				},
-				{
-					label: "Just-Eat",
-					data: [71, 13, 42, 87, 56],
-					borderColor: "rgba(255,17,37,0.8)",
-					fill: false,
-					borderWidth: 3
-				},
-				{
-					label: "Glovo",
-					data: [45, 31, 73, 24, 71],
-					borderColor: "rgba(255,194,68,0.8)",
-					fill: false,
-					borderWidth: 3
-				}
-			]
-		});
-	};
 
 	useEffect(() => {
-		chart();
+		const getSalesGraph = period => {
+			let access_token = localStorage.getItem("access_token");
+			return fetch(`${process.env.ENDPOINT}/test`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${access_token}`,
+					"Access-Control-Allow-Origin": "*"
+				}
+			})
+				.then(res => res.json())
+				.then(sales => {
+					const totalYear = sales.reduce((total, current) => {
+						return total + current[4];
+					}, 0);
+					let byMonth = {};
+					let byDay = {};
+					let platformsLabels = {};
+					let platformsMonths = {};
+					let platformsYear = {};
+					let platformsDays = {};
+					sales.forEach(sale => {
+						platformsLabels[sale[0]] = "#" + Math.floor(Math.random() * 16777215).toString(16);
+						platformsMonths[sale[2]] = "Enero";
+						platformsYear[sale[3]] = "2019";
+						platformsDays[sale[1]] = "Lunes";
+						if (byMonth[sale[0]] === undefined) {
+							byMonth[sale[0]] = {};
+						}
+						if (byDay[sale[0]] === undefined) {
+							byDay[sale[0]] = {};
+						}
+						if (byDay[sale[0]][sale[1]] === undefined) {
+							byDay[sale[0]][sale[1]] = 0;
+						}
+						if (byMonth[sale[0]][sale[2]] === undefined) {
+							byMonth[sale[0]][sale[2]] = 0;
+						}
+						byMonth[sale[0]][sale[2]] += sale[4];
+						byDay[sale[0]][sale[1]] += sale[4];
+					});
+					console.log("hola soy ventas por platform y por mes", byMonth);
+					console.log("hola soy ventas por platform y por dia", byDay);
+					setChartData({
+						labels: Object.keys(platformsMonths),
+						type: "line",
+						datasets: Object.keys(byMonth).map(platformID => {
+							return {
+								label: platformID,
+								data: Object.keys(byMonth[platformID]).map(month => byMonth[platformID][month]),
+								borderColor: platformsLabels[platformID],
+								fill: false,
+								borderWidth: 3
+							};
+						})
+					});
+				});
+		};
+		getSalesGraph();
 	}, []);
 	return (
 		<div className="container-fluid">
@@ -76,7 +98,7 @@ export const ChartLine = props => {
 											{
 												ticks: {
 													min: 0,
-													max: 100,
+													max: 400,
 													maxTicksLimit: 10,
 													beginAtZero: true,
 													fontStyle: "bold",
