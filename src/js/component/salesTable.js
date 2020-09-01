@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-a2433010-e316-4209-8d0e-d0eb6549d9be.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-c3bf5342-eaa7-49f5-b2d2-925fab673d60.ws-us02.gitpod.io";
 
 export const SalesTable = props => {
 	const [platforms, setPlatforms] = useState({});
+	const params = useParams();
 
 	const getTotalSales = period => {
 		let access_token = localStorage.getItem("access_token");
-		return fetch(`${ENDPOINT}/total-sales?period=${period}`, {
+		return fetch(`${ENDPOINT}/total-sales?period=${period}&brand=${params.brandId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

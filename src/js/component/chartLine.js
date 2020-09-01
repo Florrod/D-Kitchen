@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import "../../styles/home.scss";
-import { NavbarChartLine } from "./navbarChartLine";
 
 export const ChartLine = props => {
 	const [state, setState] = useState({

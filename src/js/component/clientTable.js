@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-a2433010-e316-4209-8d0e-d0eb6549d9be.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-c3bf5342-eaa7-49f5-b2d2-925fab673d60.ws-us02.gitpod.io";
 
 export const ClientTable = props => {
 	const [platforms, setPlatforms] = useState({

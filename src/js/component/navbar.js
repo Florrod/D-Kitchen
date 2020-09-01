@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-const ENDPOINT = "https://3000-d94aa2f3-9eb4-4fd2-babe-28b285433763.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-c3bf5342-eaa7-49f5-b2d2-925fab673d60.ws-us02.gitpod.io";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);

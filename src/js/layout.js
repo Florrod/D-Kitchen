@@ -43,7 +43,7 @@ export const Layout = () => {
 						<Route exact path="/edit/:enterpriseid" component={EditEnterprise} />
 						<Route exact path="/add-brand" component={AddBrand} />
 						<Route exact path="/chartLine" component={ChartLine} />
-						<Route exact path="/navbarChartLine" component={NavbarChartLine} />
+						<Route exact path="/navbarChartLine/:brandId" component={NavbarChartLine} />
 						<Route exact path="/salesTable" component={SalesTable} />
 						<Route exact path="/single/:theid" component={Single} />
 						<Route render={() => <h1>Not found!</h1>} />
