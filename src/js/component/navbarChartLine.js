@@ -32,7 +32,7 @@ export const NavbarChartLine = props => {
 			<div className="tab-content w-100">
 				{/* <div id="home" className="tab-pane fade in active"> */}
 				<div>
-					<ChartLine />
+					<ChartLine period={state.period} />
 				</div>
 				<div>
 					<SalesTable period={state.period} />
