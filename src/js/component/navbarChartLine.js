@@ -41,7 +41,7 @@ export const NavbarChartLine = props => {
 					<ProductTable period={state.period} />
 				</div>
 				<div>
-					<ClientTable />
+					<ClientTable period={state.period} />
 				</div>
 				{/* </div>
 				<div id="menu1" className="tab-pane fade">

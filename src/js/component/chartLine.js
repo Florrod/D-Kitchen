@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import "../../styles/home.scss";
 
+const ENDPOINT = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitpod.io";
+
 export const ChartLine = props => {
 	const [state, setState] = useState({
 		//initialize state here
@@ -14,7 +16,7 @@ export const ChartLine = props => {
 	useEffect(() => {
 		const getSalesGraph = period => {
 			let access_token = localStorage.getItem("access_token");
-			return fetch(`${process.env.ENDPOINT}/test`, {
+			return fetch(`${ENDPOINT}/test`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -24,6 +26,7 @@ export const ChartLine = props => {
 			})
 				.then(res => res.json())
 				.then(sales => {
+					// setSales(sales)
 					const totalYear = sales.reduce((total, current) => {
 						return total + current[4];
 					}, 0);
@@ -38,20 +41,22 @@ export const ChartLine = props => {
 						platformsMonths[sale[2]] = "Enero";
 						platformsYear[sale[3]] = "2019";
 						platformsDays[sale[1]] = "Lunes";
-						if (byMonth[sale[0]] === undefined) {
-							byMonth[sale[0]] = {};
+						if (sale[3] == new Date().getFullYear()) {
+							if (byMonth[sale[0]] === undefined) {
+								byMonth[sale[0]] = {};
+							}
+							if (byDay[sale[0]] === undefined) {
+								byDay[sale[0]] = {};
+							}
+							if (byDay[sale[0]][sale[1]] === undefined) {
+								byDay[sale[0]][sale[1]] = 0;
+							}
+							if (byMonth[sale[0]][sale[2]] === undefined) {
+								byMonth[sale[0]][sale[2]] = 0;
+							}
+							byMonth[sale[0]][sale[2]] += sale[4];
+							byDay[sale[0]][sale[1]] += sale[4];
 						}
-						if (byDay[sale[0]] === undefined) {
-							byDay[sale[0]] = {};
-						}
-						if (byDay[sale[0]][sale[1]] === undefined) {
-							byDay[sale[0]][sale[1]] = 0;
-						}
-						if (byMonth[sale[0]][sale[2]] === undefined) {
-							byMonth[sale[0]][sale[2]] = 0;
-						}
-						byMonth[sale[0]][sale[2]] += sale[4];
-						byDay[sale[0]][sale[1]] += sale[4];
 					});
 					console.log("hola soy ventas por platform y por mes", byMonth);
 					console.log("hola soy ventas por platform y por dia", byDay);
