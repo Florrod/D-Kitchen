@@ -37,7 +37,6 @@ export const SalesTable = props => {
 		return Math.round(x);
 	};
 
-	console.log(roundSales(23, 45));
 	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (

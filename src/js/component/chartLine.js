@@ -8,7 +8,8 @@ import dayjs from "dayjs";
 
 const ENDPOINT = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitpod.io";
 
-export const ChartLine = ({ period }) => {
+export const ChartLine = props => {
+	const { period } = props;
 	const [state, setState] = useState({
 		//initialize state here
 	});
@@ -16,174 +17,189 @@ export const ChartLine = ({ period }) => {
 	const [chartData, setChartData] = useState({});
 	const [chartDataMonth, setChartDataMonth] = useState({});
 	const [chartDataWeek, setChartDataWeek] = useState({});
+	let linesData = {};
 
-	useEffect(() => {
-		const getSalesGraph = () => {
-			let access_token = localStorage.getItem("access_token");
-			return fetch(`${ENDPOINT}/test?brand=${params.brandId}`, {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${access_token}`,
-					"Access-Control-Allow-Origin": "*"
-				}
-			})
-				.then(res => res.json())
-				.then(sales => {
-					// setSales(sales)
-					const totalYear = sales.reduce((total, current) => {
-						return total + current[5];
-					}, 0);
-					let current = dayjs().subtract(30, "d");
-					let current_7days = dayjs().subtract(7, "d");
-					let end = dayjs();
-					let byMonth = {};
-					let byDay = {};
-					let platformsLabels = {};
-					let platformsMonths = {};
-					let platformsYear = {};
-					let platformsDays = {};
-					sales.forEach(sale => {
-						platformsLabels[sale[2]] = "#" + Math.floor(Math.random() * 16777215).toString(16);
-						platformsMonths[sale[4]] = "Enero";
-						platformsYear[sale[5]] = "2019";
-						platformsDays[sale[3]] = "Lunes";
-						if (sale[5] == new Date().getFullYear()) {
-							if (byMonth[sale[2]] === undefined) {
-								byMonth[sale[2]] = {};
-							}
-							if (byMonth[sale[2]][sale[4]] === undefined) {
-								byMonth[sale[2]][sale[4]] = 0;
-							}
-							byMonth[sale[2]][sale[4]] += sale[6];
-
-							if (
-								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
-								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current)
-							) {
-								console.log("DAYJS ->", dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`));
-								if (byDay[sale[2]] === undefined) {
-									byDay[sale[2]] = {};
-								}
-								if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
-									byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
-								}
-								byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
-							}
-
-							if (
-								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
-								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current_7days)
-							) {
-								console.log("DAYJS última semana ->", dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`));
-								if (byDay[sale[2]] === undefined) {
-									byDay[sale[2]] = {};
-								}
-								if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
-									byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
-								}
-								byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
-							}
+	const getSalesGraph = () => {
+		let access_token = localStorage.getItem("access_token");
+		return fetch(`${ENDPOINT}/test?brand=${params.brandId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${access_token}`,
+				"Access-Control-Allow-Origin": "*"
+			}
+		})
+			.then(res => res.json())
+			.then(sales => {
+				// setSales(sales)
+				const totalYear = sales.reduce((total, current) => {
+					return total + current[5];
+				}, 0);
+				let current = dayjs().subtract(30, "d");
+				let current_7days = dayjs().subtract(7, "d");
+				let end = dayjs();
+				let byMonth = {};
+				let byDay = {};
+				let platformsLabels = {};
+				let platformsMonths = {};
+				let platformsYear = {};
+				let platformsDays = {};
+				sales.forEach(sale => {
+					platformsLabels[sale[2]] = "#" + Math.floor(Math.random() * 16777215).toString(16);
+					platformsMonths[sale[4]] = "Enero";
+					platformsYear[sale[5]] = "2019";
+					platformsDays[sale[3]] = "Lunes";
+					if (sale[5] == new Date().getFullYear()) {
+						if (byMonth[sale[2]] === undefined) {
+							byMonth[sale[2]] = {};
 						}
-					});
-					let lastMonthDays = [];
-					let byDaySorted = {};
-					while (current.isBefore(end)) {
-						lastMonthDays.push(current.format("D/M"));
-						console.log("Aquí está current _>", current.format("D/M"));
-						Object.keys(platformsLabels).forEach(_platformid => {
-							if (typeof byDay[_platformid][current.format("D/M")] === "undefined") {
-								byDay[_platformid][current.format("D/M")] = 0;
-							}
-							if (byDaySorted[_platformid] === undefined) {
-								byDaySorted[_platformid] = {};
-							}
-							byDaySorted[_platformid][current.format("D/M")] = byDay[_platformid][current.format("D/M")];
-						});
+						if (byMonth[sale[2]][sale[4]] === undefined) {
+							byMonth[sale[2]][sale[4]] = 0;
+						}
+						byMonth[sale[2]][sale[4]] += sale[6];
+						// console.log(`byMonth[${sale[2]}][${sale[4]}] + ${sale[6]}`, byMonth[sale[2]][sale[4]]);
 
-						current = current.add(1, "d");
+						if (
+							dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
+							dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current)
+						) {
+							if (byDay[sale[2]] === undefined) {
+								byDay[sale[2]] = {};
+							}
+							if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
+								byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
+							}
+							byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
+						}
+
+						// if (
+						// 	dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
+						// 	dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current_7days)
+						// ) {
+						// 	console.log("DAYJS última semana ->", dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`));
+						// 	if (byDay[sale[2]] === undefined) {
+						// 		byDay[sale[2]] = {};
+						// 	}
+						// 	if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
+						// 		byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
+						// 	}
+						// 	byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
+						// }
 					}
-					console.log("Aquí está lasMonthDay ->", lastMonthDays);
-					console.log("Aquí byDaySorted -->", byDaySorted);
-
-					let lastWeekDays = [];
-					let _byDaySorted = {};
-					while (current_7days.isBefore(end)) {
-						lastWeekDays.push(current_7days.format("D/M"));
-						console.log("Aquí está current 7days -->", current_7days.format("D/M"));
-						Object.keys(platformsLabels).forEach(_platformId => {
-							if (typeof byDay[_platformId][current_7days.format("D/M")] === "undefined") {
-								byDay[_platformId][current_7days.format("D/M")] = 0;
-							}
-							if (_byDaySorted[_platformId] === undefined) {
-								_byDaySorted[_platformId] = {};
-							}
-							_byDaySorted[_platformId][current_7days.format("D/M")] =
-								byDay[_platformId][current_7days.format("D/M")];
-						});
-
-						current_7days = current_7days.add(1, "d");
-					}
-					console.log("¡¡Aquí _byDaySorted -->!", _byDaySorted);
-					// for (let i = 30; i >= 0; i--) {
-					// 	lastMonthDays.push(
-					// 		`${new Date(
-					// 			today.getFullYear(),
-					// 			today.getMonth(),
-					// 			today.getDate() - i
-					// 		).getDate()}/${new Date(
-					// 			today.getFullYear(),
-					// 			today.getMonth(),
-					// 			today.getDate() - i
-					// 		).getMonth() + 1}`
-					// 	);
-					// }
-					console.log("hola soy ventas por platform y por mes", byMonth);
-					console.log("hola soy ventas por platform y por dia", byDay);
-					setChartData({
-						labels: Object.keys(platformsMonths),
-						type: "line",
-						datasets: Object.keys(byMonth).map(platformID => {
-							console.log("Hola soy platformID ->", platformID);
-							return {
-								label: platformID,
-								data: Object.keys(byMonth[platformID]).map(month => byMonth[platformID][month]),
-								borderColor: platformsLabels[platformID],
-								fill: false,
-								borderWidth: 3
-							};
-						})
-					});
-					setChartDataMonth({
-						labels: lastMonthDays,
-						type: "line",
-						datasets: Object.keys(byDaySorted).map(platformID => {
-							return {
-								label: platformID,
-								data: Object.keys(byDaySorted[platformID]).map(day => byDaySorted[platformID][day]),
-								borderColor: platformsLabels[platformID],
-								fill: false,
-								borderWidth: 3
-							};
-						})
-					});
-					setChartDataWeek({
-						labels: lastWeekDays,
-						type: "line",
-						datasets: Object.keys(_byDaySorted).map(platformID => {
-							return {
-								label: platformID,
-								data: Object.keys(_byDaySorted[platformID]).map(day => _byDaySorted[platformID][day]),
-								borderColor: platformsLabels[platformID],
-								fill: false,
-								borderWidth: 3
-							};
-						})
-					});
 				});
-		};
+				console.log(platformsMonths);
+				let lastMonthDays = [];
+				let byDaySorted = {};
+				while (current.isBefore(end)) {
+					lastMonthDays.push(current.format("D/M"));
+					// console.log("Aquí está current _>", current.format("D/M"));
+					Object.keys(platformsLabels).forEach(_platformid => {
+						if (typeof byDay[_platformid][current.format("D/M")] === "undefined") {
+							byDay[_platformid][current.format("D/M")] = 0;
+						}
+						if (byDaySorted[_platformid] === undefined) {
+							byDaySorted[_platformid] = {};
+						}
+						byDaySorted[_platformid][current.format("D/M")] = byDay[_platformid][current.format("D/M")];
+					});
+
+					current = current.add(1, "d");
+				}
+				// console.log("Aquí está lasMonthDay ->", lastMonthDays);
+				// console.log("Aquí byDaySorted -->", byDaySorted);
+
+				let lastWeekDays = [];
+				let _byDaySorted = {};
+				while (current_7days.isBefore(end)) {
+					lastWeekDays.push(current_7days.format("D/M"));
+					// console.log("Aquí está current 7days -->", current_7days.format("D/M"));
+					Object.keys(platformsLabels).forEach(_platformId => {
+						if (typeof byDay[_platformId][current_7days.format("D/M")] === "undefined") {
+							byDay[_platformId][current_7days.format("D/M")] = 0;
+						}
+						if (_byDaySorted[_platformId] === undefined) {
+							_byDaySorted[_platformId] = {};
+						}
+						_byDaySorted[_platformId][current_7days.format("D/M")] =
+							byDay[_platformId][current_7days.format("D/M")];
+					});
+
+					current_7days = current_7days.add(1, "d");
+				}
+				// console.log("¡¡Aquí _byDaySorted -->!", _byDaySorted);
+				// for (let i = 30; i >= 0; i--) {
+				// 	lastMonthDays.push(
+				// 		`${new Date(
+				// 			today.getFullYear(),
+				// 			today.getMonth(),
+				// 			today.getDate() - i
+				// 		).getDate()}/${new Date(
+				// 			today.getFullYear(),
+				// 			today.getMonth(),
+				// 			today.getDate() - i
+				// 		).getMonth() + 1}`
+				// 	);
+				// }
+				// console.log("hola soy ventas por platform y por mes", byMonth);
+				// console.log("hola soy ventas por platform y por dia", byDay);
+				setChartData({
+					labels: Object.keys(platformsMonths),
+					type: "line",
+					datasets: Object.keys(byMonth).map(platformID => {
+						return {
+							label: platformID,
+							data: Object.keys(byMonth[platformID]).map(month => byMonth[platformID][month]),
+							borderColor: platformsLabels[platformID],
+							fill: false,
+							borderWidth: 3
+						};
+					})
+				});
+				setChartDataMonth({
+					labels: lastMonthDays,
+					type: "line",
+					datasets: Object.keys(byDaySorted).map(platformID => {
+						return {
+							label: platformID,
+							data: Object.keys(byDaySorted[platformID]).map(day => byDaySorted[platformID][day]),
+							borderColor: platformsLabels[platformID],
+							fill: false,
+							borderWidth: 3
+						};
+					})
+				});
+				setChartDataWeek({
+					labels: lastWeekDays,
+					type: "line",
+					datasets: Object.keys(_byDaySorted).map(platformID => {
+						return {
+							label: platformID,
+							data: Object.keys(_byDaySorted[platformID]).map(day => _byDaySorted[platformID][day]),
+							borderColor: platformsLabels[platformID],
+							fill: false,
+							borderWidth: 3
+						};
+					})
+				});
+			});
+	};
+	useEffect(() => {
 		getSalesGraph();
 	}, []);
+	// console.log("chartData", chartData);
+	let chart;
+	switch (period) {
+		case "last_week":
+			linesData = chartDataWeek;
+			break;
+		case "last_month":
+			linesData = chartDataMonth;
+			break;
+		default:
+			linesData = chartData;
+			break;
+	}
+
 	return (
 		<div className="container-fluid">
 			<div className="row">
@@ -191,9 +207,8 @@ export const ChartLine = ({ period }) => {
 					<div className="card">
 						<div className="card-body">
 							<h1 className="text-center mb-2">Evolución</h1>
-						</div>
-						<div className="card-body">
 							<Line
+								redraw={true}
 								data={
 									period == "total"
 										? chartData
@@ -259,6 +274,7 @@ export const ChartLine = ({ period }) => {
 								}}
 							/>
 						</div>
+						<div className="card-body" />
 					</div>
 				</div>
 			</div>

@@ -49,12 +49,8 @@ export const Login = () => {
 					setIs_admin(responseJson.is_admin);
 					setLoggedIn(true);
 					actions.getEnterprisesWithBrands();
-					console.log("Manda token : " + token);
-					console.log("Guarda en el local : " + localStorage.access_token);
-					console.log("Manda token after /single : " + token);
 				} else {
 					if (responseJson.email && responseJson.password == null) {
-						console.log("'La empresa o contraseña no existen");
 					}
 				}
 			});

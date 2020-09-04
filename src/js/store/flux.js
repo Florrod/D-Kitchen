@@ -91,7 +91,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => res.json())
 					.then(enterprises => {
-						console.log("abbbbbb ->", enterprises);
 						setStore({
 							allData: enterprises
 						});
@@ -120,14 +119,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => res.json())
 					.then(enterprise => {
-						console.log("aaaaa ->", enterprise);
 						let store = getStore();
 						let enterprises = store.allData;
 						setStore({
 							allData: enterprises.filter(e => e.id != enterprise.id).concat(enterprise) // Cuando cambia un valor del id se añade la empresa de nueva
 						});
-
-						// console.log(enterprises);
 					})
 					.catch(e => console.error(e));
 			},
@@ -257,14 +253,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => res.json())
 					.then(brand => {
-						console.log("aaaaa ->", brand);
 						let store = getStore();
 						let brands = store.allData;
 						setStore({
 							allData: brands.filter(e => e.id != brand.id).concat(brand) // Cuando cambia un valor del id se añade la empresa de nueva
 						});
-
-						// console.log(enterprises);
 					})
 					.catch(e => console.error(e));
 			},

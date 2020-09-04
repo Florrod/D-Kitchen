@@ -33,11 +33,11 @@ export const Navbar = () => {
 	return (
 		<div className="container-fluid">
 			<nav id="navbar-example2" className="navbar navbar-light bg-light">
-				{store.allData.map((brand, index) => (
+				{/* {store.allData.map((brand, index) => (
 					<div className="navbar-brand" key={brand.id}>
-						{brand.name[0]}
+						{brand.name}
 					</div>
-				))}
+				))} */}
 				<div className="row">
 					<div className="profile pr-0 col">
 						<i className="icon fas fa-user-circle" />
