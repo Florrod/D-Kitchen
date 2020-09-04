@@ -6,6 +6,7 @@ const ENDPOINT = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitp
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+	const [state, setState] = useState({});
 	// const [loggedIn, setLoggedIn] = useState(false);
 
 	// const handleLogOut = e => {
@@ -32,9 +33,11 @@ export const Navbar = () => {
 	return (
 		<div className="container-fluid">
 			<nav id="navbar-example2" className="navbar navbar-light bg-light">
-				<a className="navbar-brand" href="#">
-					%Nombredelamarca%
-				</a>
+				{store.allData.map((brand, index) => (
+					<div className="navbar-brand" key={brand.id}>
+						{brand.name[0]}
+					</div>
+				))}
 				<div className="row">
 					<div className="profile pr-0 col">
 						<i className="icon fas fa-user-circle" />

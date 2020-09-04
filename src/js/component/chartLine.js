@@ -35,6 +35,7 @@ export const ChartLine = ({ period }) => {
 						return total + current[5];
 					}, 0);
 					let current = dayjs().subtract(30, "d");
+					let current_7days = dayjs().subtract(7, "d");
 					let end = dayjs();
 					let byMonth = {};
 					let byDay = {};
@@ -43,31 +44,45 @@ export const ChartLine = ({ period }) => {
 					let platformsYear = {};
 					let platformsDays = {};
 					sales.forEach(sale => {
-						platformsLabels[sale[0]] = "#" + Math.floor(Math.random() * 16777215).toString(16);
-						platformsMonths[sale[3]] = "Enero";
-						platformsYear[sale[4]] = "2019";
-						platformsDays[sale[2]] = "Lunes";
-						if (sale[4] == new Date().getFullYear()) {
-							if (byMonth[sale[0]] === undefined) {
-								byMonth[sale[0]] = {};
+						platformsLabels[sale[2]] = "#" + Math.floor(Math.random() * 16777215).toString(16);
+						platformsMonths[sale[4]] = "Enero";
+						platformsYear[sale[5]] = "2019";
+						platformsDays[sale[3]] = "Lunes";
+						if (sale[5] == new Date().getFullYear()) {
+							if (byMonth[sale[2]] === undefined) {
+								byMonth[sale[2]] = {};
 							}
-							if (byMonth[sale[0]][sale[3]] === undefined) {
-								byMonth[sale[0]][sale[3]] = 0;
+							if (byMonth[sale[2]][sale[4]] === undefined) {
+								byMonth[sale[2]][sale[4]] = 0;
 							}
-							byMonth[sale[0]][sale[3]] += sale[5];
+							byMonth[sale[2]][sale[4]] += sale[6];
 
 							if (
-								dayjs(`${sale[4]}-${sale[3]}-${sale[2]}`).isBefore(end) &&
-								dayjs(`${sale[4]}-${sale[3]}-${sale[2]}`).isAfter(current)
+								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
+								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current)
 							) {
-								console.log("DAYJS ->", dayjs(`${sale[4]}-${sale[3]}-${sale[2]}`));
-								if (byDay[sale[0]] === undefined) {
-									byDay[sale[0]] = {};
+								console.log("DAYJS ->", dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`));
+								if (byDay[sale[2]] === undefined) {
+									byDay[sale[2]] = {};
 								}
-								if (byDay[sale[0]][`${sale[2]}/${sale[3]}`] === undefined) {
-									byDay[sale[0]][`${sale[2]}/${sale[3]}`] = 0;
+								if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
+									byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
 								}
-								byDay[sale[0]][`${sale[2]}/${sale[3]}`] += sale[5];
+								byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
+							}
+
+							if (
+								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
+								dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current_7days)
+							) {
+								console.log("DAYJS última semana ->", dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`));
+								if (byDay[sale[2]] === undefined) {
+									byDay[sale[2]] = {};
+								}
+								if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
+									byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
+								}
+								byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
 							}
 						}
 					});
@@ -90,6 +105,26 @@ export const ChartLine = ({ period }) => {
 					}
 					console.log("Aquí está lasMonthDay ->", lastMonthDays);
 					console.log("Aquí byDaySorted -->", byDaySorted);
+
+					let lastWeekDays = [];
+					let _byDaySorted = {};
+					while (current_7days.isBefore(end)) {
+						lastWeekDays.push(current_7days.format("D/M"));
+						console.log("Aquí está current 7days -->", current_7days.format("D/M"));
+						Object.keys(platformsLabels).forEach(_platformId => {
+							if (typeof byDay[_platformId][current_7days.format("D/M")] === "undefined") {
+								byDay[_platformId][current_7days.format("D/M")] = 0;
+							}
+							if (_byDaySorted[_platformId] === undefined) {
+								_byDaySorted[_platformId] = {};
+							}
+							_byDaySorted[_platformId][current_7days.format("D/M")] =
+								byDay[_platformId][current_7days.format("D/M")];
+						});
+
+						current_7days = current_7days.add(1, "d");
+					}
+					console.log("¡¡Aquí _byDaySorted -->!", _byDaySorted);
 					// for (let i = 30; i >= 0; i--) {
 					// 	lastMonthDays.push(
 					// 		`${new Date(
@@ -109,6 +144,7 @@ export const ChartLine = ({ period }) => {
 						labels: Object.keys(platformsMonths),
 						type: "line",
 						datasets: Object.keys(byMonth).map(platformID => {
+							console.log("Hola soy platformID ->", platformID);
 							return {
 								label: platformID,
 								data: Object.keys(byMonth[platformID]).map(month => byMonth[platformID][month]),
@@ -131,6 +167,19 @@ export const ChartLine = ({ period }) => {
 							};
 						})
 					});
+					setChartDataWeek({
+						labels: lastWeekDays,
+						type: "line",
+						datasets: Object.keys(_byDaySorted).map(platformID => {
+							return {
+								label: platformID,
+								data: Object.keys(_byDaySorted[platformID]).map(day => _byDaySorted[platformID][day]),
+								borderColor: platformsLabels[platformID],
+								fill: false,
+								borderWidth: 3
+							};
+						})
+					});
 				});
 		};
 		getSalesGraph();
@@ -145,7 +194,13 @@ export const ChartLine = ({ period }) => {
 						</div>
 						<div className="card-body">
 							<Line
-								data={period == "total" ? chartData : chartDataMonth}
+								data={
+									period == "total"
+										? chartData
+										: period == "last_month"
+											? chartDataMonth
+											: chartDataWeek
+								}
 								options={{
 									responsive: true,
 									title: {
