@@ -4,7 +4,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import { Link, Redirect } from "react-router-dom";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
@@ -13,10 +13,6 @@ export const Login = () => {
 	const [is_admin, setIs_admin] = useState(false);
 	const [redirectToLogin, setRedirectToLogin] = useState(false);
 	const { store, actions } = useContext(Context);
-	// let access_token = localStorage.getItem("access_token");
-	// if (access_token === "") {
-	// 	setRedirectToLogin(true);
-	// }
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -54,30 +50,7 @@ export const Login = () => {
 					}
 				}
 			});
-		// 	if (!response.ok) throw new Error("Response is not NOT ok");
-		// 	return response.json();
-		// })
-		// .then(responseJson => {
-		// 	store.token = responseJson.access_token;
-		// 	console.log(store.token);
-		// });
 	};
-
-	// const isLogged = () => {
-	// 	console.log("Hola, soy sessionStorage en IsLogged : ", sessionStorage.token);
-	// 	if (sessionStorage.token != null) {
-	// 		fetch(`${ENDPOINT}/protected`, {
-	// 			method: "GET",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 				Authorization: "Bearer" + sessionStorage.token
-	// 			}
-	// 		});
-	// 		console.log("Estas logeado--------> : " + sessionStorage.token);
-	// 	} else {
-	// 		console.log("No estas logeado");
-	// 	}
-	// };
 	if (loggedIn === true && is_admin === true) {
 		return <Redirect to="/companyList" />;
 	} else if (loggedIn === true && is_admin === false) {
@@ -128,9 +101,6 @@ export const Login = () => {
 						<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
 							<strong>Inicia sesión</strong>
 						</button>
-						{/* <button onClick={handleIsLogged} type="submit" className="buttom mb-5 ml-0">
-							<strong>IsLogged</strong>
-						</button> */}
 					</Link>
 					<div>
 						<Link className="tipoLink mt-3 w-100 text-center" to="/remind-password">

@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 import "../../styles/home.scss";
 import dayjs from "dayjs";
 
-const ENDPOINT = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
 
 export const ChartLine = props => {
 	const { period } = props;

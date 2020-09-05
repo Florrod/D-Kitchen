@@ -3,15 +3,20 @@ import { withRouter, Redirect } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { ChartLine } from "../component/chartLine.js";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../styles/companyCard.scss";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
 
 export const CompanyCard = props => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({});
+	const params = useParams(); // props.match.params
+
+	// useEffect(() => {
+	// 	actions.setBrand({ currentBrand: null });
+	// }, []);
 
 	return (
 		<div className="container mt-0">

@@ -21,6 +21,7 @@ export const EditBrand = ({ match }) => {
 			console.log("Buscando brand en la empresa ->", e.id);
 			const _brand = e.brand_id.find(b => b.id == match.params.brandid);
 			if (_brand) {
+				actions.setBrand(_brand.name);
 				console.log("found brand", _brand);
 				setId(_brand.id);
 				// setBrandLogo(_brand.logo);
@@ -89,19 +90,6 @@ export const EditBrand = ({ match }) => {
 								);
 							})}
 
-						{/* <div className="row align-items-center mt-4">
-							<div className="col">
-								<label htmlFor="api-key-glovo">API Key Glovo</label>
-								<input
-									id="api-key-glovo"
-									type="text"
-									className="form-control form-fixer"
-									placeholder="API Key Glovo"
-									defaultValue={glovoApiKey}
-									onChange={e => setGlovoApiKey(e.target.value)}
-								/>
-							</div>
-						</div> */}
 						<div className="row justify-content-center mt-4">
 							<Link to="/companyAdded">
 								<div className="col">
@@ -114,7 +102,7 @@ export const EditBrand = ({ match }) => {
 									</button>
 								</div>
 							</Link>
-							<Link to="/">
+							<Link to="/companyList">
 								<div className="col">
 									<span className="button" href="#" role="button">
 										Back home

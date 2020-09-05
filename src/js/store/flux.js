@@ -1,18 +1,20 @@
-const url_base = "https://3000-afee9549-6454-4158-a803-5e3e769585c3.ws-eu01.gitpod.io";
+const url_base = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			// allEnterprises: [],
-			// allBrands: [],
-			allData: []
+			allData: [],
+			currentEnterprise: null,
+			currentBrand: null,
+			loggedIn: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			logout: () => {
 				const store = getStore();
 				setStore({ token: null });
+				setStore({ loggedIn: false });
 				localStorage.removeItem("access_token");
 				console.log("iiiiiii", localStorage);
 			},
@@ -27,57 +29,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
-			// getAllEnterprises: () => {
-			// 	const currentStore = getStore();
-			// 	let url = url_base + "/enterprise";
-			// 	console.log(url);
-			// 	let access_token = localStorage.getItem("access_token");
-			// 	fetch(url, {
-			// 		method: "GET",
-			// 		headers: {
-			// 			"Content-Type": "application/json",
-			// 			Authorization: `Bearer ${access_token}`,
-			// 			"Access-Control-Allow-Origin": "*"
-			// 		}
-			// 	})
-			// 		.then(res => res.json())
-			// 		.then(data => {
-			// 			if (data.msg != null) {
-			// 				alert(data.msg);
-			// 			} else {
-			// 				setStore({
-			// 					allEnterprises: data
-			// 				});
-			// 			}
-			// 		})
-			// 		.catch(e => console.error(e));
-			// },
-
-			// getAllBrands: () => {
-			// 	const currentStore = getStore();
-			// 	let url = url_base + "/enterprise/brand";
-			// 	console.log(url);
-			// 	let access_token = localStorage.getItem("access_token");
-			// 	fetch(url, {
-			// 		method: "GET",
-			// 		headers: {
-			// 			"Content-Type": "application/json",
-			// 			Authorization: `Bearer ${access_token}`,
-			// 			"Access-Control-Allow-Origin": "*"
-			// 		}
-			// 	})
-			// 		.then(res => res.json())
-			// 		.then(data => {
-			// 			if (data.msg != null) {
-			// 				alert(data.msg);
-			// 			} else {
-			// 				setStore({
-			// 					allBrands: data
-			// 				});
-			// 			}
-			// 		})
-			// 		.catch(e => console.error(e));
-			// },
+			setBrand: brand => {
+				setStore({ currentBrand: brand });
+			},
 
 			getEnterprisesWithBrands: () => {
 				let access_token = localStorage.getItem("access_token");
@@ -92,7 +46,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(enterprises => {
 						setStore({
-							allData: enterprises
+							allData: enterprises,
+							currentEnterprise: enterprises[0]
+							// currentBrand: enterprises[0].brand_id[0]
 						});
 					});
 			},
@@ -286,21 +242,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 						.catch(e => console.error("deleteeee", e));
 				});
-			},
-
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
 		}
 	};

@@ -38,12 +38,6 @@ export const EditEnterprise = props => {
 		}
 	}, []);
 
-	// if (enterpriseEdited === true) {
-	// 	return <Redirect to="/companyList" />;
-	// } else if (enterpriseEdited === false) {
-	// 	return <Redirect to="/companyList" />;
-	// }
-
 	return (
 		<div className="container">
 			<div>
