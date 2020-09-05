@@ -42,7 +42,7 @@ export const Login = () => {
 					let token = responseJson.access_token;
 					localStorage.setItem("access_token", token);
 					actions.setToken(token); //que espera recibir? un parametro tipo string
-					setIs_admin(responseJson.is_admin);
+					actions.setAdmin(responseJson.is_admin);
 					setLoggedIn(true);
 					actions.getEnterprisesWithBrands();
 				} else {

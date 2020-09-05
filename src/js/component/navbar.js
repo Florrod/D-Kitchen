@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
 
@@ -8,6 +8,7 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({});
 	const [loggedIn, setLoggedIn] = useState(false);
+	const params = useParams();
 
 	const sendLogOutToServer = token => {
 		let access_token = localStorage.getItem("access_token");
@@ -25,49 +26,66 @@ export const Navbar = () => {
 			.catch(error => actions.logout());
 	};
 
-	if (store.token === null) {
-		return null;
-	} else {
-		return (
-			<div className="container-fluid">
-				<nav id="navbar-example2" className="navbar navbar-light bg-light">
-					{/* {store.allData.map((brand, index) => (
+	const getBrandName = brandId => {
+		console.log("Soy brandId en la funcion getBrand", brandId);
+		for (let enterprise of store.allData) {
+			for (let brand of enterprise.brand_id) {
+				if (brand.id == brandId) {
+					return brand.name;
+				}
+			}
+		}
+	};
+	useEffect(
+		() => {
+			console.log(`Soy params.brandId ${params.brandId}, soy params.brandid ${params.brandid}`);
+		},
+		[params]
+	);
+
+	return (
+		<>
+			{store.token != null && (
+				<div className="container-fluid">
+					<nav id="navbar-example2" className="navbar navbar-light bg-light">
+						{/* {store.allData.map((brand, index) => (
                         <div className="navbar-brand" key={brand.id}>
                             {brand.name}
                         </div>
                     ))} */}
-					{store.currentBrand
-						? store.currentBrand.name
-						: store.currentEnterprise
-							? store.currentEnterprise.name
-							: "Unknown company"}
-					<div className="row">
-						<div className="profile pr-0 col">
-							<i className="icon fas fa-user-circle" />
+						{store.brandId
+							? getBrandName(store.brandId)
+							: store.admin
+								? "Administrador"
+								: store.currentEnterprise && store.currentEnterprise.name}
+						<div className="row">
+							<div className="profile pr-0 col">
+								<i className="icon fas fa-user-circle" />
+							</div>
+							<div
+								type="button"
+								className="dropdown-toggle mt-2 col"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false">
+								Menu
+							</div>
+							<div className="dropdown-menu dropdown-menu-right">
+								<Link to="/companyList">
+									<button className="dropdown-item" type="button">
+										Mi panel
+									</button>
+								</Link>
+								<Link to="/">
+									<button onClick={sendLogOutToServer} className="dropdown-item" type="button">
+										Cerrar sesión
+									</button>
+								</Link>
+							</div>
 						</div>
-						<div
-							type="button"
-							className="dropdown-toggle mt-2 col"
-							data-toggle="dropdown"
-							aria-haspopup="true"
-							aria-expanded="false">
-							Menu
-						</div>
-						<div className="dropdown-menu dropdown-menu-right">
-							<Link to="/companyList">
-								<button className="dropdown-item" type="button">
-									Mi panel
-								</button>
-							</Link>
-							<Link to="/">
-								<button onClick={sendLogOutToServer} className="dropdown-item" type="button">
-									Cerrar sesión
-								</button>
-							</Link>
-						</div>
-					</div>
-				</nav>
-			</div>
-		);
-	}
+					</nav>
+				</div>
+			)}
+		</>
+	);
 };

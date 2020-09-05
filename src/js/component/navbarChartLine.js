@@ -1,15 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { ChartLine } from "./chartLine";
 import "../../styles/home.scss";
 import { SalesTable } from "./salesTable";
 import { ProductTable } from "./productTable";
 import { ClientTable } from "./clientTable";
+import { useParams } from "react-router-dom";
 
 export const NavbarChartLine = props => {
 	const [state, setState] = useState({
 		period: "total"
 	});
+	const { store, actions } = useContext(Context);
+	const params = useParams();
+
+	useEffect(() => {
+		actions.navBrandId(params.brandId);
+		return () => {
+			actions.navBrandId(null);
+		};
+	}, []);
 	return (
 		<div>
 			<ul className="nav nav-tabs">

@@ -1,5 +1,5 @@
-import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react";
 import ScrollToTop from "./component/scrollToTop";
 
 import { HomeOut } from "./views/homeout";

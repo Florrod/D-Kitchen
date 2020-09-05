@@ -3,6 +3,7 @@ const url_base = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitp
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			admin: false,
 			token: "",
 			allData: [],
 			currentEnterprise: null,
@@ -18,8 +19,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("access_token");
 				console.log("iiiiiii", localStorage);
 			},
+			navBrandId: brandId => {
+				setStore({ brandId: brandId });
+			},
 			setToken: token => {
 				setStore({ token: token });
+			},
+			setAdmin: admin => {
+				setStore({ admin: admin });
 			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

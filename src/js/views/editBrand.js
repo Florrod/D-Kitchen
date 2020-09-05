@@ -13,15 +13,19 @@ export const EditBrand = ({ match }) => {
 	const [editName, setBrandName] = useState("");
 	const [apiKeys, setApiKeys] = useState([]);
 	const [brand, setBrand] = useState({});
+	const params = useParams();
 
 	useEffect(() => {
+		// actions.navBrandId(params.brandid);
+		// return () => {
+		// 	actions.navBrandId(null);
+		// };
 		for (let e of store.allData) {
 			// el let of itera en cada elemento de un arreglo. Es un sustituo del for each pero no hace un bucle infinito de búsqueda
 			// store.allData.forEach(e =>
 			console.log("Buscando brand en la empresa ->", e.id);
-			const _brand = e.brand_id.find(b => b.id == match.params.brandid);
+			const _brand = e.brand_id.find(b => b.id == params.brandid);
 			if (_brand) {
-				actions.setBrand(_brand.name);
 				console.log("found brand", _brand);
 				setId(_brand.id);
 				// setBrandLogo(_brand.logo);
