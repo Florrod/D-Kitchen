@@ -44,6 +44,13 @@ export const EditBrand = ({ match }) => {
 		}
 	}, []);
 
+	useEffect(() => {
+		actions.navBrandId(params.brandid);
+		return () => {
+			actions.navBrandId(null);
+		};
+	}, []);
+
 	return (
 		<form>
 			<div className="container-fluid">
