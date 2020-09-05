@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import "../../styles/home.scss";
 
 const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
 
@@ -48,16 +49,16 @@ export const Navbar = () => {
 			{store.token != null && (
 				<div className="container-fluid">
 					<nav id="navbar-example2" className="navbar navbar-light bg-light">
-						{/* {store.allData.map((brand, index) => (
-                        <div className="navbar-brand" key={brand.id}>
-                            {brand.name}
-                        </div>
-                    ))} */}
-						{store.brandId
-							? getBrandName(store.brandId)
-							: store.admin
-								? "Administrador"
-								: store.currentEnterprise && store.currentEnterprise.name}
+						{store.brandId ? (
+							getBrandName(store.brandId)
+						) : // <div className="navIdentifier">{store.brandId}</div>
+						store.admin ? (
+							<div className="navIdentifier">Administrador</div>
+						) : (
+							store.currentEnterprise && (
+								<div className="navIdentifier">{store.currentEnterprise.name}</div>
+							)
+						)}
 						<div className="row">
 							<div className="profile pr-0 col">
 								<i className="icon fas fa-user-circle" />
