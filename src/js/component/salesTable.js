@@ -40,11 +40,11 @@ export const SalesTable = props => {
 	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (
-		<div className="table-responsive-sm">
-			<table className="table table-sm table-hover mt-5 text-center">
-				<tbody>
-					<div className="row">
-						<div className="col-6">
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-md-6 offset-md-3">
+					<div className="card">
+						<div className="card-body">
 							<div className="row">
 								<div className="col-6 h5">Plataformas</div>
 								<div className="col-6 h5">Ventas Totales</div>
@@ -59,8 +59,8 @@ export const SalesTable = props => {
 								: ""}
 						</div>
 					</div>
-				</tbody>
-			</table>
+				</div>
+			</div>
 		</div>
 	);
 };

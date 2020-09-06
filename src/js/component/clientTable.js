@@ -36,11 +36,12 @@ export const ClientTable = props => {
 	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (
-		<div className="table-responsive-sm">
-			<table className="table table-sm table-hover mt-5 text-center">
-				<tbody>
-					<div className="row">
-						<div className="col-6">
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-md-6 offset-md-3">
+					<div className="card">
+						<div className="card-body">
+							<div className="card-header tableTittle text-center mb-2">Clientes recurrentes</div>
 							<div className="row">
 								<div className="col-6 h5">Plataformas</div>
 								<div className="col-6 h5">Clientes recurrentes</div>
@@ -49,21 +50,21 @@ export const ClientTable = props => {
 								? platforms.map((plat, index) => (
 										<div className="row" key={plat.platform_id}>
 											<div className="col-6">{plat.platform_name}</div>
-											<div className="col-6 text-center">{plat.client_identifier}</div>
+											<div className="col-6">{plat.client_identifier}</div>
 											{/* {plat.orders_count.map((contact, index) => (
-												<div key={index} className="col-6 text-center">
-													{" "}
-													{contact.phone}
-													{contact.customer_id_platform}
-												</div>
-											))} */}
+                                                        <div key={index} className="col-6 text-center">
+                                                            {" "}
+                                                            {contact.phone}
+                                                            {contact.customer_id_platform}
+                                                        </div>
+                                                    ))} */}
 										</div>
 								  ))
 								: ""}
 						</div>
 					</div>
-				</tbody>
-			</table>
+				</div>
+			</div>
 		</div>
 	);
 };

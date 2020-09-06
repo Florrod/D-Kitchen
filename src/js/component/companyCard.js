@@ -14,10 +14,6 @@ export const CompanyCard = props => {
 	const [state, setState] = useState({});
 	const params = useParams(); // props.match.params
 
-	// useEffect(() => {
-	// 	actions.setBrand({ currentBrand: null });
-	// }, []);
-
 	return (
 		<div className="container mt-0">
 			<div className="card panel panel-info">

@@ -47,8 +47,8 @@ export const Navbar = () => {
 	return (
 		<>
 			{store.token != null && (
-				<div className="container-fluid">
-					<nav id="navbar-example2" className="navbar navbar-light bg-light">
+				<div className="container-fluid navBar">
+					<nav id="navbar-example2" className="navbar navbar-light">
 						{store.brandId ? (
 							getBrandName(store.brandId)
 						) : // <div className="navIdentifier">{store.brandId}</div>

@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import { ChartLine } from "./chartLine";
-import "../../styles/home.scss";
 import { SalesTable } from "./salesTable";
 import { ProductTable } from "./productTable";
 import { ClientTable } from "./clientTable";
 import { useParams } from "react-router-dom";
+import "../../styles/home.scss";
 
 export const NavbarChartLine = props => {
 	const [state, setState] = useState({
@@ -25,18 +25,24 @@ export const NavbarChartLine = props => {
 		<div>
 			<ul className="nav nav-tabs">
 				<li className="nav-item nav-link mr-3">
-					<button type="button" className="tipoLink" onClick={e => setState({ period: "last_week" })}>
-						Última semana
+					<button
+						type="button"
+						className="btn btn-outline-dark"
+						onClick={e => setState({ period: "last_week" })}>
+						Últimos 7 días
 					</button>
 				</li>
 				<li className="nav-item nav-link mr-3">
-					<button type="button" className="tipoLink" onClick={e => setState({ period: "last_month" })}>
-						Última mes
+					<button
+						type="button"
+						className="btn btn-outline-dark"
+						onClick={e => setState({ period: "last_month" })}>
+						Últimos 30 días
 					</button>
 				</li>
 				<li className="nav-item nav-link mr-3">
-					<button type="button" className="tipoLink" onClick={e => setState({ period: "total" })}>
-						Acumulado
+					<button type="button" className="btn btn-outline-dark" onClick={e => setState({ period: "total" })}>
+						Acumulado año en curso
 					</button>
 				</li>
 			</ul>

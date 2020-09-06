@@ -36,42 +36,46 @@ export const ProductTable = props => {
 	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
 
 	return (
-		<div className="table-responsive-sm">
-			<table className="table table-sm table-hover mt-5 text-center">
-				<tbody>
-					<div className="row">
-						<div className="col-sm-4 h5">Ranking</div>
-						{platforms
-							? platforms.map((plat, index) => (
-									<div className="col-sm-4 h5" key={plat.id}>
-										{plat.name}
-									</div>
-							  ))
-							: ""}
-					</div>
-					<div className="row">
-						<div className="col-sm-4">
-							<p className="specialRow">1º</p>
-							<p className="specialRow">2º</p>
-							<p className="specialRow">3º</p>
-							<p className="specialRow">4º</p>
-							<p className="specialRow">5º</p>
-						</div>
-						{platforms
-							? platforms.map((plat, index) => (
-									<div className="col text-align-left" key={plat.id}>
-										{plat.top_products.map((product, index) => (
-											<div key={product.name}>
-												{" "}
-												<div className="row ml-2 specialRow w-100">{product.name}</div>
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-md-6 offset-md-3">
+					<div className="card">
+						<div className="card-body">
+							<div className="row">
+								<div className="col-sm-4 h5">Ranking</div>
+								{platforms
+									? platforms.map((plat, index) => (
+											<div className="col-sm-4 h5" key={plat.id}>
+												{plat.name}
 											</div>
-										))}
-									</div>
-							  ))
-							: ""}
+									  ))
+									: ""}
+							</div>
+							<div className="row">
+								<div className="col-sm-4">
+									<p className="specialRow">1º</p>
+									<p className="specialRow">2º</p>
+									<p className="specialRow">3º</p>
+									<p className="specialRow">4º</p>
+									<p className="specialRow">5º</p>
+								</div>
+								{platforms
+									? platforms.map((plat, index) => (
+											<div className="col text-align-left" key={plat.id}>
+												{plat.top_products.map((product, index) => (
+													<div key={product.name}>
+														{" "}
+														<div className="row ml-2 specialRow w-100">{product.name}</div>
+													</div>
+												))}
+											</div>
+									  ))
+									: ""}
+							</div>
+						</div>
 					</div>
-				</tbody>
-			</table>
+				</div>
+			</div>
 		</div>
 	);
 };
