@@ -16,7 +16,7 @@ export const AddBrand = () => {
 	return (
 		<form>
 			<div className="container-fluid">
-				<div className="row justify-content-center">
+				<div className="form-row justify-content-center">
 					<div className="col-12 col-md-8 col-lg-8 col-xl-6">
 						<div className="row">
 							<div className="col text-center title col-sm-12">
@@ -33,6 +33,7 @@ export const AddBrand = () => {
 									className="form-control form-fixer"
 									placeholder="Nombre de la empresa"
 									onChange={e => setBrandName(e.target.value)}
+									required
 								/>
 							</div>
 						</div>

@@ -41,8 +41,9 @@ export const ProductTable = props => {
 				<div className="col-md-6 offset-md-3">
 					<div className="card">
 						<div className="card-body">
+							<h3 className="text-center mb-4">Productos más populares</h3>
 							<div className="row">
-								<div className="col-sm-4 h5">Ranking</div>
+								<div className="columnNames col-sm-4 h5">Ranking</div>
 								{platforms
 									? platforms.map((plat, index) => (
 											<div className="col-sm-4 h5" key={plat.id}>

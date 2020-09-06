@@ -41,7 +41,7 @@ export const ClientTable = props => {
 				<div className="col-md-6 offset-md-3">
 					<div className="card">
 						<div className="card-body">
-							<div className="card-header tableTittle text-center mb-2">Clientes recurrentes</div>
+							<h3 className="text-center mb-4">Clientes recurrentes</h3>
 							<div className="row">
 								<div className="col-6 h5">Plataformas</div>
 								<div className="col-6 h5">Clientes recurrentes</div>

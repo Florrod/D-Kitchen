@@ -12,6 +12,8 @@ export const Login = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [is_admin, setIs_admin] = useState(false);
 	const [redirectToLogin, setRedirectToLogin] = useState(false);
+	const [error, setError] = useState("");
+
 	const { store, actions } = useContext(Context);
 
 	const handleSubmit = e => {
@@ -47,10 +49,19 @@ export const Login = () => {
 					actions.getEnterprisesWithBrands();
 				} else {
 					if (responseJson.email && responseJson.password == null) {
+						console.log("hola");
 					}
 				}
+			})
+			.catch(err => {
+				setError({ error: err.msg });
 			});
 	};
+
+	if (error === true) {
+		return <div>{err.msg}</div>;
+	}
+
 	if (loggedIn === true && is_admin === true) {
 		return <Redirect to="/companyList" />;
 	} else if (loggedIn === true && is_admin === false) {
@@ -65,7 +76,7 @@ export const Login = () => {
 				/>
 			</p>
 			<div className="d-flex justify-content-center align-items-center container">
-				<form>
+				<form className="needs-validation" noValidate>
 					<div className="form-group">
 						<dt>
 							<label className="item-login" htmlFor="exampleInputEmail1">
@@ -81,22 +92,24 @@ export const Login = () => {
 							placeholder="Escribe tu correo"
 							onChange={e => setEmail(e.target.value)}
 							value={email}
+							required
 						/>
-						<dt>
-							<label className="item-login mt-3" htmlFor="exampleInputPassword1">
-								Contraseña
-							</label>
-						</dt>
-						<input
-							name="password"
-							type="password"
-							className="form-control form-fixer mb-2"
-							id="exampleInputPassword1"
-							placeholder="Escribe tu contraseña"
-							onChange={e => setPassword(e.target.value)}
-							value={password}
-						/>
+						<div className="invalid-feedback">Introduce un correo electrónico valido</div>
 					</div>
+					<dt>
+						<label className="item-login mt-3" htmlFor="exampleInputPassword1">
+							Contraseña
+						</label>
+					</dt>
+					<input
+						name="password"
+						type="password"
+						className="form-control form-fixer mb-2"
+						id="exampleInputPassword1"
+						placeholder="Escribe tu contraseña"
+						onChange={e => setPassword(e.target.value)}
+						value={password}
+					/>
 					<Link to="/registerForm">
 						<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
 							<strong>Inicia sesión</strong>

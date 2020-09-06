@@ -47,16 +47,16 @@ export const NavbarChartLine = props => {
 				</li>
 			</ul>
 			<div className="tab-content w-100">
-				<div>
+				<div className="mb-4">
 					<ChartLine period={state.period} />
 				</div>
-				<div>
+				<div className="mb-4">
 					<SalesTable period={state.period} />
 				</div>
-				<div>
+				<div className="mb-4">
 					<ProductTable period={state.period} />
 				</div>
-				<div>
+				<div className="mb-4">
 					<ClientTable period={state.period} />
 				</div>
 			</div>

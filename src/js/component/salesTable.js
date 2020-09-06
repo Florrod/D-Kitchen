@@ -45,6 +45,7 @@ export const SalesTable = props => {
 				<div className="col-md-6 offset-md-3">
 					<div className="card">
 						<div className="card-body">
+							<h3 className="text-center mb-4">Ventas totales</h3>
 							<div className="row">
 								<div className="col-6 h5">Plataformas</div>
 								<div className="col-6 h5">Ventas Totales</div>

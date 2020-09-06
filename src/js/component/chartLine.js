@@ -206,7 +206,7 @@ export const ChartLine = props => {
 				<div className="col-md-6 offset-md-3">
 					<div className="card">
 						<div className="card-body">
-							<h1 className="text-center mb-2">Evolución</h1>
+							<h2 className="text-center mb-4">Evolución de ventas</h2>
 							<Line
 								redraw={true}
 								data={
@@ -223,14 +223,14 @@ export const ChartLine = props => {
 										fontColor: "#2b3800",
 										fontSize: 20,
 										fontFamily: "abril fatface",
-										display: true
+										display: false
 									},
 									scales: {
 										yAxes: [
 											{
 												ticks: {
 													min: 0,
-													max: 400,
+													max: 200,
 													maxTicksLimit: 10,
 													beginAtZero: true,
 													fontStyle: "bold",
