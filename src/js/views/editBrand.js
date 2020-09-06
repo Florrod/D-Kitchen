@@ -109,15 +109,15 @@ export const EditBrand = ({ match }) => {
 										onClick={() => {
 											actions.editBrand(id, editName, apiKeys);
 										}}>
-										<input type="submit" value="Guardar" className="button" />
+										<input type="submit" value="Guardar" className="buttom" />
 									</button>
 								</div>
 							</Link>
 							<Link to="/companyList">
 								<div className="col">
-									<span className="button" href="#" role="button">
-										Back home
-									</span>
+									<button className="btn">
+										<input type="submit" value="Volver" className="buttom" />
+									</button>
 								</div>
 							</Link>
 						</div>

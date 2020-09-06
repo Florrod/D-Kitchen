@@ -61,7 +61,7 @@ export const AddBrand = () => {
 								/>
 							</div>
 						</div>
-						<div className="row justify-content-center mt-4">
+						<div className="row justify-content-center mt-3 mb-2">
 							<Link to="/companyAdded">
 								<div className="col">
 									<button
@@ -69,15 +69,15 @@ export const AddBrand = () => {
 										onClick={() => {
 											actions.addBrand(brandLogo, brandName, justEatApiKey, glovoApiKey);
 										}}>
-										<input type="submit" value="Guardar" className="button" />
+										<input type="submit" value="Guardar" className="buttom" />
 									</button>
 								</div>
 							</Link>
-							<Link to="/">
+							<Link to="/companyList">
 								<div className="col">
-									<span className="button" href="#" role="button">
-										Back home
-									</span>
+									<button className="btn">
+										<input type="submit" value="Volver" className="buttom" />
+									</button>
 								</div>
 							</Link>
 						</div>

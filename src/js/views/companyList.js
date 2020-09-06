@@ -16,8 +16,8 @@ export const CompanyList = () => {
 				<SearchBar />
 				<ul className="list-group pull-down" id="contact-list">
 					<div className="row ml-2 justify-content-right">
-						<Link className="button" to="/registerForm">
-							Añadir nueva empresa
+						<Link to="/registerForm">
+							<button className="buttom">Añadir nueva empresa</button>
 						</Link>
 					</div>
 					<CompanyCard />

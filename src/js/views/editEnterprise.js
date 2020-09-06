@@ -93,28 +93,35 @@ export const EditEnterprise = props => {
 							onChange={e => setAddress(e.target.value)}
 						/>
 					</div>
-					<Link to={"/companyList"}>
-						<button
-							type="button"
-							className="btn buttom form-control m-2"
-							onClick={() => {
-								actions.editEnterprise(
-									id,
-									editName,
-									editCifNumber,
-									editPassword,
-									editPhone,
-									editEmail,
-									editAddress,
-									editIsActive
-								);
-							}}>
-							Guardar
-						</button>
-					</Link>
-					<Link className="mt-5 w-100 text-center" to="/companyList">
-						Volver
-					</Link>
+					<div className="row justify-content-center mt-3 mb-2">
+						<Link to={"/companyList"}>
+							<div className="col">
+								<button
+									className="btn"
+									onClick={() => {
+										actions.editEnterprise(
+											id,
+											editName,
+											editCifNumber,
+											editPassword,
+											editPhone,
+											editEmail,
+											editAddress,
+											editIsActive
+										);
+									}}>
+									<input type="submit" value="Guardar" className="buttom" />
+								</button>
+							</div>
+						</Link>
+						<Link to="/companyList">
+							<div className="col">
+								<button className="btn">
+									<input type="submit" value="Volver" className="buttom" />
+								</button>
+							</div>
+						</Link>
+					</div>
 				</form>
 			</div>
 		</div>
