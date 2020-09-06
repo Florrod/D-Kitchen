@@ -52,14 +52,12 @@ export const CompanyCard = props => {
 											/>
 											<span className="text-muted small"> {enterprise.phone}</span>
 										</div>
-										<div className="col company">
-											<Link to={`edit/${enterprise.id}`}>
-												<button className="btn">
-													<i className="mr-3 fas fa-pencil-alt" />
-												</button>
-												Editar empresa
-											</Link>
-										</div>
+										<Link className="company" to={`edit/${enterprise.id}`}>
+											<button className="btn">
+												<i className="mr-3 fas fa-pencil-alt" />
+											</button>
+											Editar empresa
+										</Link>
 									</div>
 									<div className="row w-100 mb-3">
 										<div className="col-9">
