@@ -36,10 +36,10 @@ export const CompanyCard = props => {
 											<span className="text-muted"> {enterprise.address}</span>
 										</div>
 										<Link className="company" to="/add-brand">
-											<div className="col mb-0">
+											<button className="btn">
 												<i className="mr-3 fas fa-user-plus" />
-												Añadir nueva marca
-											</div>
+											</button>
+											Añadir nueva marca
 										</Link>
 									</div>
 									<div className="row w-100 mb-2">
@@ -69,15 +69,15 @@ export const CompanyCard = props => {
 											/>
 											<span className="text-muted small text-truncate"> {enterprise.email}</span>
 										</div>
-										<div className="col company">
+										<div className="company">
 											<button
 												className="btn"
 												onClick={() => {
 													actions.deleteEnterprise(enterprise.id);
 												}}>
 												<i className="mr-3 fas fa-trash-alt" />
-												Eliminar empresa
 											</button>
+											Eliminar empres
 										</div>
 									</div>
 								</li>
@@ -86,7 +86,7 @@ export const CompanyCard = props => {
 										<div key={brand.name} className="row w-100">
 											<div className="col">
 												{" "}
-												{brand.name}
+												<strong>{brand.name}</strong>
 												<div className="float-right">
 													<Link to={`/edit/brand/${brand.id}`}>
 														<button className="btn">
