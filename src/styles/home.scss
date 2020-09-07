@@ -7,7 +7,6 @@ h1 {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
-
 h2 {
     font-family: 'abril fatface';
     font-size: calc(1.5em + 1.5vw);
@@ -15,7 +14,6 @@ h2 {
     color: #2b3800;
     line-height: 72px;
 }
-
 h3 {
     font-family: 'abril fatface';
     font-size: calc(1em + 1vw);
@@ -23,23 +21,19 @@ h3 {
     color: #2b3800;
     line-height: 72px;
 }
-
 .icon{
     font-size: 2rem;
     box-sizing: 0rem;
     margin-top: 0.2rem;
 }
-
 .main {
     width: 50%;
     margin: 50px auto;
 }
-
 .form-img{
     width: 135px;
     height: 160px;
 }
-
 .form-control {
     font-family: 'Cabin', 'Helvetica', 'Arial', 'Lucida', sans-serif;
     color:#3e3e3e;
@@ -48,11 +42,9 @@ h3 {
     line-height: 24px;
     padding: 16px;
 }
-
 #CIF {
     text-transform: uppercase;
 }
-
 input.form-fixer {
     @media screen and (max-width: 700px) {
     padding: 0px 12px;
@@ -71,7 +63,6 @@ input.form-fixer {
     line-height: 24px;
     }
 }
-
 .buttom {
     color: white;
     border-width: 10px;
@@ -93,7 +84,6 @@ input.form-fixer {
         font-size: 12px;
         }
 }
-
 .item-login {
     font-size: 20px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
@@ -101,7 +91,6 @@ input.form-fixer {
     font-weight: 400;
     line-height: 24px;
 }
-
 .tipoLink {
     font-size: 18px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
@@ -109,7 +98,6 @@ input.form-fixer {
     font-weight: 400;
     line-height: 24px;
 }
-
 .tipoLink:hover {
     font-size: 18px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
@@ -118,7 +106,6 @@ input.form-fixer {
     line-height: 24px;
     text-decoration: underline;
 }
-
 .addBrand {
     font-size: 14px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
@@ -138,35 +125,35 @@ input.form-fixer {
     line-height: 24px;
     text-decoration: underline;
     background-color:#cfd1d0;
-
 }
-
 .navBar {
     background-color:  #2b3800;
     color: white;
 }
-
 .navIdentifier {
     font-size: 18px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
     color: white;
     font-weight: bold;
 }
-
 .tableTittle {
     color: #2b3800;
     font-size: 30px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
     font-weight: bold;
 }
-
-
 .btn-outline-dark {
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
     color: #2b3800;
     font-weight: bold;
 }
-
 .btn-outline-dark:focus {
     box-shadow: 0 0 0 .2rem  #2b3800;
+}
+.error {
+    font-size: 16px;
+    font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color:red;
+    line-height: 24px;
+    margin-bottom: 10px;
 }

@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Redirect } from "react-router-dom";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -46,7 +46,7 @@ export const Navbar = () => {
 
 	return (
 		<>
-			{store.token != null && (
+			{store.token != "" && (
 				<div className="container-fluid navBar">
 					<nav id="navbar-example2" className="navbar navbar-light">
 						{store.brandId ? (
@@ -87,6 +87,7 @@ export const Navbar = () => {
 					</nav>
 				</div>
 			)}
+			<>{store.token == "" && <Redirect to="/" />}</>
 		</>
 	);
 };

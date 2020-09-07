@@ -1,4 +1,4 @@
-const url_base = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
+const url_base = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			logout: () => {
 				const store = getStore();
-				setStore({ token: null });
+				setStore({ token: "" });
 				setStore({ loggedIn: false });
 				localStorage.removeItem("access_token");
 				console.log("iiiiiii", localStorage);
