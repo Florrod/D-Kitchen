@@ -168,7 +168,7 @@ export const RegisterForm = () => {
 									</button>
 								</div>
 							</Link>
-							<Link to="/">
+							<Link to="/companyList">
 								<div className="col">
 									<button className="btn">
 										<input type="submit" value="Volver" className="buttom" />

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
 
 export const SalesTable = props => {
 	const [platforms, setPlatforms] = useState({});
@@ -47,8 +47,8 @@ export const SalesTable = props => {
 						<div className="card-body">
 							<h3 className="text-center mb-4">Ventas totales</h3>
 							<div className="row">
-								<div className="col-6 h5">Plataformas</div>
-								<div className="col-6 h5">Ventas Totales</div>
+								<div className="columnNames col-6 h5">Plataformas</div>
+								<div className="columnNames col-6 h5">Ventas Totales</div>
 							</div>
 							{platforms
 								? platforms.map((plat, index) => (

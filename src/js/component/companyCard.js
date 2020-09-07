@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import "../../styles/companyCard.scss";
 import "../../styles/home.scss";
 
-const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
 
 export const CompanyCard = props => {
 	const { store, actions } = useContext(Context);

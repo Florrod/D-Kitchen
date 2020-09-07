@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 import "../../styles/home.scss";
 import dayjs from "dayjs";
 
-const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
 
 export const ChartLine = props => {
 	const { period } = props;
@@ -45,7 +45,7 @@ export const ChartLine = props => {
 				let platformsYear = {};
 				let platformsDays = {};
 				sales.forEach(sale => {
-					platformsLabels[sale[2]] = "#" + Math.floor(Math.random() * 16777215).toString(16);
+					platformsLabels[sale[2]] = parseInt(sale[0]) == 1 ? "#cb306a" : "#ff5733"; // el parseInt es para convertir un entero en string
 					platformsMonths[sale[4]] = "Enero";
 					platformsYear[sale[5]] = "2019";
 					platformsDays[sale[3]] = "Lunes";

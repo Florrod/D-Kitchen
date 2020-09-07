@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
 import "../../styles/salesTable.scss";
 
-const ENDPOINT = "https://3000-f6c6e156-e3ab-40f0-9c56-fff615d563e8.ws-eu01.gitpod.io";
+const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
 
 export const ProductTable = props => {
 	const [platforms, setPlatforms] = useState([]);
@@ -46,7 +46,7 @@ export const ProductTable = props => {
 								<div className="columnNames col-sm-4 h5">Ranking</div>
 								{platforms
 									? platforms.map((plat, index) => (
-											<div className="col-sm-4 h5" key={plat.id}>
+											<div className=" columnNames col-sm-4 h5" key={plat.id}>
 												{plat.name}
 											</div>
 									  ))
