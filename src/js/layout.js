@@ -40,7 +40,7 @@ export const Layout = () => {
 						<Route exact path="/companyList" component={CompanyList} />
 						<Route exact path="/edit/brand/:brandid" component={EditBrand} />
 						<Route exact path="/edit/:enterpriseid" component={EditEnterprise} />
-						<Route exact path="/add-brand" component={AddBrand} />
+						<Route exact path="/add-brand/:enterpriseId" component={AddBrand} />
 						<Route exact path="/chartLine" component={ChartLine} />
 						<Route exact path="/navbarChartLine/:brandId" component={NavbarChartLine} />
 						<Route exact path="/salesTable" component={SalesTable} />

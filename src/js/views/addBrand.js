@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UploadProfile } from "../component/uploadProfile";
 import "../../styles/registerForm.scss";
@@ -12,6 +12,7 @@ export const AddBrand = () => {
 	const [brandName, setBrandName] = useState("");
 	const [justEatApiKey, setJustEatApiKey] = useState("");
 	const [glovoApiKey, setGlovoApiKey] = useState("");
+	const params = useParams();
 
 	return (
 		<form>
@@ -31,7 +32,7 @@ export const AddBrand = () => {
 									id="nombre-empresa"
 									type="text"
 									className="form-control form-fixer"
-									placeholder="Nombre de la empresa"
+									placeholder="Nombre de la marca"
 									onChange={e => setBrandName(e.target.value)}
 									required
 								/>
@@ -67,7 +68,12 @@ export const AddBrand = () => {
 									<button
 										className="btn"
 										onClick={() => {
-											actions.addBrand(brandLogo, brandName, justEatApiKey, glovoApiKey);
+											actions.addBrand(
+												brandName,
+												justEatApiKey,
+												glovoApiKey,
+												params.enterpriseId
+											);
 										}}>
 										<input type="submit" value="Guardar" className="buttom" />
 									</button>

@@ -160,7 +160,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 
-			addBrand(brandLogo, brandName, justEatApiKey, glovoApiKey) {
+			addBrand(brandName, justEatApiKey, glovoApiKey, enterpriseId) {
 				let access_token = localStorage.getItem("access_token");
 				fetch(`${url_base}/add-brand`, {
 					method: "POST",
@@ -170,7 +170,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Access-Control-Allow-Origin": "*"
 					},
 					body: JSON.stringify({
-						logo: brandLogo,
+						// logo: brandLogo,
+						enterprise_id: enterpriseId,
 						name: brandName,
 						API_key: { JE: justEatApiKey, GL: glovoApiKey }
 					})

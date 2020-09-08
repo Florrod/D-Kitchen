@@ -35,7 +35,7 @@ export const CompanyCard = props => {
 											<i className="fas fa-map-marker-alt text-muted mr-3" />
 											<span className="text-muted"> {enterprise.address}</span>
 										</div>
-										<Link className="btn company mb-2" to="/add-brand">
+										<Link className="btn company mb-2" to={`/add-brand/${enterprise.id}`}>
 											<i className="mr-3 fas fa-user-plus" />
 											Añadir nueva marca
 										</Link>
