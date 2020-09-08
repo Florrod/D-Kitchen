@@ -15,6 +15,10 @@ export const ChartLine = props => {
 	const [chartData, setChartData] = useState({});
 	const [chartDataMonth, setChartDataMonth] = useState({});
 	const [chartDataWeek, setChartDataWeek] = useState({});
+	const roundSales = x => {
+		return Math.round(x);
+	};
+
 	let linesData = {};
 	const getSalesGraph = () => {
 		let access_token = localStorage.getItem("access_token");
@@ -53,7 +57,7 @@ export const ChartLine = props => {
 						if (byMonth[sale[2]][sale[4]] === undefined) {
 							byMonth[sale[2]][sale[4]] = 0;
 						}
-						byMonth[sale[2]][sale[4]] += sale[6];
+						byMonth[sale[2]][sale[4]] += roundSales(sale[6]);
 						// console.log(`byMonth[${sale[2]}][${sale[4]}] + ${sale[6]}`, byMonth[sale[2]][sale[4]]);
 						if (
 							dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
@@ -65,7 +69,7 @@ export const ChartLine = props => {
 							if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
 								byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
 							}
-							byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
+							byDay[sale[2]][`${sale[3]}/${sale[4]}`] += roundSales(sale[6]);
 						}
 						// if (
 						// 	dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
@@ -178,7 +182,7 @@ export const ChartLine = props => {
 	useEffect(() => {
 		getSalesGraph();
 	}, []);
-	// console.log("chartData", chartData);
+
 	let chart;
 	switch (period) {
 		case "last_week":
@@ -221,7 +225,7 @@ export const ChartLine = props => {
 											{
 												ticks: {
 													min: 0,
-													max: 200,
+													max: 250,
 													maxTicksLimit: 10,
 													beginAtZero: true,
 													fontStyle: "bold",

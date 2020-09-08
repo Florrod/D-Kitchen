@@ -35,10 +35,8 @@ export const CompanyCard = props => {
 											<i className="fas fa-map-marker-alt text-muted mr-3" />
 											<span className="text-muted"> {enterprise.address}</span>
 										</div>
-										<Link className="company" to="/add-brand">
-											<button className="btn">
-												<i className="mr-3 fas fa-user-plus" />
-											</button>
+										<Link className="btn company mb-2" to="/add-brand">
+											<i className="mr-3 fas fa-user-plus" />
 											Añadir nueva marca
 										</Link>
 									</div>
@@ -50,12 +48,10 @@ export const CompanyCard = props => {
 												title=""
 												data-original-title="(870) 288-4149"
 											/>
-											<span className="text-muted small"> {enterprise.phone}</span>
+											<span className="text-muted"> {enterprise.phone}</span>
 										</div>
-										<Link className="company" to={`edit/${enterprise.id}`}>
-											<button className="btn">
-												<i className="mr-3 fas fa-pencil-alt" />
-											</button>
+										<Link className="btn company mb-2" to={`edit/${enterprise.id}`}>
+											<i className="mr-3 fas fa-pencil-alt" />
 											Editar empresa
 										</Link>
 									</div>
@@ -67,18 +63,16 @@ export const CompanyCard = props => {
 												data-original-title=""
 												title=""
 											/>
-											<span className="text-muted small text-truncate"> {enterprise.email}</span>
+											<span className="text-muted text-truncate"> {enterprise.email}</span>
 										</div>
-										<div className="company">
-											<button
-												className="btn"
-												onClick={() => {
-													actions.deleteEnterprise(enterprise.id);
-												}}>
-												<i className="mr-3 fas fa-trash-alt" />
-											</button>
-											Eliminar empres
-										</div>
+										<button
+											className="btn company mb-2"
+											onClick={() => {
+												actions.deleteEnterprise(enterprise.id);
+											}}>
+											<i className="mr-3 fas fa-trash-alt" />
+											Eliminar empresa
+										</button>
 									</div>
 								</li>
 								<li className="col list-group-item">

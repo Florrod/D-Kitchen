@@ -3,7 +3,9 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
 import "../../styles/salesTable.scss";
+
 const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
+
 export const ProductTable = props => {
 	const [platforms, setPlatforms] = useState([]);
 	const params = useParams(); // props.match.params
@@ -28,50 +30,60 @@ export const ProductTable = props => {
 		},
 		[props.period]
 	);
-	if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
+
+	// if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
+
 	return (
-		<div className="container-fluid">
-			<div className="row">
-				<div className="col-md-6 offset-md-3">
-					<div className="card">
-						<div className="card-body">
-							<h3 className="text-center mb-4">Productos más populares</h3>
-							<div className="row">
-								<div className="columnNames col-sm-4 h5">Ranking</div>
-								{platforms
-									? platforms.map((plat, index) => (
-											<div className=" columnNames col-sm-4 h5" key={plat.id}>
-												{plat.name}
-											</div>
-									  ))
-									: ""}
-							</div>
-							<div className="row">
-								<div className="col-sm-4">
-									<p className="specialRow">1º</p>
-									<p className="specialRow">2º</p>
-									<p className="specialRow">3º</p>
-									<p className="specialRow">4º</p>
-									<p className="specialRow">5º</p>
-								</div>
-								{platforms
-									? platforms.map((plat, index) => (
-											<div className="col text-align-left" key={plat.id}>
-												{plat.top_products.map((product, index) => (
-													<div key={product.name}>
-														{" "}
-														<div className="row ml-2 specialRow w-100">{product.name}</div>
+		<>
+			{platforms == null || platforms[0] == null ? (
+				<p className="text-center">Estamos cargando tus datos</p>
+			) : (
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-6 offset-md-3">
+							<div className="card">
+								<div className="card-body">
+									<h3 className="text-center mb-4">Productos más populares</h3>
+									<div className="row">
+										<div className="columnNames col-sm-4 h5">Ranking</div>
+										{platforms
+											? platforms.map((plat, index) => (
+													<div className=" columnNames col-sm-4 h5" key={plat.id}>
+														{plat.name}
 													</div>
-												))}
-											</div>
-									  ))
-									: ""}
+											  ))
+											: ""}
+									</div>
+									<div className="row">
+										<div className="col-sm-4">
+											<p className="specialRowRanking">1º</p>
+											<p className="specialRowRanking">2º</p>
+											<p className="specialRowRanking">3º</p>
+											<p className="specialRowRanking">4º</p>
+											<p className="specialRowRanking">5º</p>
+										</div>
+										{platforms
+											? platforms.map((plat, index) => (
+													<div className="col text-align-left" key={plat.id}>
+														{plat.top_products.map((product, index) => (
+															<div key={product.name}>
+																{" "}
+																<div className="row mr-2 specialRow w-100">
+																	{product.name}
+																</div>
+															</div>
+														))}
+													</div>
+											  ))
+											: ""}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			)}
+		</>
 	);
 };
 ProductTable.propTypes = {

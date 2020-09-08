@@ -3,7 +3,9 @@ import { withRouter, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link, useRouteMatch, useParams, useHistory } from "react-router-dom";
 import "../../styles/salesTable.scss";
+
 const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
+
 export const ClientTable = props => {
 	const [platforms, setPlatforms] = useState([]);
 	const params = useParams();
@@ -28,6 +30,7 @@ export const ClientTable = props => {
 		},
 		[props.period]
 	);
+
 	return (
 		<>
 			{platforms == null || platforms[0] == null ? (

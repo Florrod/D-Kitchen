@@ -106,6 +106,22 @@ input.form-fixer {
     line-height: 24px;
     text-decoration: underline;
 }
+.dropdown-item {
+    font-size: 14px;
+    font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color: #2b3800;
+    font-weight: 400;
+    line-height: 24px;
+}
+.dropdown-item:hover {
+    font-size: 14px;
+    font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
+    color: #2b3800;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: underline;
+    background-color: #bebebe;
+}
 .addBrand {
     font-size: 14px;
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
@@ -127,7 +143,7 @@ input.form-fixer {
     background-color:#cfd1d0;
 }
 .navBar {
-    background-color:  #2b3800;
+    background-color: #2b3800;
     color: white;
 }
 .navIdentifier {
@@ -155,5 +171,5 @@ input.form-fixer {
     font-family: 'Cabin' 'Helvetica', 'Arial', 'Lucida', sans-serif;
     color:red;
     line-height: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }

@@ -12,11 +12,18 @@
 }
 .specialRow {
     height: 50px;
+    width: 60px;
     padding: 0;
     margin: 0;
 }
 .specialRow:hover {
     background: #bdbdbd;
+}
+.specialRowRanking {
+    height: 50px;
+    width: 15px;
+    padding: 0;
+    margin: 0;
 }
 .columnNames {
     font-size: 18px;

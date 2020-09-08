@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link, useParams, Redirect } from "react-router-dom";
+import { Link, useParams, Redirect, useHistory } from "react-router-dom";
 import "../../styles/home.scss";
 
 const ENDPOINT = "https://3000-e235e552-6019-4406-9dae-b6e1d0b739af.ws-eu01.gitpod.io";
@@ -10,6 +10,7 @@ export const Navbar = () => {
 	const [state, setState] = useState({});
 	const [loggedIn, setLoggedIn] = useState(false);
 	const params = useParams();
+	const history = useHistory();
 
 	const sendLogOutToServer = token => {
 		let access_token = localStorage.getItem("access_token");
@@ -23,6 +24,7 @@ export const Navbar = () => {
 		})
 			.then(res => {
 				actions.logout();
+				history.push("/");
 			})
 			.catch(error => actions.logout());
 	};
@@ -77,17 +79,15 @@ export const Navbar = () => {
 										Mi panel
 									</button>
 								</Link>
-								<Link to="/">
-									<button onClick={sendLogOutToServer} className="dropdown-item" type="button">
-										Cerrar sesión
-									</button>
-								</Link>
+								<div className="dropdown-divider" />
+								<button onClick={sendLogOutToServer} className="dropdown-item" type="button">
+									Cerrar sesión
+								</button>
 							</div>
 						</div>
 					</nav>
 				</div>
 			)}
-			<>{store.token == "" && <Redirect to="/" />}</>
 		</>
 	);
 };

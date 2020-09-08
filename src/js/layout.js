@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React from "react";
 import ScrollToTop from "./component/scrollToTop";
 
-import { HomeOut } from "./views/homeout";
 import { Single } from "./views/single";
 import { CompanyAdded } from "./views/companyAdded";
 import { Login } from "./views/login";
@@ -33,7 +32,7 @@ export const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={HomeOut} />
+						{/* <Route exact path="/" component={HomeOut} /> */}
 						<Route exact path="/" component={Login} />
 						<Route exact path="/remind-password" component={RemindPassword} />
 						<Route exact path="/registerForm" component={RegisterForm} />

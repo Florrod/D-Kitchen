@@ -118,11 +118,9 @@ export const Login = () => {
 									value={password}
 								/>
 								{error && <div className="error">{error.error}</div>}
-								<Link to="/registerForm">
-									<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
-										<strong>Inicia sesión</strong>
-									</button>
-								</Link>
+								<button onClick={handleSubmit} type="submit" className="buttom mb-5 ml-0">
+									<strong>Inicia sesión</strong>
+								</button>
 								<div>
 									<Link className="tipoLink mt-3 w-100 text-center" to="/remind-password">
 										¿Has olvidado tu contraseña?

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/home.scss";
 
 export const CompanyAdded = () => {
 	const { store, actions } = useContext(Context);
@@ -18,14 +19,14 @@ export const CompanyAdded = () => {
 					<div className="row justify-content-center mt-4">
 						<Link to="/registerForm">
 							<div className="col">
-								<span className="button" href="#" role="button">
+								<span className="buttom" href="#" role="button">
 									Añadir otra cuenta
 								</span>
 							</div>
 						</Link>
 						<Link to="/companyList">
 							<div className="col">
-								<span className="button" href="#" role="button">
+								<span className="buttom" href="#" role="button">
 									Ir a mi perfil
 								</span>
 							</div>
