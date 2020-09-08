@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 
@@ -8,6 +9,7 @@ import { SearchBar } from "../component/searchBar.js";
 
 export const CompanyList = () => {
 	const [state, setState] = useState({});
+	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="container">
@@ -16,9 +18,11 @@ export const CompanyList = () => {
 				<SearchBar />
 				<ul className="list-group pull-down" id="contact-list">
 					<div className="row ml-2 justify-content-right">
-						<Link to="/registerForm">
-							<button className="buttom">Añadir nueva empresa</button>
-						</Link>
+						{store.admin == true && (
+							<Link to="/registerForm">
+								<button className="buttom">Añadir nueva empresa</button>
+							</Link>
+						)}
 					</div>
 					<CompanyCard />
 				</ul>

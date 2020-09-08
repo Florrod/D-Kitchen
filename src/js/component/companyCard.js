@@ -65,44 +65,49 @@ export const CompanyCard = props => {
 											/>
 											<span className="text-muted text-truncate"> {enterprise.email}</span>
 										</div>
-										<button
-											className="btn company mb-2"
-											onClick={() => {
-												actions.deleteEnterprise(enterprise.id);
-											}}>
-											<i className="mr-3 fas fa-trash-alt" />
-											Eliminar empresa
-										</button>
+										{store.admin == true && (
+											<button
+												className="btn company mb-2"
+												onClick={() => {
+													actions.deleteEnterprise(enterprise.id);
+												}}>
+												<i className="mr-3 fas fa-trash-alt" />
+												Eliminar empresa
+											</button>
+										)}
 									</div>
 								</li>
 								<li className="col list-group-item">
-									{enterprise.brand_id.map((brand, index) => (
-										<div key={brand.name} className="row w-100">
-											<div className="col">
-												{" "}
-												<strong>{brand.name}</strong>
-												<div className="float-right">
-													<Link to={`/edit/brand/${brand.id}`}>
-														<button className="btn">
-															<i className="fas fa-pencil-alt" />
-														</button>
-													</Link>
-													<button
-														className="btn"
-														onClick={() => {
-															actions.deleteBrand(brand.id);
-														}}>
-														<i className="fas fa-trash-alt" />
-													</button>
-													<Link to={`/navbarChartLine/${brand.id}`}>
-														<button className="btn">
-															<i className="fas fa-chart-bar" />
-														</button>
-													</Link>
+									<React.Fragment>
+										{Array.isArray(enterprise.brand_id) &&
+											enterprise.brand_id.map((brand, index) => (
+												<div key={brand.name} className="row w-100">
+													<div className="col">
+														{" "}
+														<strong>{brand.name}</strong>
+														<div className="float-right">
+															<Link to={`/edit/brand/${brand.id}`}>
+																<button className="btn">
+																	<i className="fas fa-pencil-alt" />
+																</button>
+															</Link>
+															<button
+																className="btn"
+																onClick={() => {
+																	actions.deleteBrand(brand.id);
+																}}>
+																<i className="fas fa-trash-alt" />
+															</button>
+															<Link to={`/navbarChartLine/${brand.id}`}>
+																<button className="btn">
+																	<i className="fas fa-chart-bar" />
+																</button>
+															</Link>
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
-									))}
+											))}
+									</React.Fragment>
 								</li>
 							</div>
 						</React.Fragment>

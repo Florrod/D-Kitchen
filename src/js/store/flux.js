@@ -28,14 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setAdmin: admin => {
 				setStore({ admin: admin });
 			},
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
+
 			setBrand: brand => {
 				setStore({ currentBrand: brand });
 			},
@@ -217,9 +210,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(brand => {
 						let store = getStore();
-						let brands = store.allData;
+						let enterprises = store.allData;
 						setStore({
-							allData: brands.filter(e => e.id != brand.id).concat(brand) // Cuando cambia un valor del id se añade la empresa de nueva
+							allData: enterprises.map(e => {
+								if (e.id == brand.enterprise_id) {
+									return {
+										...e,
+										brand_id: e.brand_id.filter(e => e.id != brand.id).concat(brand)
+									};
+								} else return e;
+							}) // Cuando cambia un valor del id se añade la empresa de nueva
 						});
 					})
 					.catch(e => console.error(e));

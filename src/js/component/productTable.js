@@ -31,8 +31,6 @@ export const ProductTable = props => {
 		[props.period]
 	);
 
-	// if (platforms == null || platforms[0] == null) return <p className="text-center">Estamos cargando tus datos</p>;
-
 	return (
 		<>
 			{platforms == null || platforms[0] == null ? (

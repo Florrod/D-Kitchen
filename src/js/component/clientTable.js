@@ -51,13 +51,6 @@ export const ClientTable = props => {
 												<div className="row" key={plat.platform_id}>
 													<div className="col-6">{plat.platform_name}</div>
 													<div className="col-6">{plat.client_identifier}</div>
-													{/* {plat.orders_count.map((contact, index) => (
-                                                        <div key={index} className="col-6 text-center">
-                                                            {" "}
-                                                            {contact.phone}
-                                                            {contact.customer_id_platform}
-                                                        </div>
-                                                    ))} */}
 												</div>
 										  ))
 										: ""}

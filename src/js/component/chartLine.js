@@ -58,7 +58,6 @@ export const ChartLine = props => {
 							byMonth[sale[2]][sale[4]] = 0;
 						}
 						byMonth[sale[2]][sale[4]] += roundSales(sale[6]);
-						// console.log(`byMonth[${sale[2]}][${sale[4]}] + ${sale[6]}`, byMonth[sale[2]][sale[4]]);
 						if (
 							dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
 							dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current)
@@ -71,19 +70,6 @@ export const ChartLine = props => {
 							}
 							byDay[sale[2]][`${sale[3]}/${sale[4]}`] += roundSales(sale[6]);
 						}
-						// if (
-						// 	dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isBefore(end) &&
-						// 	dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`).isAfter(current_7days)
-						// ) {
-						// 	console.log("DAYJS última semana ->", dayjs(`${sale[5]}-${sale[4]}-${sale[3]}`));
-						// 	if (byDay[sale[2]] === undefined) {
-						// 		byDay[sale[2]] = {};
-						// 	}
-						// 	if (byDay[sale[2]][`${sale[3]}/${sale[4]}`] === undefined) {
-						// 		byDay[sale[2]][`${sale[3]}/${sale[4]}`] = 0;
-						// 	}
-						// 	byDay[sale[2]][`${sale[3]}/${sale[4]}`] += sale[6];
-						// }
 					}
 				});
 				console.log(platformsMonths);
@@ -91,7 +77,6 @@ export const ChartLine = props => {
 				let byDaySorted = {};
 				while (current.isBefore(end)) {
 					lastMonthDays.push(current.format("D/M"));
-					// console.log("Aquí está current _>", current.format("D/M"));
 					Object.keys(platformsLabels).forEach(_platformid => {
 						if (typeof byDay[_platformid][current.format("D/M")] === "undefined") {
 							byDay[_platformid][current.format("D/M")] = 0;
@@ -103,13 +88,11 @@ export const ChartLine = props => {
 					});
 					current = current.add(1, "d");
 				}
-				// console.log("Aquí está lasMonthDay ->", lastMonthDays);
-				// console.log("Aquí byDaySorted -->", byDaySorted);
+
 				let lastWeekDays = [];
 				let _byDaySorted = {};
 				while (current_7days.isBefore(end)) {
 					lastWeekDays.push(current_7days.format("D/M"));
-					// console.log("Aquí está current 7days -->", current_7days.format("D/M"));
 					Object.keys(platformsLabels).forEach(_platformId => {
 						if (typeof byDay[_platformId][current_7days.format("D/M")] === "undefined") {
 							byDay[_platformId][current_7days.format("D/M")] = 0;
@@ -122,22 +105,7 @@ export const ChartLine = props => {
 					});
 					current_7days = current_7days.add(1, "d");
 				}
-				// console.log("¡¡Aquí _byDaySorted -->!", _byDaySorted);
-				// for (let i = 30; i >= 0; i--) {
-				// 	lastMonthDays.push(
-				// 		`${new Date(
-				// 			today.getFullYear(),
-				// 			today.getMonth(),
-				// 			today.getDate() - i
-				// 		).getDate()}/${new Date(
-				// 			today.getFullYear(),
-				// 			today.getMonth(),
-				// 			today.getDate() - i
-				// 		).getMonth() + 1}`
-				// 	);
-				// }
-				// console.log("hola soy ventas por platform y por mes", byMonth);
-				// console.log("hola soy ventas por platform y por dia", byDay);
+
 				setChartData({
 					labels: Object.keys(platformsMonths),
 					type: "line",
